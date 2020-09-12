@@ -1,46 +1,68 @@
+  
 <style>
-	h1, figure, p {
-		text-align: center;
-		margin: 0 auto;
-	}
-
-	h1 {
-		font-size: 2.8em;
-		text-transform: uppercase;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
-	}
-
-	figure {
-		margin: 0 0 1em 0;
-	}
-
-	img {
-		width: 100%;
-		max-width: 400px;
-		margin: 0 0 1em 0;
-	}
-
-	p {
-		margin: 1em auto;
-	}
-
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
-	}
+  .home-container {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    margin: 2em 0;
+    min-height: 400px;
+  }
+  .home-copy {
+    flex: 1;
+  }
+  h1 {
+    font-weight: 700;
+    margin-bottom: 0.5em;
+  }
+  p {
+    font-size: 1.4em;
+    line-height: 1.5;
+  }
+  figure {
+    margin: 0 1em;
+    text-align: center;
+  }
+  figcaption {
+    font-size: .8em;
+    font-style: italic;
+  }
+  img {
+    width: 100%;
+    max-width: 400px;
+  }
+  @media (max-width: 1020px) {
+    p {
+      font-size: 1.2em;
+    }
+    img {
+      max-width: 300px;
+    }
+  }
+  @media (max-width: 800px) {
+    .home-container {
+      flex-direction: column;
+    }
+    .home-copy {
+      flex: 0;
+      padding-bottom: 2em;
+      text-align: center;
+    }
+  }
 </style>
 
 <svelte:head>
-	<title>Sapper project template</title>
+  <title>BrandonXIANG Blog</title>
 </svelte:head>
 
-<h1>Great success!</h1>
+<div class="home-container">
+  <div class="home-copy">
+    <h1>Welcome to BrandonXIANG Blog</h1>
+    <p>Check out my <a href="https://github.com/brandonxiang" target="_blank">GitHub</a>.</p>
+  </div>
 
-<figure>
-	<img alt='Success Kid' src='successkid.jpg'>
-	<figcaption>Have fun with Sapper!</figcaption>
-</figure>
-
-<p><strong>Try editing this file (src/routes/index.svelte) to test live reloading.</strong></p>
+  <figure>
+    <img alt='Person typing on laptop' src='undraw-illustration.svg'>
+    <figcaption>Illustration thanks to <a href="https://undraw.co" target="_blank">Undraw</a></figcaption>
+  </figure>
+</div>

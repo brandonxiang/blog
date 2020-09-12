@@ -1,6 +1,6 @@
 {
-  "name": "TODO",
-  "description": "TODO",
+  "name": "brandonxiang_blog",
+  "description": "brandonxiang_blog",
   "version": "0.0.1",
   "scripts": {
     "dev": "sapper dev",
