@@ -1,13 +1,16 @@
-<script context="module">
-	export function preload({ params, query }) {
-		return this.fetch(`blog.json`).then(r => r.json()).then(posts => {
-			return { posts };
-		});
-	}
-</script>
-
 <script>
-	export let posts;
+let keynotes = [
+  {
+    title: 'VUE技术选型与WEBPACK入门',
+    url: 'https://brandonxiang.github.io/keynote/web/vue-startup.html#/',
+    date: '9 JUNE 2017',
+  },
+  {
+    title: 'VUE开发规范',
+    url: 'https://brandonxiang.github.io/keynote/web/vue-specification.html#/',
+    date: '12 NOVEMBER 2017'
+  }
+]
 </script>
 
 <style>
@@ -25,20 +28,20 @@
 </style>
 
 <svelte:head>
-	<title>Blog</title>
+	<title>Keynote</title>
 </svelte:head>
 
-<h1>Recent posts</h1>
+<h1>Recent keynotes</h1>
 
 <div>
-	{#each posts as post, index}
+	{#each keynotes as keynote, index}
 		<!-- we're using the non-standard `rel=prefetch` attribute to
 				tell Sapper to load the data for the page as soon as
 				the user hovers over the link or taps it, instead of
 				waiting for the 'click' event -->
-		<p><a rel='prefetch' href='blog/{post.slug}'>{post.title}</a></p>
+		<p><a rel='prefetch' href={keynote.url}>{keynote.title}</a></p>
 		<div class="post-item-footer">
-			<span class="post-item-date">— {post.printDate}</span>
+			<span class="post-item-date">— {keynote.date}</span>
 		</div>
 	{/each}
 </div>

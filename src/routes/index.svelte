@@ -52,7 +52,7 @@
 </style>
 
 <svelte:head>
-  <title>BrandonXIANG Blog</title>
+  <title>BrandonXIANG</title>
 </svelte:head>
 
 <div class="home-container">
