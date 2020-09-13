@@ -1,6 +1,6 @@
 ---
 title: Svelte笔记一：入门脚手架
-date: "2020-09-11T08:38:00.000Z"
+date: "2019-10-27T08:38:00.000Z"
 ---
 
 > 源码github地址在此，记得点星：[brandonxiang/svelte-webpack-mpa](https://github.com/brandonxiang/svelte-webpack-mpa)

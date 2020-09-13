@@ -1,6 +1,6 @@
 ---
 title: Svelte笔记二：从零搭建服务端渲染
-date: 2020-09-11T12:51:00.000Z
+date: 2020-02-06T12:51:00.000Z
 ---
 
 > 源码github地址在此，记得点星：[svelte-ssr](https://github.com/brandonxiang/svelte-ssr)
