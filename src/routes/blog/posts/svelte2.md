@@ -42,11 +42,11 @@ const App = await AppServer.render();
 
 在当前中国的4g网络环境下，服务端渲染的魅力不在于html的拼接，而是在于数据呈现给用户的时间，也就是time to content。光有页面不够，内容请求时间的优化才是关键。
 
-这里利用了svelte的[script_context_module](https://svelte.dev/docs#script_context_module)的特性，即当<script>标签有 `context="module"`属性的时候， 暴露方法能够被组件外部调用。Sapper提供了方法preload里面执行着服务端预拉取数据的逻辑，大大提高了页面的显示效率。
+这里利用了svelte的[script_context_module](https://svelte.dev/docs#script_context_module)的特性，即当`<script\>`标签有 `context="module"`属性的时候， 暴露方法能够被组件外部调用。Sapper提供了方法preload里面执行着服务端预拉取数据的逻辑，大大提高了页面的显示效率。
 
 在App.svelte当中，添加数据预取的逻辑并返回该数据，数据则会以props的形式传递到组件当中。
 
-```
+```javascript
 // App.svelte
 <script context="module">
   import axios from 'axios';
