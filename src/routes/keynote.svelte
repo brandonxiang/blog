@@ -1,15 +1,20 @@
 <script>
 let keynotes = [
   {
-    title: 'VUE技术选型与WEBPACK入门',
-    url: 'https://brandonxiang.github.io/keynote/web/vue-startup.html#/',
-    date: '9 JUNE 2017',
+    title: '微前端与WEB COMPONENTS',
+    url: 'https://keynote.vercel.app/microfrontend.html#/',
+    date: '2 APRIL 2019',
   },
   {
     title: 'VUE开发规范',
-    url: 'https://brandonxiang.github.io/keynote/web/vue-specification.html#/',
+    url: 'https://keynote.vercel.app/vue-specification.html#/',
     date: '12 NOVEMBER 2017'
-  }
+  },
+  {
+    title: 'VUE技术选型与WEBPACK入门',
+    url: 'https://keynote.vercel.app/vue-startup.html#/',
+    date: '9 JUNE 2017',
+  },
 ]
 </script>
 
