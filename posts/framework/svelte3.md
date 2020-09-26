@@ -87,7 +87,7 @@ export function space() {
 }
 ```
 
-create_fragment的过程还包含有`c,m,p,i,o,d`等特殊名称的函数，这些函数并非编译混淆，而是Fragment内部的生命周期缩写。Fragment指得是真实dom的节点，它拥有着独立的生命周期和属性。源码中`src/runtime/internal/Component`介绍了它的定义，它是一个真实的dom元素集合，它的属性并非组件属性(如下方ts类型定义)，分别包含了`create`,`claim`,`hydrate`,`mount`,`update`,`mesure`,`fix`,`animate`,`intro`,`outro`,`destory`，组件的真实变化会影响Fragment的变化，Fragment的变化影响真实的dom，从上面例子看在create的过程中它创建了h1标签，在mount的过程将刚才创建的h1挂载到页面中，在update的过程没有任何操作，在detach的过程销毁该Fragment。
+create_fragment的过程还包含有`c,m,p,i,o,d`等特殊名称的函数，这些函数并非编译混淆，而是Fragment内部的生命周期缩写。Fragment指得是真实dom的节点，它拥有着独立的生命周期和属性。源码中`src/runtime/internal/Component`介绍了它的定义，它是一个真实的dom元素集合，它的属性并非组件属性(如下方ts类型定义)，分别包含了`create`, `claim`, `hydrate`, `mount`, `update`, `mesure`, `fix`, `animate`, `intro`, `outro`, `destory`，组件的真实变化会影响Fragment的变化，Fragment的变化影响真实的dom，从上面例子看在create的过程中它创建了h1标签，在mount的过程将刚才创建的h1挂载到页面中，在update的过程没有任何操作，在detach的过程销毁该Fragment。
 
 ```typescript
 interface Fragment {
