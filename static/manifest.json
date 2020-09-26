@@ -4,8 +4,9 @@
 	"name": "Brandon's Blog",
 	"short_name": "Brandon's Blog",
 	"description": "A Web Developer's Blog",
-	"display": "minimal-ui",
+	"display": "standalone",
 	"start_url": "/",
+	"scope": "/",
 	"icons": [
 		{
 			"src": "logo-192.png",
