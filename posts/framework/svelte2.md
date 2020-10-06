@@ -5,9 +5,9 @@ date: 2020-02-06T12:51:00.000Z
 
 > 源码github地址在此，记得点星：[svelte-ssr](https://github.com/brandonxiang/svelte-ssr)
 
-服务端渲染大家应该不陌生了吧，[next.js的从零到百入门配置](https://www.jianshu.com/p/1dbb2fa1069e)已经很好地介绍了怎么去构建一个简单的服务端渲染项目，当然，next.js是react框架下最成熟的服务端渲染框架，在它的帮助下，搭建服务端渲染非常简单高效。但是从程序员自我增长的角度上看，成熟的框架反而会妨碍原理的学习。[Sapper](https://github.com/sveltejs/sapper)则是相当于Svelte的next.js。
+服务端渲染大家应该不陌生了吧，[next.js的从零到百入门配置](https://brandonxiang.vercel.app/blog/react4)已经很好地介绍了怎么去构建一个简单的服务端渲染项目，当然，next.js是react框架下最成熟的服务端渲染框架，在它的帮助下，搭建服务端渲染非常简单高效。但是从程序员自我增长的角度上看，成熟的框架反而会妨碍原理的学习。[Sapper](https://github.com/sveltejs/sapper)则是相当于Svelte的next.js。
 
-所以类似[React笔记三：从0开始搭建项目配置](https://www.jianshu.com/p/f8b525f6df54)，学会如何从零搭建服务端渲染是非常重要的，这次，Svelte框架也可以实现服务端渲染，虽然Svelte并没有Virtual Dom的机制，但是它同样具备了同构的能力。首先，复习一下“同构”是什么意思？所谓的“服务端渲染”可以由很多种方法来实现。同构能力是由前端框架层面决定的，像“Vue”，“React”，“Svelte”当然可以实现同构渲染，而是否在意数据的实时性则是决定了是动态渲染还是静态渲染。动态渲染是需要起服务，需要计算服务器的压力，但是也保证了数据的实时性和页面的高显示效率。静态渲染则不需要考虑服务端的压力，而有取舍，需要leader们根据实际情况决策。
+所以类似[React笔记三：从0开始搭建项目配置](https://brandonxiang.vercel.app/blog/react3)，学会如何从零搭建服务端渲染是非常重要的，这次，Svelte框架也可以实现服务端渲染，虽然Svelte并没有Virtual Dom的机制，但是它同样具备了同构的能力。首先，复习一下“同构”是什么意思？所谓的“服务端渲染”可以由很多种方法来实现。同构能力是由前端框架层面决定的，像“Vue”，“React”，“Svelte”当然可以实现同构渲染，而是否在意数据的实时性则是决定了是动态渲染还是静态渲染。动态渲染是需要起服务，需要计算服务器的压力，但是也保证了数据的实时性和页面的高显示效率。静态渲染则不需要考虑服务端的压力，而有取舍，需要leader们根据实际情况决策。
 
 ![Nodejs服务端渲染](https://upload-images.jianshu.io/upload_images/685800-7e641350b5b78105.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
@@ -15,7 +15,7 @@ date: 2020-02-06T12:51:00.000Z
 
 ## webpack配置文件
 
-[Svelte笔记一：入门脚手架](https://www.jianshu.com/p/5fe04f7a796a)介绍了svelte基本原理在于compiler的预编译，把代码编译成为最小的dom操作单元，数据变化会触发dom的更新。而compiler提供两种模式dom和ssr，dom是我们常见的客户端渲染（csr）。ssr则是服务端渲染模式，同构的代码会在服务端先跑一遍。项目中需要两个webpack配置文件，分别对应server和client，两个不同的入口文件，两个svelte-loader的配置也有所不一样。服务端的配置需要设置`css:false`说明css文件将不会混入js代码中。客户端的配置里面的`hydratable`指的是客户端激活，当客户端加载完成后，需要对已有的dom进行激活。
+[Svelte笔记一：入门脚手架](https://brandonxiang.vercel.app/blog/react1)介绍了svelte基本原理在于compiler的预编译，把代码编译成为最小的dom操作单元，数据变化会触发dom的更新。而compiler提供两种模式dom和ssr，dom是我们常见的客户端渲染（csr）。ssr则是服务端渲染模式，同构的代码会在服务端先跑一遍。项目中需要两个webpack配置文件，分别对应server和client，两个不同的入口文件，两个svelte-loader的配置也有所不一样。服务端的配置需要设置`css:false`说明css文件将不会混入js代码中。客户端的配置里面的`hydratable`指的是客户端激活，当客户端加载完成后，需要对已有的dom进行激活。
 
 ```javascript
 // webpack.server.config.js

@@ -63,7 +63,7 @@ web前端的各位同学可能或多或少听过pwa，听过[service worker](htt
 
 我们知道vue-cli打造出来的pwa模版，使用的是[sw-precache](https://github.com/GoogleChromeLabs/sw-precache)，而[workbox](https://github.com/GoogleChrome/workbox)是它的取代品。它们各自有一个webpack版的插件，分别是[sw-precache-webpack-plugin](https://github.com/goldhand/sw-precache-webpack-plugin)和[workbox-webpack-plugin](https://github.com/GoogleChrome/workbox/tree/v3/packages/workbox-webpack-plugin)。
 
-> 结合[Vue笔记八：多页面打包框架](https://www.jianshu.com/p/a06eeff3375e)的多页面打包框架，我添加上precache的功能（以后计划替换成为workbox），实现多页面的service worker框架，github的地址是https://github.com/brandonxiang/mpa-pwa
+> 结合[Vue笔记八：多页面打包框架](https://brandonxiang.vercel.app/blog/vue8)的多页面打包框架，我添加上precache的功能（以后计划替换成为workbox），实现多页面的service worker框架，github的地址是https://github.com/brandonxiang/mpa-pwa
 
 > 我写了一个关于workbox在vue-webpack框架的脚手架，github的地址是https://github.com/brandonxiang/example-vue-workbox，大家可以参考一下。
 

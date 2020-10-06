@@ -3,8 +3,8 @@ title: Svelte笔记四：compile源码解析
 date: 2020-08-15T12:51:00.000Z
 ---
 
-- [Svelte笔记三：runtime源码解读](https://www.jianshu.com/p/6e70a39e709d)
-- [Svelte笔记四：compile源码解析](https://www.jianshu.com/p/f65052e112ad)
+- [Svelte笔记三：runtime源码解读](https://brandonxiang.vercel.app/blog/svelte3)
+- [Svelte笔记四：compile源码解析](https://brandonxiang.vercel.app/blog/svelte4)
 
 Svelte的runtime之所以可以如此简洁，是因为在compile的阶段已经完成了很多工作。compile是一个将模版语言转化成为可执行代码的一个过程，在运行时的帮助下，实现单向数据流的过程，这样才是svelte的运行原理。
 
@@ -64,7 +64,7 @@ mustache则是模版语言中的语法。
 
 svelte的css组件样式都存放在style标签里面，工程代码里的样式字符会被转换成type为`Style`的语法树。
 
-svelte的script被分为instance和module两种。instance指的是[svelte runtime源码解析](https://www.jianshu.com/p/6e70a39e709d)中提及的instance方法，是用于处理组件内部的变化逻辑。module则是处理组件外部的逻辑，它export出来的方法可以被组件外部调用。例如下面这个例子stopAll这个方法可以被组件外部调用，用于暂停组件的音乐播放器。
+svelte的script被分为instance和module两种。instance指的是[svelte runtime源码解析](https://brandonxiang.vercel.app/blog/svelte3)中提及的instance方法，是用于处理组件内部的变化逻辑。module则是处理组件外部的逻辑，它export出来的方法可以被组件外部调用。例如下面这个例子stopAll这个方法可以被组件外部调用，用于暂停组件的音乐播放器。
 
 ```svelte
 <script context="module">
@@ -87,7 +87,7 @@ script的解析主要靠的是[code-red](https://github.com/Rich-Harris/code-red
 
 第一步将parse过程中拿到的语法树（包含html，css，instance和module）转换为Component，第二步将Component进入**render dom**处理并生成component的转换代码以及runtime，第三步输出compiler的结果。
 
-[《Svelte笔记三：runtime源码解读》](https://www.jianshu.com/p/6e70a39e709d)介绍了转换后代码重要的组成部分是create_fragment，该函数内拥有很多element的创建，它会是组件初始化中非常重要的函数，所有的节点都会定义在`src/compiler/compile/nodes`中。组件化是将所有的Component组成一个树状结构，render dom将匹配的节点转换为runtime可识别的代码。
+[《Svelte笔记三：runtime源码解读》](https://brandonxiang.vercel.app/blog/svelte3)介绍了转换后代码重要的组成部分是create_fragment，该函数内拥有很多element的创建，它会是组件初始化中非常重要的函数，所有的节点都会定义在`src/compiler/compile/nodes`中。组件化是将所有的Component组成一个树状结构，render dom将匹配的节点转换为runtime可识别的代码。
 
 重点聊一下数据流，《runtime源码解读》讲到svelte是单向数据流，将代码中变量的赋值转换成为`$$invalidate`，它并没有采用vue中的双向绑定的机制，而是直接在语法树中判断变量的赋值的语句，待变量触发变化时，引起Fragment的update以及Component的update。
 
