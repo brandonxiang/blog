@@ -3,7 +3,7 @@ title: Vue笔记八：多页面打包框架（mpa）
 date: 2018-01-06T16:01:09.000Z
 ---
 
-> 该文章已经过时，请移步[Vue笔记十：Vue-cli3.0](https://www.jianshu.com/p/62f9da10c0d8)
+> 该文章已经过时，请移步[Vue笔记十：Vue-cli3.0](https://brandonxiang.vercel.app/blog/vue10)
 
 我记得去年很多人看了我《用Webpack构建Vue》一篇文章，但是因为webpack和vue升级速度很快，那文章很快就过时了。学习vue最好的教材莫过于[vue-cli](https://github.com/vuejs/vue-cli)直接生成的单页面项目。可惜的是它不过是一个单页面的项目，在我们的实际生产环境中，往往都是较为分散的页面，为的是保证项目的解耦。
 
