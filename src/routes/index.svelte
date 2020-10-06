@@ -52,7 +52,11 @@
 </style>
 
 <svelte:head>
-  <title>BrandonXIANG</title>
+  <title>Brandon's Blog</title>
+  <meta property="og:url" content="https://brandonxiang.vercel.app">
+	<meta property="og:type" content="article">
+  <meta property="og:title" content="Brandon\'s Blog">
+	<meta property="og:description" content="Here is Brandon's Blog">
 </svelte:head>
 
 <div class="home-container">
