@@ -15,6 +15,21 @@
 
 <script>
 	export let post;
+
+	function deleteHtmlTag(str){
+		return str.replace(/<[^>]+>|&[^>]+;/g,"").trim();
+	}
+	
+	function deleteSpace(str) {
+		return str.replace(/\s/g, '');
+	}
+
+	function filterContent(str, length) {
+		const content = deleteSpace(deleteHtmlTag(str));
+		return content.substr(0, length)
+	}
+
+	let description = filterContent(post.html, 150) + '...';
 </script>
 
 <style>
@@ -55,6 +70,10 @@
 
 <svelte:head>
 	<title>{post.title}</title>
+	<meta property="og:url" content="https://brandonxiang.vercel.app/blog/{post.slug}">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content={post.title}>
+	<meta property="og:description" content={description}>
 </svelte:head>
 
 <h1>{post.title}</h1>
