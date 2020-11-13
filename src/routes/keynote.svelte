@@ -1,6 +1,11 @@
 <script>
 let keynotes = [
   {
+    title: 'Incremental Static Regeneration',
+    url: 'https://keynote.vercel.app/isr.html#/',
+    date: '13 November 2020',
+  },
+  {
     title: 'ESM Import & Bundle Free',
     url: 'https://keynote.vercel.app/bundle-free.html#/',
     date: '14 August 2020',
