@@ -11,17 +11,17 @@ let keynotes = [
     date: '14 August 2020',
   },
   {
-    title: 'svelte 入门',
+    title: 'Svelte 入门',
     url: 'https://keynote.vercel.app/svelte.html#/',
     date: '16 August 2019',
   },
   {
-    title: 'react-navigation和expo的应用',
+    title: 'React-Navigation和Expo的应用',
     url: 'https://keynote.vercel.app/expo.html#/',
     date: '31 March 2019',
   },
   {
-    title: '微前端与WEB COMPONENTS',
+    title: '微前端与Web Components',
     url: 'https://keynote.vercel.app/microfrontend.html#/',
     date: '2 APRIL 2019',
   },
@@ -36,22 +36,22 @@ let keynotes = [
     date: '26 November 2018',
   },
   {
-     title: 'VUE-CLI3.0',
+     title: 'Vue-cli3.0',
      url: 'https://keynote.vercel.app/vue-cli.html#/',
      date: '18 October 2018',
   },
   {
-     title: 'VUE-CLI3.0',
+     title: 'Vue单元测试',
      url: 'https://keynote.vercel.app/vue-test.html#/',
-     date: '18 October 2018',
+     date: '8 November 2018',
   },
   {
-    title: 'VUE单元测试',
+    title: 'Vue开发规范',
     url: 'https://keynote.vercel.app/vue-specification.html#/',
-    date: '8 NOVEMBER 2017'
+    date: '12 October 2017'
   },
   {
-    title: 'VUE技术选型与WEBPACK入门',
+    title: 'Vue技术选型与Webpack入门',
     url: 'https://keynote.vercel.app/vue-startup.html#/',
     date: '9 JUNE 2017',
   },
