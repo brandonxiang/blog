@@ -69,4 +69,4 @@ vue-cli-service build --target wc --name my-element [entry]
 
 ### 题外话
 
-[shopee](https://shopee.cn/)，又称虾皮，是一家腾讯投资的跨境电商平台。这里加班少，技术氛围好。如果想和我并肩作战一起学习，可以找我内推。邮箱1542453460@qq.com，非诚勿扰。
+[shopee](https://shopee.cn/)，又称虾皮，是一家腾讯投资的跨境电商平台。这里加班少，技术氛围好。如果想和我并肩作战一起学习，可以找我内推。邮箱[weiping.xiang@shopee.com](mailto:weiping.xiang@shopee.com)，非诚勿扰。

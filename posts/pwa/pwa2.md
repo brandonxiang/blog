@@ -124,19 +124,19 @@ Service Worker 可能以下之一的原因而被废弃（redundant，原意为�
 
 `chrome://inspect/#service-workers` 就可以查看当前浏览器正在注册的 SW，并且可以对它们进行调试和结束进程。调试会直接在 service worker 线程进行，不用理会主线层的逻辑。
 
-![调试Service worker](https://upload-images.jianshu.io/upload_images/685800-53b2a993e5160e68.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![调试Service worker](/img/debug-service-worker.png)
 
 ### 方法二
 
 另外，还有 `chrome://serviceworker-internals`，用来查看当前浏览器中所有注册过的 SW。输入这个地址就像打开新世界的大门，原来你访问那么多 PWA 页面。
 
-![所有注册过的service worker](https://upload-images.jianshu.io/upload_images/685800-6aa6d410d32deab1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![所有注册过的service worker](/img/registered-service-worker.png)
 
 ### 方法三
 
 在打开 chrome 的调试面板 devtools，Application tab 里面有个 service workers 页面，可以针对该页面的 SW，进行缓存调试以及消息推送，在这里也可以看到 SW 所在的生命周期，大大提高 SW 的调试效率。
 
-![chrome查看缓存情况](https://upload-images.jianshu.io/upload_images/685800-b81efca2228dffbb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![chrome查看缓存情况](/img/chrome-service-worker.png)
 
 ## 更新问题
 
@@ -152,4 +152,4 @@ Service Worker 可能以下之一的原因而被废弃（redundant，原意为�
 
 ### PS
 
-[shopee](https://links.jianshu.com/go?to=https%3A%2F%2Fshopee.cn%2F)，又称虾皮，是一家腾讯投资的跨境电商平台。这里加班少，技术氛围好。如果想和我并肩作战一起学习，可以找我内推。邮箱[1542453460@qq.com](https://links.jianshu.com/go?to=mailto%3A1542453460%40qq.com)，非诚勿扰。
+shopee，又称虾皮，是一家腾讯投资的跨境电商平台。这里加班少，技术氛围好。如果想和我并肩作战一起学习，可以找我内推。邮箱[weiping.xiang@shopee.com](mailto:weiping.xiang@shopee.com)，非诚勿扰。

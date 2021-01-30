@@ -19,7 +19,7 @@ HTTP 缓存应该是最传统的方式，也是所有前端项目的基础。浏
 
 稍微了解 HTTP 协议的前端同学，想必对 Cache-Control 不会感到陌生，性能优化时经常都会跟它打交道，属于 HTTP 1.1。常见的值有有 private、public、no-store、no-cache、must-revalidate、max-age 等。
 
-![强缓存](https://upload-images.jianshu.io/upload_images/685800-5fefe93bdbf5beb0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![强缓存](/img/pwa-cache1.png)
 
 - no-cache: 不管本地副本是否过期，使用资源副本前，强制回源服务器进行副本有效性校验。
 - must-revalidate：本地副本过期前可以使用本地副本；本地副本一旦过期，必须去源服务器进行有效性校验。
@@ -34,7 +34,7 @@ Expires 的值为服务端返回的到期时间，即下一次请求时，请求
 
 协商缓存（又名对比缓存）由服务器来确定缓存资源是否可用，所以客户端与服务器端要通过某种标识来进行通信，从而让服务器判断请求资源是否可以缓存访问。而 Etag 就是这个标示，属于 HTTP1.1 的标准。如果命中协商缓存会返回 304，如果未命中会从服务器取数据返回 200。它和 Last-Modify 最大的区别就是，Last-Modify 专注某个时间点。这个和 Expires 犯了同样的错误。协商缓存整个流程如下图，它必须和服务器有一次交互，一般 html 的检查是否更新，就是这样完成。一般像 JS 和 CSS 都是带 hash 值，保证文件唯一性，控制缓存。
 
-![协商缓存](https://upload-images.jianshu.io/upload_images/685800-f310778e043422b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![协商缓存](/img/pwa-cache2.png)
 
 > 为什么需要 Etag？
 >
@@ -44,7 +44,7 @@ Expires 的值为服务端返回的到期时间，即下一次请求时，请求
 
 如果你使用协商缓存，第一次加载返回 200 状态码，加载速度较慢，数据量大。第二次加载返回 304 状态码，加载速度较快，数据量小。这也是为什么我们第二次加载速度比较快，第一次加载比较慢。此外，协商缓存和网速有强相关性，网速慢的情况下，页面加载速度也会很慢。
 
-![缓存情况](https://upload-images.jianshu.io/upload_images/685800-b4fcf6f1591bd7e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![缓存情况](/img/cache-condition.png)
 
 #### Last-Modify
 
@@ -78,19 +78,19 @@ HTTP 以前的缓存机制是 Network 和 application 之间的交互，Service 
 
 因此，SW 缓存也是 pwa 的基础要素之一，详情可见[PWA 笔记二：离线缓存原理](https://brandonxiang.vercel.app/blog/pwa2)。
 
-![代理层](https://upload-images.jianshu.io/upload_images/685800-f092e4e0f857e120.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![代理层](/img/service-worker.png)
 
 ## WIFI 情况
 
-![From SW DomLoaded 571ms Load 1.41s](https://upload-images.jianshu.io/upload_images/685800-c8d384442f7d712d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![From SW DomLoaded 571ms Load 1.41s](/img/cache-from-sw.png)
 
-![From Cache DomLoaded 593ms Load 1.12s](https://upload-images.jianshu.io/upload_images/685800-6d865d8259ae29e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![From Cache DomLoaded 593ms Load 1.12s](/img/cache-from-http.png)
 
 ## 3G 情况
 
-![From SW DomLoaded 572ms Load 4.46s](https://upload-images.jianshu.io/upload_images/685800-7d6e8ef09cba17fb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![From SW DomLoaded 572ms Load 4.46s](/img/cache-from-sw-3g.png)
 
-![From Cache DomLoaded 10.37ms Load 10.69s](https://upload-images.jianshu.io/upload_images/685800-cbd615f8c6f2ae8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![From Cache DomLoaded 10.37ms Load 10.69s](/img/cache-from-http-3g.png)
 
 在网速弱网情况，协商缓存的情况会收到影响，因为它和网速是强相关的。而 service-worker 和网速时弱相关的，和单页面网页应用的属性是天然契合的，帮助网页应用更贴近 native app。
 
@@ -100,4 +100,4 @@ HTTP 以前的缓存机制是 Network 和 application 之间的交互，Service 
 
 ### PS
 
-[shopee](https://links.jianshu.com/go?to=https%3A%2F%2Fshopee.cn%2F)，又称虾皮，是一家腾讯投资的跨境电商平台。这里加班少，技术氛围好。如果想和我并肩作战一起学习，可以找我内推。邮箱[1542453460@qq.com](https://links.jianshu.com/go?to=mailto%3A1542453460%40qq.com)，非诚勿扰。
+shopee，又称虾皮，是一家腾讯投资的跨境电商平台。这里加班少，技术氛围好。如果想和我并肩作战一起学习，可以找我内推。邮箱[weiping.xiang@shopee.com](mailto:weiping.xiang@shopee.com)，非诚勿扰。
