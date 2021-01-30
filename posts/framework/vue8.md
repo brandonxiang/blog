@@ -79,5 +79,3 @@ npm run build Hello eCommand Pingan
 Webpack 的版本升级速度真的是非常快，快得无法想象。有幸经历 1 到 2 和 2 到 3 的升级，体验了一步一步的性能优化。同期无论是 [rollup](https://rollupjs.org/guide/en/) 还是 [parcel](https://parceljs.org/) 的出现，他们的优缺点很好地反哺了 webpack 的优化点。parcel 的出现又一次让人反思“wbepack 的配置是不是太过于繁琐”，但是 parcel 由不够成熟，而且 tree-shaking 和 scope-hoisting 的缺席。所以，现在前端工程化中，能投入生产的还是 webpack，我也相信 webpack4 会变得更好。
 
 [多页面脚手架](https://github.com/brandonxiang/mpa)正是采用全新的 webpack3 构建，里面包含它的“内容不变 hash 值不变”的特性，欢迎大家指点评论。
-
-转载，请表明出处。[总目录前段收集器](http://www.jianshu.com/p/c1e3b96c1293)

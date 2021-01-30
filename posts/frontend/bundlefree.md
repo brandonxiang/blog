@@ -34,7 +34,7 @@ const fs = require("fs");
 ></script>
 ```
 
-![兼容性情况](https://upload-images.jianshu.io/upload_images/685800-393fdde6e2555846.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![兼容性情况](/img/caniuse-esmodule.png)
 
 ### ESM Import
 
@@ -89,7 +89,7 @@ const fs = require("fs");
 
 而 vite 则是 Bundle Free 的实现，它的出现主要是有效减少开发编译时间，因为 Bundle Free 的原理就在于每一个文件都是独立的 import。Node 端和浏览器端的文件基本是对等的，每当一个文件有变动的时候，只需要替换其中一个文件即可。所以它在大型业务项目的开发中，有着很不错的体验。
 
-![尤大大的Twitter](https://upload-images.jianshu.io/upload_images/685800-d4d359ad23b57b81.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![尤大大的Twitter](/img/twitter-yyx.png)
 
 由于 vue 不同于渲染函数，很多语法是模版约定的。熟悉 vue 原理的同学就知道，它有对应的 compiler，将模版转换为 createElement 的函数，而这些函数则可以在浏览器直接运行。每一个独立的 vue 文件，都会转换成这么一个 js 文件，它们在浏览器上直接运作。这就是 vite 的基本原理。
 
@@ -114,7 +114,7 @@ const fs = require("fs");
 
 ### 对未来的畅想
 
-![来自《The Third Age of JavaScript》](https://upload-images.jianshu.io/upload_images/685800-cab7eb82cda17e2a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![来自《The Third Age of JavaScript》](/img/third-age.png)
 
 作为一个从 Jquery 走过来的前端工程师，你会明白以前的浏览器是弱化前端模块化，没有前端工程化的，所有的资源都是静态引入，前端项目的维护性是很弱的。但是结构是清晰的，学习成本非常低。进入了第二个时代，也就是 webpack 引领的前端工程化时代，前端项目就变成了一个 JS 文件，各种工具层出不穷，学习成本非常高。2020 后可能会进入第三个时代，这个时代是属于 Bundle Free 或者 Bundleless，部分前端项目可能会回到直接引用的状态，部分项目则是混合依赖的情况，在另一个程度，给前端性能优化带来了另一个可能。
 
@@ -131,4 +131,4 @@ const fs = require("fs");
 
 ### 题外话
 
-[shopee](https://links.jianshu.com/go?to=https%3A%2F%2Fshopee.cn%2F)，又称虾皮，是一家腾讯投资的跨境电商平台。这里加班少，技术氛围好。如果想和我并肩作战一起学习，可以找我内推。邮箱[weiping.xiang@shopee.com](https://links.jianshu.com/go?to=mailto%3Aweiping.xiang%40shopee.com)，非诚勿扰。
+shopee，又称虾皮，是一家腾讯投资的跨境电商平台。这里加班少，技术氛围好。如果想和我并肩作战一起学习，可以找我内推。邮箱[weiping.xiang@shopee.com](mailto:weiping.xiang@shopee.com)，非诚勿扰。

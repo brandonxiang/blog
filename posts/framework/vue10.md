@@ -29,7 +29,7 @@ vue init webpack my-project
 ## vue ui 新功能
 
 万万没想到的是 vue ui，Guillaume CHAU（Vue.js 核心团队）给脚手架带来不仅可以创建新项目，还可以管理项目中的插件和任务。
-![image.png](https://upload-images.jianshu.io/upload_images/685800-043813ca99822368.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![vue ui](/img/vue-ui.png)
 
 ## 未来
 

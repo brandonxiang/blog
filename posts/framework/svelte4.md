@@ -103,4 +103,4 @@ svelte 是一个极简化的框架，从完备的 compiler 和极简的 runtime 
 
 ### 题外话
 
-[shopee](https://links.jianshu.com/go?to=https%3A%2F%2Fshopee.cn%2F)，又称虾皮，是一家腾讯投资的跨境电商平台。这里加班少，技术氛围好。如果想和我并肩作战一起学习，可以找我内推。邮箱[weiping.xiang@shopee.com](https://links.jianshu.com/go?to=mailto%3Aweiping.xiang%40shopee.com)，非诚勿扰。
+shopee，又称虾皮，是一家腾讯投资的跨境电商平台。这里加班少，技术氛围好。如果想和我并肩作战一起学习，可以找我内推。邮箱[weiping.xiang@shopee.com](mailto:weiping.xiang@shopee.com)，非诚勿扰。
