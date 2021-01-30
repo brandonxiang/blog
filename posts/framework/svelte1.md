@@ -46,7 +46,7 @@ if (changed.name) {
 
 尤大大发推说 vue3 能够比 svelte 更加快。具体的情况现在还无从考证。而且有时候 benchmark 不能说明所有的问题，因为现实的开发情况往往和 benchmark 不太一样。但是有一点我是能确认的就是越贴近原生性能越好，除了后台页面外，其他的页面 svelte 有着天然的优势，因为它的体积小，作用纯粹。
 
-![Twitter](https://brandonxiang.vercel.app/img/twitter.png)
+![Twitter](/img/twitter.png)
 
 ## 多页面开发模版
 

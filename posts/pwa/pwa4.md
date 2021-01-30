@@ -59,7 +59,7 @@ PWA 指的是网页应用，Web App Manifest 主要针对的是单页面应用�
 
 最新版本的 chrome 能够支持桌面级别的 pwa 应用，当它检测到该页面是 pwa 时，地址栏处会出现一个加号，可以将 pwa 安装至电脑本地。它正如一个 app 般存在于你的电脑里。
 
-![Chrome PWA](https://brandonxiang.vercel.app/img/chrome_pwa.png)
+![Chrome PWA](/img/chrome_pwa.png)
 
 ## IOS 的支持
 
