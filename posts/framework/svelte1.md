@@ -46,7 +46,7 @@ if (changed.name) {
 
 尤大大发推说 vue3 能够比 svelte 更加快。具体的情况现在还无从考证。而且有时候 benchmark 不能说明所有的问题，因为现实的开发情况往往和 benchmark 不太一样。但是有一点我是能确认的就是越贴近原生性能越好，除了后台页面外，其他的页面 svelte 有着天然的优势，因为它的体积小，作用纯粹。
 
-![Twitter](https://upload-images.jianshu.io/upload_images/685800-e6987694e08a30f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Twitter](https://brandonxiang.vercel.app/img/twitter.png)
 
 ## 多页面开发模版
 
@@ -139,4 +139,4 @@ svelte 进入 3.0 后，语法借鉴了 vue 的 SFC 语法，非常简单。[官
 
 ### 题外话
 
-[shopee](https://links.jianshu.com/go?to=https%3A%2F%2Fshopee.cn%2F)，又称虾皮，是一家腾讯投资的跨境电商平台。这里加班少，技术氛围好。如果想和我并肩作战一起学习，可以找我内推。邮箱[weiping.xiang@shopee.com](mailto:weiping.xiang@shopee.com)，非诚勿扰。
+shopee，又称虾皮，是一家腾讯投资的跨境电商平台。这里加班少，技术氛围好。如果想和我并肩作战一起学习，可以找我内推。邮箱[weiping.xiang@shopee.com](mailto:weiping.xiang@shopee.com)，非诚勿扰。
