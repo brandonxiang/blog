@@ -66,7 +66,7 @@
   </div>
 
   <figure>
-    <img alt='Person typing on laptop' src='undraw_usability_testing_2xs4.svg'>
+    <img alt='Person typing on laptop' src='icon/undraw_usability_testing_2xs4.svg'>
     <figcaption>Illustration thanks to <a href="https://undraw.co" target="_blank">Undraw</a></figcaption>
   </figure>
 </div>

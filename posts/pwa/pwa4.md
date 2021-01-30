@@ -75,5 +75,5 @@ PWA 指的是网页应用，Web App Manifest 主要针对的是单页面应用�
   name="viewport"
   content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=contain"
 />
-<link rel="apple-touch-icon" href="appicon.png" />
+<link rel="apple-touch-icon" href="icon/appicon.png" />
 ```
