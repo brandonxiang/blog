@@ -10,7 +10,7 @@ import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
-import markdown from './src/utils/markdown.js'
+import markdown from './src/scripts/markdown.js'
 import glob from 'rollup-plugin-glob'
 
 const mode = process.env.NODE_ENV;
