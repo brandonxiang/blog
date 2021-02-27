@@ -3,7 +3,9 @@ title: ESM Import与Bundle Free
 date: 2020-06-20T11:59:57.000Z
 ---
 
-由于前端模块化的发展，在 nodejs 中分为了 common.js，umd，es module 三大种类。其中 umd 是可以兼容浏览器运行的，common.js 只能在 nodejs 环境运行，es module 是属于未来的一种前端模块化，能够同时满足服务端和浏览器端的代码编写。es module 也是现在前端工程师写代码最常用的模式。模块化的写法大家也不会陌生。
+随着前端模块化的发展，在 nodejs 领域的模块化主要分为了 common.js，umd，es module 三大种类。其中 umd 是可以兼容浏览器运行的，common.js 只能在 nodejs 环境运行，es module 是属于未来的一种前端模块化，能够同时满足服务端和浏览器端的代码编写。es module 也是现在前端工程师写代码最常用的模式。模块化的写法大家也不会陌生，也是未来重要的发展方向。
+
+写法如下：
 
 ```javascript
 import fs from "fs";
@@ -15,7 +17,9 @@ import fs from "fs";
 const fs = require("fs");
 ```
 
-其实浏览器也支持 esm import 了，但是兼容性情况不容乐观。基于[lukeed/dimport](https://github.com/lukeed/dimport)的兼容方案，其实我们在大部分的浏览器都可以大胆使用该属性。浏览器的 esm import 把我们带进一个全新的时代（服务端模块和浏览器模块同步的时代），或者可以被称为 Bundle Free 时代。
+![兼容性情况](/img/caniuse-esmodule.png)
+
+其实浏览器也支持 esm import 了，但是兼容性情况不容乐观。基于[lukeed/dimport](https://github.com/lukeed/dimport)的兼容方案，其实我们在大部分的浏览器都可以大胆使用该属性。浏览器的 esm import 把我们带进一个全新的时代（服务端模块和浏览器模块同步的时代），被称为 Bundle Free 时代（或者可以被称为 Bundleless）。结合 Bundle Free 可以减少不必要的代码打包，充分利用浏览器的每一分性能。
 
 ```html
 <!-- dimport 兼容方案 -->
@@ -34,11 +38,9 @@ const fs = require("fs");
 ></script>
 ```
 
-![兼容性情况](/img/caniuse-esmodule.png)
-
 ### ESM Import
 
-其实，最早将 ESM Import 引入到前端页面开发的是[Polymer/lit-html](https://github.com/Polymer/lit-html)，它将模版模块化，直接带到浏览器。然后激发了 preact 的调整，基于[Tagged_templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates)创造出[developit/htm](https://github.com/developit/htm)语法，这样一来，JSX 的语法直接能在浏览器使用，当然也部分失去渲染函数的魅力。用模版写法部分替代了 JSX，却能让 preact 直接能在浏览器运行。
+其实，最早将 ESM Import 引入到前端页面开发的是[Polymer/lit-html](https://github.com/Polymer/lit-html)，它将模版模块化，直接带到浏览器。然后激发了 preact 的调整，基于[Tagged_templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates)创造出[developit/htm](https://github.com/developit/htm)语法，这样一来，JSX 的语法直接能在浏览器使用，当然也部分失去渲染函数的魅力。用 JS 字符串模版新特性替代了 JSX，却能让 preact 直接能在浏览器运行，当时掀起了一定的影响。
 
 ```html
 <!DOCTYPE html>
@@ -79,23 +81,25 @@ const fs = require("fs");
 </html>
 ```
 
-其中浏览器端的 esm 是可以支持相对路径和远端 https 路径的，前提是所有静态资源要在服务当中，不能以文件路径引入，例如`file://`开头的资源。
+其中浏览器端的 esm 是可以支持相对路径和远端 https 路径的，前提是所有静态资源要在服务当中，不能以文件路径引入，例如`file://`开头的资源，这也是对脚本资源的安全考虑。
 
-其实以现代浏览器对 esm 的支持情况，意味着未来的前端框架渐渐往浏览器原生靠近。前端工程化将我们带到了打包和编译的阶段，js 被压缩到一个文件当中，变量都是混淆的。但是打包编译速度和打包的体积永远是我们离不开的话题。ESM Import 的到来意味着 JS 资源将会越来越碎，有很多不常变动的资源可以外部引入。伴随着多资源的并行引用，http2.0 刚好解决资源并发性能的问题，也正是说，资源的 es 引入和 Bundle Free 的趋势是符合现代浏览器的发展规律的。
+伴随着 Chrome 的占有率的提高，以及移动端浏览器的统一和成熟，其实以现代浏览器对 esm 的支持情况，意味着未来的前端框架渐渐往浏览器原生靠近。前端工程化将我们带到了打包和编译的阶段，js 被压缩到一个文件当中，变量都是混淆的，但是打包编译速度和打包的体积永远是我们离不开的话题。webpack 的发展已经进入到瓶颈期，项目构建的消耗已经受限于电脑配置和性能。
+
+ESM Import 的到来意味着 JS 资源可以直接被浏览器应用，它也会越来越碎，有很多不常变动的资源可以外部引入。伴随着多资源的并行引用，http2.0 刚好解决资源并发性能的问题，也正是说，资源的 ESM Import 和 Bundle Free 的趋势是符合现代浏览器的发展规律的。
 
 ### Bundle Free
 
-业界上，Bundle Free 的实现主要是[vite](https://github.com/vitejs/vite)和[snowpack](https://github.com/pikapkg/snowpack)。尤雨溪已经将 vue3 的工程化逐渐改变成 vite，vite 的出现有悖于 vue-cli3。vue-cli3 更多是 webpack 的深层封装。webpack 最大的问题就是打包性能的问题，如果 MPA，你可以通过减少打包入口来提高打包效率。但是当你的项目是一个异常庞大 SPA 的情况下，由于你不是多页面框架（mpa），所以当你的页面有一个文件变动的时候，需要重新构建一个完整 bundle，即使你用 Happypack 压榨电脑的每一寸性能，都达不到高效的开发效率。
+业界上，Bundle Free 的实现主要是[vite](https://github.com/vitejs/vite)和[snowpack](https://github.com/pikapkg/snowpack)。尤雨溪已经将 vue3 的工程化逐渐改变成 vite，vite 的出现有悖于 vue-cli3。vue-cli3 更多是 webpack 的深层封装。webpack 最大的问题就是打包性能的问题，如果 MPA，你可以通过减少打包入口来提高打包效率。但是当你的项目是一个异常庞大 SPA 的情况下，由于你不是多页面框架（mpa），所以当你的页面有一个文件变动的时候，需要重新构建一个完整 bundle，即使你用[happypack](https://github.com/amireh/happypack) 或者 [thread-loader](https://www.webpackjs.com/loaders/thread-loader/) 压榨电脑的每一寸性能，都达不到高效的开发效率。
 
 而 vite 则是 Bundle Free 的实现，它的出现主要是有效减少开发编译时间，因为 Bundle Free 的原理就在于每一个文件都是独立的 import。Node 端和浏览器端的文件基本是对等的，每当一个文件有变动的时候，只需要替换其中一个文件即可。所以它在大型业务项目的开发中，有着很不错的体验。
 
 ![尤大大的Twitter](/img/twitter-yyx.png)
 
-由于 vue 不同于渲染函数，很多语法是模版约定的。熟悉 vue 原理的同学就知道，它有对应的 compiler，将模版转换为 createElement 的函数，而这些函数则可以在浏览器直接运行。每一个独立的 vue 文件，都会转换成这么一个 js 文件，它们在浏览器上直接运作。这就是 vite 的基本原理。
+由于 vue 不同于渲染函数，很多语法是模版约定的。熟悉 vue 原理的同学就知道，它有对应的 compiler，将模版转换为 createElement 的函数，这些函数才可以在浏览器直接运行。每一个独立的 vue 文件，都会转换成相应的 js 文件，它们在浏览器上直接运作。vite 的基本原理就是在本地调试的时候将修改过的文件转换成为 js 文件，然后再通过 ESM Import 引入本地项目当中。vite2.0 已经支持了部分预打包机制并且支持 react，它可以将部分 common.js 的 npm 依赖封装成为 esm 模块，保证了第三方仓库的可用性，大家可以放心大胆使用。
 
-当然，vite 也有妥协，生产模式上 vite 还是采用了 rollup 的打包方式，在考虑兼容性的情况下，让代码转换为旧浏览兼容的模式。唯一的缺点就是增加了开发和生产环境的差异性。所以资深的前端工程师在使用 vite 的时候要注意回归一下兼容性的问题。
+当然，vite 也有妥协，生产模式上 vite 还是采用了 rollup 的打包方式，在考虑兼容性的情况下，让代码转换为旧浏览兼容的模式。唯一的缺点就是增加了开发和生产环境的差异性。所以资深的前端工程师在使用 vite 的时候要注意回归一下**兼容性**的问题。
 
-同样，snowpack 也是采用了开发模式 Bundle Free，而生产模式还是以 bundle 为主（或提供可选择的模式）。就此看出 Bundle Free 并非完全适用于这个时代。
+同样，snowpack 也是采用了开发模式 Bundle Free，而生产模式还是提供 bundle 为可选择模式。就此看出 Bundle Free 并非完全适用于生产环境。
 
 #### 优点
 
@@ -109,7 +113,7 @@ const fs = require("fs");
 
 - 兼容性不好，生产还是考虑打包模式
 - 如果生产使用 bundle-free 的[加载效率问题](https://github.com/jakedeichert/svelvet/issues/83)
-- 依赖需要都满足 esm（antd 不满足）
+- 依赖需要都满足 esm（antd 不满足，vite2.0 已经支持了部分预打包机制）
 - 开发与生产的不一致性
 
 ### 对未来的畅想
