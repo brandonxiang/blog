@@ -18,7 +18,7 @@
     "gray-matter": "^4.0.2",
     "marked": "^1.1.1",
     "polka": "next",
-    "prismjs": "^1.21.0",
+    "prismjs": "^1.23.0",
     "reading-time": "^1.2.0",
     "rollup-plugin-glob": "^1.0.2",
     "sirv": "^1.0.0"
