@@ -1,6 +1,11 @@
 <script>
 let keynotes = [
   {
+    title: '如何参与一个开源项目',
+    url: 'https://keynote.vercel.app/github.html#/',
+    date: '17 April 2021',
+  },
+  {
     title: 'Incremental Static Regeneration',
     url: 'https://keynote.vercel.app/isr.html#/',
     date: '13 November 2020',
