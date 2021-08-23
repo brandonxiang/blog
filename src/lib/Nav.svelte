@@ -1,5 +1,7 @@
 <script lang="ts">
 	export let segment: string;
+
+	console.log(segment);
 </script>
 
 <style>
@@ -50,9 +52,17 @@
 
 <nav>
 	<ul>
-		<li><a aria-current="{segment === undefined ? 'page' : undefined}" href=".">Home</a></li>
-		<li><a rel=prefetch aria-current="{segment === 'blog' ? 'page' : undefined}" href="blog">Blog</a></li>
-		<li><a rel=prefetch aria-current="{segment === 'keynote' ? 'page' : undefined}" href="keynote">Keynote</a></li>
-		<li><a aria-current="{segment === 'about' ? 'page' : undefined}" href="https://github.com/brandonxiang">Github</a></li>
+		<li>
+			<a aria-current="{segment === '/' ? 'page' : undefined}" href="/">Home</a>
+		</li>
+		<li>
+			<a sveltekit:prefetch aria-current="{segment.includes('/blog') ? 'page' : undefined}" href="/blog">Blog</a>
+		</li>
+		<li>
+			<a sveltekit:prefetch aria-current="{segment.includes('/keynote') ? 'page' : undefined}" href="/keynote">Keynote</a>
+		</li>
+		<li>
+			<a aria-current="{segment.includes('/about') ? 'page' : undefined}" href="https://github.com/brandonxiang">Github</a>
+		</li>
 	</ul>
 </nav>

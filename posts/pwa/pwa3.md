@@ -22,15 +22,15 @@ PWA 全称为“Progressive Web Apps”，渐进式网页应用。它的核心�
 
 ### 成功案例
 
-![成功案例](/img/pwa-success.png)
+![成功案例](https://brandonxiang.vercel.app/img/pwa-success.png)
 
 国外有非常多 pwa 提高转换率的案例。同样，国内大厂也纷纷试水。它们无一例外都采用了 App Shell 模型。
 
-![ele](/img/pwa-ele.png)
+![ele](https://brandonxiang.vercel.app/img/pwa-ele.png)
 
-![sina](/img/pwa-sina.png)
+![sina](https://brandonxiang.vercel.app/img/pwa-sina.png)
 
-![lavas](/img/pwa-lavas.png)
+![lavas](https://brandonxiang.vercel.app/img/pwa-lavas.png)
 
 ## App Shell 模型
 
@@ -53,13 +53,13 @@ PWA 的原理就是改变 HTTP 缓存的机制，优先取本地的资源，在�
 - 动态部分（空白部分）使用 Skeleton 进行填充
 - 静态部分需要接口缓存数据填充
 
-![app shell 例子](/img/pwa-appshell.png)
+![app shell 例子](https://brandonxiang.vercel.app/img/pwa-appshell.png)
 
 ## Skeleton
 
 Skeleton 也被称为骨架页面，在页面的空白处插入 html 的图像，减缓视觉差距。页面在数据尚未加载前先给用户展示出页面的大致结构，直到请求数据返回后再渲染页面，补充进需要显示的数据内容，常用在单页面应用的列表页。
 
-![骨架屏](/img/pwa-skeleton.png)
+![骨架屏](https://brandonxiang.vercel.app/img/pwa-skeleton.png)
 
 骨架图的制作也有很多中方法。
 

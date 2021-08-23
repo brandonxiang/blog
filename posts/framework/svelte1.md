@@ -46,7 +46,7 @@ if (changed.name) {
 
 尤大大发推说 vue3 能够比 svelte 更加快。具体的情况现在还无从考证。而且有时候 benchmark 不能说明所有的问题，因为现实的开发情况往往和 benchmark 不太一样。但是有一点我是能确认的就是越贴近原生性能越好，除了后台页面外，其他的页面 svelte 有着天然的优势，因为它的体积小，作用纯粹。
 
-![Twitter](/img/twitter.png)
+![Twitter](https://brandonxiang.vercel.app/img/twitter.png)
 
 ## 多页面开发模版
 
@@ -109,7 +109,7 @@ svelte 对于 typescript 的支持不是特别友好，因为它是以模版语�
 
 ## 语法
 
-svelte 进入 3.0 后，语法借鉴了 vue 的 SFC 语法，非常简单。[官网](<[https://svelte.dev/examples](https://svelte.dev/examples)>)上有很多栗子，这里只提及一个循环渲染的栗子，语法类似模版语言，数值的插值使用`{}`，大家感受一下，熟悉 vue 的童鞋应该很熟悉。由于框架中没有 virtual-dom，所以不需要像 vue 和 react 一样需要 dom 根节点。
+svelte 进入 3.0 后，语法借鉴了 vue 的 SFC 语法，非常简单。[官网](https://svelte.dev/examples)上有很多栗子，这里只提及一个循环渲染的栗子，语法类似模版语言，数值的插值使用`{}`，大家感受一下，熟悉 vue 的童鞋应该很熟悉。由于框架中没有 virtual-dom，所以不需要像 vue 和 react 一样需要 dom 根节点。
 
 ```html
 <script>

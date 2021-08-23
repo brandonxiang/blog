@@ -32,19 +32,19 @@ background sync 可延迟发送用户行为，直到用户网络连接稳定。�
 
 ### 兼容性情况
 
-![浏览器的兼容性](/img/caniuse-serviceworker.png)
+![浏览器的兼容性](https://brandonxiang.vercel.app/img/caniuse-serviceworker.png)
 
 考虑到 service worker 是一个新的接口本身，肯定会存在兼容性问题。PWA 的意思在于 Progressive，也就是支持 pwa 的页面则使用 SW 的缓存机制，而不支持的页面使用原来的 HTTP 缓存机制。由于 pwa 是谷歌的“亲儿子”，所以它在新版本安卓的各大浏览器都有非常好的支持。详情我们可以参考[lavas 的兼容性报告](https://lavas.baidu.com/ready/browser?lang=zh)
 
 重点的重点当然是微信浏览器对 pwa 的支持情况，我们可以看到除了推送信息和支付接口之外基本已经实现支持（支付接口的支持应该是出于安全的考虑，以及和 weixin-js-sdk 重叠的原因，X5 浏览器支持它只是时间的问题）。如今我们更关心的是关于 SW-cache 这一部分，换句话说，我们可以放心在安卓微信上使用 SW-cache 的技术。
 
-![安卓微信浏览器的支持情况](/img/android-serviceworker.png)
+![安卓微信浏览器的支持情况](https://brandonxiang.vercel.app/img/android-serviceworker.png)
 
 ### ios（苹果）的支持
 
 《[震惊！苹果向开发者低头？！！开始支持 Service Worker](https://zhuanlan.zhihu.com/p/28293894)》一文中讲述了苹果的开发工程师开始完成研发，并且在 2017 年底 safari 桌面技术预览版上已经实现了 service worker 的相关 api，从`In development`的状态转移到`Supported In Preview`，这意味着 service worker 极有可能在 IOS12 得到支持（详情[https://webkit.org/status](https://webkit.org/status)），这也就意味着pwa的时代很快就会到来。
 
-![苹果safari已开始支持service worker](/img/safari-serviceworker.png)
+![苹果safari已开始支持service worker](https://brandonxiang.vercel.app/img/safari-serviceworker.png)
 
 ## Sw-precache 和 Workbox
 
@@ -73,7 +73,7 @@ web 前端的各位同学可能或多或少听过 pwa，听过[service worker](h
 
 sw-precache 的主要开发者 [jeffposnick](https://github.com/jeffposnick) 也是 workbox 的主要开发者，这说明了它们之间的关系，sw-precache 是为了满足 service worker 的 cache API 中的静态资源文件的注册作用。而 workbox 是为了满足所有 pwa 的资源内容，可以看作一个“平台”。
 
-![workbox file structure](/img/workbox-file-structure.png)
+![workbox file structure](https://brandonxiang.vercel.app/img/workbox-file-structure.png)
 
 [Workbox](https://developers.google.com/web/tools/workbox/)是 GoogleChrome 团队推出的一套 Web App 静态资源本地存储的解决方案，该解决方案包含一些 Js 库和构建工具，在 Chrome Submit 2017 上首次隆重面世，它已经支持很多方面的内容，当然，还有很多内容有待开发。而在它背后则是 Service Worker 和 Cache API 等技术和标准在驱动。在此之前，GoogleChrome 团队较早时间推出过 sw-precache 和 sw-toolbox 库，但是在 GoogleChrome 工程师们看来，Workbox 才是真正能方便统一的处理离线能力的更完美的方案，并停止了对 sw-precache 和 sw-toolbox 的维护，所以，将项目的的 SW 的打包控制插件升级到 WorkBox 是非常重要。该文主要提出以 vue 官方的[pwa 模版](https://github.com/vuejs-templates/webpack)为基础，sw-precache 升级成为 workbox。整个升级的过程参考了[lavas](https://lavas.baidu.com/)。
 
