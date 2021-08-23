@@ -4,21 +4,23 @@
 
 body {
   margin: 0;
-  font-family: Merriweather, serif;
-  font-size: 16px;
+  font-family:"webfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
   color: #36393b;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Rubik, sans-serif;
   font-weight: 700;
   line-height: 1.2;
   margin: 0 0 0.5em 0;
 }
 
 h1 {
-  font-family: Merriweather, serif;
   font-size: 4em;
   margin: 0 0 1em 0;
 }
