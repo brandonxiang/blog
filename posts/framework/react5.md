@@ -1,6 +1,6 @@
 ---
-title: React笔记四：next.js的从零到百入门配置
-date: 2021-05-109T00:13:53.000Z
+title: React笔记五：使用Next.js实现React SSR的优雅降级
+date: 2021-05-10T00:13:53.000Z
 ---
 
 ## 前言
