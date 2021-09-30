@@ -1,6 +1,7 @@
 <script context="module">
   export const prerender = true;
   import { base } from '$app/paths';
+  import { variables } from '$lib/variables';
 
   export async function load({ page, fetch }) {
     const slug = page.params.slug;
@@ -18,20 +19,39 @@
   // @ts-ignore
   let date = post.metadata.date.toUpperCase();
 
-  onMount(() => {
-      //@ts-ignore
-      var gitalk = new Gitalk({
-        clientID: import.meta.env.CLIENT_ID,
-        clientSecret: import.meta.env.CLIENT_SECRET,
-        repo: 'blog',
-        owner: 'brandonxiang',
-        admin: ['brandonxiang'],
-        id: location.pathname,      // Ensure uniqueness and length less than 50
-        distractionFreeMode: false,  // Facebook-like distraction free mode
-        createIssueManually: true
-      })
+  function loadScript(url){
+    return new Promise((resolve, reject) => {
+      let script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = url;
+      console.log(url);
+      script.onload = () => {
+        resolve();
+      };
+      script.onerror = () => {
+        reject();
+      }
+      document.head.appendChild(script);
+      document.head.removeChild(script);
+    })
+  }
 
-      gitalk.render('gitalk-container')
+  onMount(async () => {
+    
+    await loadScript('https://brandonxiang.vercel.app/script/gitalk.js')
+    //@ts-ignore
+    const gitalk = new Gitalk({
+      clientID: variables.CLIENT_ID,
+      clientSecret: variables.CLIENT_SECRET,
+      repo: 'blog',
+      owner: 'brandonxiang',
+      admin: ['brandonxiang'],
+      id: location.pathname,      // Ensure uniqueness and length less than 50
+      distractionFreeMode: false,  // Facebook-like distraction free mode
+      createIssueManually: true
+    })
+
+    gitalk.render('gitalk-container')
   });
 </script>
 
@@ -40,8 +60,6 @@
   <meta property="og:url" content="https://brandonxiang.vercel.app/blog/{post.slug}">
 	<meta property="og:type" content="article">
 	<meta property="og:title" content={post.metadata.title}>
-  <link rel="stylesheet" href="/style/gitalk.css">
-  <script src="/script/gitalk.js"></script>
 	<!-- <meta property="og:description" content={post.metadata.description}> -->
 </svelte:head>
 
