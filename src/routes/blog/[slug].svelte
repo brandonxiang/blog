@@ -14,7 +14,7 @@
 </script>
 
 <script>
-  import { onMount } from "svelte";
+  import { tick } from "svelte";
   import { page } from '$app/stores';
 
   export let post;
@@ -39,6 +39,16 @@
   }
 
   async function gitalkAction() {
+
+    const container = document.querySelector('#gitalk-container')
+
+    //@ts-ignore
+    if(container && Gitalk){
+      if(container.children[0]) {
+        container.removeChild(container.children[0]);
+      }
+      await tick();
+
       //@ts-ignore
       const gitalk = new Gitalk({
         clientID: variables.CLIENT_ID,
@@ -51,15 +61,11 @@
         createIssueManually: true
       })
 
-      gitalk.render('gitalk-container')
+      gitalk.render(container)
+    }
   }
 
-  onMount(async () => {
-    await loadScript('https://brandonxiang.vercel.app/script/gitalk.js')
-    await gitalkAction();
-    const unsubscribe = page.subscribe(gitalkAction);
-    return unsubscribe;
-  });
+  page.subscribe(gitalkAction);
 </script>
 
 <svelte:head>
