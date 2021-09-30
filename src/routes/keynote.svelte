@@ -96,7 +96,7 @@
     <title>Keynote</title>
   </svelte:head>
   
-  <h1>Recent keynotes</h1>
+  <h1>最近分享</h1>
   
   <div>
     {#each keynotes as keynote, index}

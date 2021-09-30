@@ -3,7 +3,7 @@ import fg from 'fast-glob';
 import dayjs from 'dayjs';
 
 export function get(): {body: string} {
-  const posts = fg.sync('posts/**/*.md')
+  const posts = fg.sync('posts/*/*.md')
       .map(pathname => {
         const { metadata } = process(pathname);
         
