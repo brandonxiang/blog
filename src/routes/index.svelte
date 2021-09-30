@@ -12,7 +12,7 @@
     flex: 1;
   }
   .home-copy img {
-    width: 15em;
+    width: 13em;
   }
   span {
     font-size: 1.4em;
