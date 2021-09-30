@@ -34,7 +34,7 @@
 	<title>Blog</title>
 </svelte:head>
 
-<h1>Recent posts</h1>
+<h1>Recent Posts</h1>
 
 <div>
 	{#each posts as post, index}
