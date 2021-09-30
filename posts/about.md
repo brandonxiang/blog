@@ -18,14 +18,14 @@ date: "2021-09-30T15:57:00.000Z"
 
 ## 优秀项目
 
-svelteup
-quickpage
-vue-leaflet
-pyMap_webapp
-pyMap
-psm
-geojson-python-utils
+- svelteup
+- quickpage
+- vue-leaflet
+- pyMap_webapp
+- pyMap
+- psm
+- geojson-python-utils
 
 ![扫码关注公众号](https://brandonxiang.vercel.app/img/wechat.jpg)
 
-![SYSU](https://brandonxiang.vercel.app/img/sysu.jpg)
+![SYSU](https://brandonxiang.vercel.app/img/sysu.gif)
