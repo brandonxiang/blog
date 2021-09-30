@@ -16,6 +16,10 @@ date: "2021-09-30T15:57:00.000Z"
 - 知乎     ：[@项伟平](https://www.zhihu.com/people/xiang-wei-ping)
 - QQ       ：@1542453460
 
+![扫码关注公众号](https://brandonxiang.vercel.app/img/wechat.jpg)
+
+> **扫码关注公众号**
+
 ## 优秀项目
 
 - svelteup
@@ -26,6 +30,6 @@ date: "2021-09-30T15:57:00.000Z"
 - psm
 - geojson-python-utils
 
-![扫码关注公众号](https://brandonxiang.vercel.app/img/wechat.jpg)
+
 
 ![SYSU](https://brandonxiang.vercel.app/img/sysu.gif)
