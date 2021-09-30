@@ -15,6 +15,8 @@
 
 <script>
   import { onMount } from "svelte";
+  import { page } from '$app/stores';
+
   export let post;
   // @ts-ignore
   let date = post.metadata.date.toUpperCase();
@@ -36,22 +38,27 @@
     })
   }
 
-  onMount(async () => {
-    
-    await loadScript('https://brandonxiang.vercel.app/script/gitalk.js')
-    //@ts-ignore
-    const gitalk = new Gitalk({
-      clientID: variables.CLIENT_ID,
-      clientSecret: variables.CLIENT_SECRET,
-      repo: 'blog',
-      owner: 'brandonxiang',
-      admin: ['brandonxiang'],
-      id: location.pathname,      // Ensure uniqueness and length less than 50
-      distractionFreeMode: false,  // Facebook-like distraction free mode
-      createIssueManually: true
-    })
+  async function gitalkAction() {
+      //@ts-ignore
+      const gitalk = new Gitalk({
+        clientID: variables.CLIENT_ID,
+        clientSecret: variables.CLIENT_SECRET,
+        repo: 'blog',
+        owner: 'brandonxiang',
+        admin: ['brandonxiang'],
+        id: location.pathname,
+        distractionFreeMode: false,
+        createIssueManually: true
+      })
 
-    gitalk.render('gitalk-container')
+      gitalk.render('gitalk-container')
+  }
+
+  onMount(async () => {
+    await loadScript('https://brandonxiang.vercel.app/script/gitalk.js')
+    await gitalkAction();
+    const unsubscribe = page.subscribe(gitalkAction);
+    return unsubscribe;
   });
 </script>
 
