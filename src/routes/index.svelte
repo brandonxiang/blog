@@ -12,11 +12,9 @@
     flex: 1;
   }
   .home-copy img {
-    width: 13em;
+    width: 5em;
   }
-  span {
-    font-size: 1.4em;
-  }
+
   h1 {
     font-weight: 700;
     margin-bottom: 0.5em;
@@ -69,8 +67,7 @@
   <div class="home-copy">
     <h1>Welcome to BrandonXIANG Blog</h1>
     <p>Check out my <a href="https://github.com/brandonxiang" target="_blank">GitHub</a>.</p>
-    <span>Hello, Visitor</span>
-    <img alt="counter" src="https://profile-counter.glitch.me/brandonxiangblog/count.svg" />
+    <img alt="counter" src="https://visitor-badge.glitch.me/badge?page_id=brandonxiang&right_color=%23fd6378" />
   </div>
 
   <figure>
