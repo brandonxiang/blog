@@ -78,6 +78,7 @@
 
 <h1 class="title">{post.metadata.title}</h1>
 <p class="info"><a href="https://github.com/brandonxiang">Brandonxiang</a> {date}</p>
+
 {@html post.content}
 
 <div id="gitalk-container"></div>
