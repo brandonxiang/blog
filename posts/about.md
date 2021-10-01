@@ -9,13 +9,13 @@ date: "2021-09-30T15:57:00.000Z"
 
 ## 我的社交
 
-- github  ：[@brandonxiang](https://github.com/brandonxiang)
-- 公众号   ： @大前端从入门到跑路
-- 掘金     ：[@brandonxiang](https://juejin.cn/user/2172290706443639)
-- 简书     ：[@brandonxiang](https://www.jianshu.com/u/64467c788eb7)
-- 微博     ：[@一久肆叁](https://weibo.com/xwpisme)
-- 知乎     ：[@项伟平](https://www.zhihu.com/people/xiang-wei-ping)
-- QQ       ：@1542453460
+- github：[@brandonxiang](https://github.com/brandonxiang)
+- 公众号： @大前端从入门到跑路
+- 掘金：[@brandonxiang](https://juejin.cn/user/2172290706443639)
+- 简书：[@brandonxiang](https://www.jianshu.com/u/64467c788eb7)
+- 微博：[@一久肆叁](https://weibo.com/xwpisme)
+- 知乎：[@项伟平](https://www.zhihu.com/people/xiang-wei-ping)
+- QQ：@1542453460
 
 ![扫码关注公众号](https://brandonxiang.vercel.app/img/wechat.jpg)
 

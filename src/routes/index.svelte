@@ -10,6 +10,7 @@
   }
   .home-copy {
     flex: 1;
+    min-height: 350px;
   }
   .home-copy img {
     width: 5em;
@@ -51,6 +52,7 @@
       flex: 0;
       padding-bottom: 2em;
       text-align: center;
+      min-height: 180px;
     }
   }
 </style>
