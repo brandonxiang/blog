@@ -14,7 +14,7 @@
 </script>
 
 <script>
-  import { tick } from "svelte";
+  import { onMount, tick } from "svelte";
   import { page } from '$app/stores';
 
   export let post;
@@ -39,7 +39,8 @@
   }
 
   async function gitalkAction() {
-
+    
+    if(!location.pathname.includes('blog')) return;
     const container = document.querySelector('#gitalk-container')
 
     //@ts-ignore
@@ -66,6 +67,9 @@
   }
 
   page.subscribe(gitalkAction);
+  onMount(async ()=> {
+    await gitalkAction();
+  })
 </script>
 
 <svelte:head>
