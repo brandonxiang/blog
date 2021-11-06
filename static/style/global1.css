@@ -177,7 +177,7 @@ td {
 
 @media (max-width: 1020px) {
   h1 {
-    font-size: 3em;
+    font-size: 2em;
   }
 
   .content h1 {
@@ -186,7 +186,7 @@ td {
 }
 
 @media (max-width: 480px) {
-  body {
+  body, html {
     font-size: 14px;
   }
 

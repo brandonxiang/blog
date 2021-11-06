@@ -7,12 +7,6 @@
 
 </script>
 
-
-<svelte:head>
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/github.min.css">
-</svelte:head>
-
 <style>
 	main {
 		position: relative;

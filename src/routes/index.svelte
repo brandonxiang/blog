@@ -10,7 +10,12 @@
   }
   .home-copy {
     flex: 1;
+    min-height: 350px;
   }
+  .home-copy img {
+    width: 5em;
+  }
+
   h1 {
     font-weight: 700;
     margin-bottom: 0.5em;
@@ -47,6 +52,7 @@
       flex: 0;
       padding-bottom: 2em;
       text-align: center;
+      min-height: 180px;
     }
   }
 </style>
@@ -63,6 +69,7 @@
   <div class="home-copy">
     <h1>Welcome to BrandonXIANG Blog</h1>
     <p>Check out my <a href="https://github.com/brandonxiang" target="_blank">GitHub</a>.</p>
+    <img alt="counter" src="https://visitor-badge.glitch.me/badge?page_id=brandonxiang&right_color=%23fd6378" />
   </div>
 
   <figure>
