@@ -22,7 +22,7 @@ svelteup是由三个概念混合而成，svelte是前端框架，esbuild是编�
 
 > svelteup = svelte + esbuild + web component
 
-> svelteup  = client rendering + light we!ight + extremely fast 
+> svelteup  = client rendering + light weight + extremely fast 
 
 svelteup的使用非常简单，初始约定了 component 文件夹作为组件代码的位置，而 public 文件夹则是托管静态资源的目录。这些都可以通过cli、配置文件或者js api进行配置，详情参考[文档](https://github.com/brandonxiang/svelteup)。借助于svelteup可以实现组件打包和页面开发调试等工作。
 
@@ -75,11 +75,11 @@ reveal.js 是一款完成度很高、历史悠久的在线ppt库，著名的[sli
 </style>
 ```
 
-[keynote-svelte](https://github.com/WhatisHappyPlanet/keynote-svelte) 就是这个基于svelteup和reveal-md的在线ppt初始化模版，欢迎尝鲜。
+keynote-svelte 就是这个基于svelteup和reveal-md的在线ppt初始化模版，欢迎尝鲜。
 
 ### 实践二：[chrome-extension-svelte](https://github.com/brandonxiang/chrome-extension-svelte)
 
-chrome的插件已经是非常成熟的工具载体，聪明的开发者可以利用它开发提高效率的工具。它的实现是通过html的页面渲染和插件线程之间的通讯。在开发的过程当中，不可避免的是组件化。chrome插件和SSR无关，但是和 svelteup 则是相辅相成。[chrome-extension-svelte](https://github.com/brandonxiang/chrome-extension-svelte) 就是基于svelteup的chrome插件的初始化开发模版。借助svelte的轻量，该模版可以大大提高你的开发效率和插件显示效率。
+chrome的插件已经是非常成熟的工具载体，聪明的开发者可以利用它开发提高效率的工具。它的实现是通过html的页面渲染和插件线程之间的通讯。在开发的过程当中，不可避免的是组件化。chrome插件和SSR无关，但是和 svelteup 则是相辅相成。chrome-extension-svelte 就是基于svelteup的chrome插件的初始化开发模版。借助svelte的轻量，该模版可以大大提高你的开发效率和插件显示效率。
 
 ### 实践三：版本切换小工具
 
