@@ -1,6 +1,11 @@
 <script>
   let keynotes = [
     {
+      title: '前端项目架构设计',
+      url: 'https://keynote.vercel.app/how-to-learn-fe.html',
+      date: 'Nov 12, 2021',
+    },
+    {
       title: '学习前端的方法',
       url: 'https://keynote.vercel.app/how-to-learn-fe.html',
       date: 'AUG 06, 2021',
