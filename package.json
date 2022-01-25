@@ -34,7 +34,7 @@
 		"remark-rehype": "^8.0.0",
     "to-vfile": "^6.1.0",
 		"unified": "^9.2.1",
-    "@sveltejs/adapter-vercel": "1.0.0-next.33"
+    "@sveltejs/adapter-vercel": "1.0.0-next.30"
   },
   "type": "module",
   "dependencies": {
