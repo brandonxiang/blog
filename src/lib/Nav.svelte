@@ -4,8 +4,9 @@
 	type AriaCurrent = "page" | undefined
 
 	$: isBlog = (segment.includes('/blog') && !segment.includes('about') ? 'page' : undefined) as AriaCurrent;
-	$: isKeynote = (segment.includes('/keynote') ? 'page' : undefined) as AriaCurrent
-	$: isAbout = (segment.includes('about') ? 'page' : undefined) as AriaCurrent
+	$: isKeynote = (segment.includes('/keynote') ? 'page' : undefined) as AriaCurrent;
+	$: isApp = (segment.includes('/app') ? 'page' : undefined) as AriaCurrent;
+	$: isAbout = (segment.includes('about') ? 'page' : undefined) as AriaCurrent;
 
 
 
@@ -68,6 +69,9 @@
 		</li>
 		<li>
 			<a sveltekit:prefetch aria-current="{isKeynote}" href="/keynote">Keynote</a>
+		</li>
+		<li>
+			<a sveltekit:prefetch aria-current="{isApp}" href="/app">App</a>
 		</li>
 		<li>
 			<a sveltekit:prefetch  aria-current="{isAbout}" href="/blog/about">About</a>
