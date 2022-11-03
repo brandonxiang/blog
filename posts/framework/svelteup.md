@@ -5,11 +5,11 @@ date: 2021-11-06T12:51:00.000Z
 
 ## 背景
 
-svelte是新晋的前端框架。在打包体积和页面显示性能上有着不可磨灭的意义。现在越来越多网站上都已经能看到它的身影。之前我也对它的源码有了深入的解读，《[Svelte笔记三：runtime源码解读](https://brandonxiang.vercel.app/blog/svelte3)》和《[Svelte笔记四：compile源码解析](https://brandonxiang.vercel.app/blog/svelte4)》两篇文章可以作为参考。 svelte的优势很明显， 主要在体积极小和预编译组件逻辑。没有virtual dom，让业务代码更加纯粹地集中在页面显示上。
+svelte是新晋的前端框架。在打包体积和页面显示性能上有着不可磨灭的意义。现在越来越多网站上都已经能看到它的身影。之前我也对它的源码有了深入的解读，《[Svelte笔记三：runtime源码解读](https://brandonxiang.top/blog/svelte3)》和《[Svelte笔记四：compile源码解析](https://brandonxiang.top/blog/svelte4)》两篇文章可以作为参考。 svelte的优势很明显， 主要在体积极小和预编译组件逻辑。没有virtual dom，让业务代码更加纯粹地集中在页面显示上。
 
 web component 一直是大家很想落地的一个浏览器新技术，但是实际应用上我们却很难看到。即使是在微前端方面它都非常难落地。web component和Server Side Rendering（SSR）的两个概念是不搭的，它更多一切从浏览器出发，在不考虑ie的兼容性的情况下，已经达到了可用的情况。它的使用方式很简单，直接在页面中写入自定义的标签即可，例如 `<my-element />`，但是 native web component 的开发语法确实让开发者难以适应。
 
-![custom elements 兼容性](https://brandonxiang.vercel.app/img/custom-elements.png)
+![custom elements 兼容性](https://brandonxiang.top/img/custom-elements.png)
 
 
 svelte 和 web component 的概念一拍即合。由于 native web component 现在还不成熟，用它去实现一些页面的难度（学习成本和心智负担）会较大，不太适合新手学习。你可能会问使用像lit-element这样的框架写 web component 是否合适？《[A Comparison Of Web Component Solutions](https://hackernoon.com/a-comparison-of-web-component-solutions-xu163u3o)》、《[All the Ways to Make a Web Component](https://webcomponents.dev/blog/all-the-ways-to-make-a-web-component-april2020/)》这两篇文章很好地对比了第三方框架 svelte、stencil、lit-element、Lightning Web Components 的各个优缺点，证明了svelte在体整体体积和它的易用性有着独特的优势。《[Custom Elements Everywhere](https://custom-elements-everywhere.com/)》一文横向对比了18款框架转 web component，svelte的支持度非常好。
@@ -49,7 +49,7 @@ svelte打包产物极小，所以性能和react、vue比就是天然优势。如
 
 reveal.js 是一款完成度很高、历史悠久的在线ppt库，著名的[slides](https://slides.com/)网站就是基于它。它能够让你的分享有很好的传播力。我一直使用它的 markdown 扩展工具 "[webpro/reveal-md](https://github.com/webpro/reveal-md)" 来写一些技术分享。其使用很简单，只需要以markdown的形式来写ppt的内容，利用reveal-md运行和打包即可，“[brandonxiang的分享](https://github.com/brandonxiang/keynote)” 值得参考一下。
 
-![reveal.js](https://brandonxiang.vercel.app/img/revealjs.png)
+![reveal.js](https://brandonxiang.top/img/revealjs.png)
 
 它可以实现 markdown 和 html 混写，有较高的灵活度。但是，如果html要考虑复用，你只能复制粘贴，怎么能够将html组件插入到已有的ppt页面？很直接的一个想法就是利用svelteup来实现插入式的组件。
 

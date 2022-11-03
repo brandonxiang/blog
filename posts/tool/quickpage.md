@@ -49,15 +49,15 @@ npm i vite quickpage-cli --save-dev
 
 **创建一个子页面**是多页面项目的基本操作。quickpage 与其他多页面框架不同，去除了所有复杂的配置，开发者只需要利用`quickpage create`命令创建子页面，根据交互式命令输入**页面名字**和**页面框架类型**（例如react）即可。它将会自动帮你创建一个单独的目录，每个子页面都可以拥有独立的技术栈，复杂的页面可以选择 react，简单的页面可以选择 svelte。
 
-![创建一个子页面](https://brandonxiang.vercel.app/img/quickpage-create.gif)
+![创建一个子页面](https://brandonxiang.top/img/quickpage-create.gif)
 
 **按需开发**，也可以理解为局部开发。以往的开发经验告诉我们，涉及到修改的页面往往只是其中一小部分，大家都习惯了“小步快走”的迭代节奏。开发者可以利用`quickpage dev`选择性地调试部分页面，每个页面灵活可控。如果项目中页面太多，命令行还提供了模糊搜索的能力。
 
-![按需开发](https://brandonxiang.vercel.app/img/quickpage-dev.gif)
+![按需开发](https://brandonxiang.top/img/quickpage-dev.gif)
 
 **按需构建**，也可以理解为局部构建。根据我们的需求范围，利用`quickpage build`这个命令，选择性地构建部分页面，避免需求不涉及的页面被重复构建，再将这些页面以最小的独立单元进行部署，降低上线的风险。
 
-![按需构建](https://brandonxiang.vercel.app/img/quickpage-build.gif)
+![按需构建](https://brandonxiang.top/img/quickpage-build.gif)
 
 ## 横向对比
 

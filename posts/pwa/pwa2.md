@@ -124,19 +124,19 @@ Service Worker 可能以下之一的原因而被废弃（redundant，原意为�
 
 `chrome://inspect/#service-workers` 就可以查看当前浏览器正在注册的 SW，并且可以对它们进行调试和结束进程。调试会直接在 service worker 线程进行，不用理会主线层的逻辑。
 
-![调试Service worker](https://brandonxiang.vercel.app/img/debug-service-worker.png)
+![调试Service worker](https://brandonxiang.top/img/debug-service-worker.png)
 
 ### 方法二
 
 另外，还有 `chrome://serviceworker-internals`，用来查看当前浏览器中所有注册过的 SW。输入这个地址就像打开新世界的大门，原来你访问那么多 PWA 页面。
 
-![所有注册过的service worker](https://brandonxiang.vercel.app/img/registered-service-worker.png)
+![所有注册过的service worker](https://brandonxiang.top/img/registered-service-worker.png)
 
 ### 方法三
 
 在打开 chrome 的调试面板 devtools，Application tab 里面有个 service workers 页面，可以针对该页面的 SW，进行缓存调试以及消息推送，在这里也可以看到 SW 所在的生命周期，大大提高 SW 的调试效率。
 
-![chrome查看缓存情况](https://brandonxiang.vercel.app/img/chrome-service-worker.png)
+![chrome查看缓存情况](https://brandonxiang.top/img/chrome-service-worker.png)
 
 ## 更新问题
 
