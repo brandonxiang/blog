@@ -1,6 +1,6 @@
 ---
-title: ESM Import与Bundle Free
-date: 2020-06-20T11:59:57.000Z
+title: 如何配置前端工程师开发环境
+date: 2022-11-03T11:59:57.000Z
 ---
 
 首先我默认你使用的是 mac 电脑，windows 电脑可以自行研究一下，原理基本相同。
