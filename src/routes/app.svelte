@@ -9,6 +9,16 @@
       title: 'pb to typescript',
       url: 'https://pb.brandonxiang.top/',
       description: 'Protobuffer转typescript类型定义文件',
+    },
+    {
+      title: 'FolderBsdp',
+      url: 'https://github.com/peichen3141/FolderBsdp',
+      description: '一种改良过后的bsdp差分算法'
+    },
+    {
+      title: 'psm',
+      url: 'https://github.com/brandonxiang/psm',
+      description: 'python换源工具'
     }
   ]
   </script>
