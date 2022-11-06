@@ -83,7 +83,7 @@ esmo index.ts
 
 ## 如何在浏览器运行 esm
 
-![浏览器script type="module"兼容性](https://brandonxiang.vercel.app/img/esm.png)
+![浏览器script type="module"兼容性](https://brandonxiang.top/img/esm.png)
 
 浏览器的情况有别于 Nodejs 环境，在大部分的新版本浏览器都支持 esm 的运行。esm 级别的代码编译和打包，可以有效地减少包的体积和资源传输速度。这也是为什么像 vite 这样的框架会采用现代浏览器的打包模式（外加 legacy 兼容模式）的原因。具体的原理是在 html 当中的 script 标签加入`type="module"` 则表明它引入的是 esm 代码，当旧浏览器没法支持 esm 的情况下，它会读取`nomodule script`中的地址，读取兼容版本的 js 代码。这样一来，可以有效地减少大部分浏览器加载的 js 体积，又保证了老浏览器的兼容性问题。
 

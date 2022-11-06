@@ -17,7 +17,7 @@ date: "2021-09-30T15:57:00.000Z"
 - 知乎：[@项伟平](https://www.zhihu.com/people/xiang-wei-ping)
 - QQ：@1542453460
 
-![扫码关注公众号](https://brandonxiang.vercel.app/img/wechat.jpg)
+![扫码关注公众号](https://brandonxiang.top/img/wechat.jpg)
 
 > **扫码关注公众号**
 
@@ -33,4 +33,4 @@ date: "2021-09-30T15:57:00.000Z"
 
 
 
-![SYSU](https://brandonxiang.vercel.app/img/sysu.gif)
+![SYSU](https://brandonxiang.top/img/sysu.gif)

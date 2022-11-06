@@ -5,8 +5,8 @@ date: 2020-08-08T12:51:00.000Z
 
 svelte 的源码很简单是由两大部分组成，compiler 和 runtime。
 
-- [Svelte 笔记三：runtime 源码解读](https://brandonxiang.vercel.app/blog/svelte3)
-- [Svelte 笔记四：compile 源码解析](https://brandonxiang.vercel.app/blog/svelte4)
+- [Svelte 笔记三：runtime 源码解读](https://brandonxiang.top/blog/svelte3)
+- [Svelte 笔记四：compile 源码解析](https://brandonxiang.top/blog/svelte4)
 
 compiler 就是一个编译器将 svelte 模版语法转换为浏览器能够识别的代码。而 runtime 则是在浏览器中帮助业务代码运作的运行时函数。所以说 runtime 是 svelte 框架最核心的部分，它也解释了 svelte 是如何在没有 virtual dom 的情况下也照样运行的。今天我们 review 一下 runtime 代码。
 

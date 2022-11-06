@@ -114,7 +114,7 @@ SSR 服务端渲染由于是依赖服务器资源，在流量过大的情况下�
 
 SSR 页面和 CSR 页面基于 Next.js 采用同样的业务逻辑编写方式，有效保证页面逻辑的一致性，一份代码两端复用。
 
-![SSR优雅的降级](https://brandonxiang.vercel.app/img/next-fallback.png)
+![SSR优雅的降级](https://brandonxiang.top/img/next-fallback.png)
 
 ## 总结
 

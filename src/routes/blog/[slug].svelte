@@ -74,7 +74,7 @@
 
 <svelte:head>
   <title>{post.metadata.title}</title>
-  <meta property="og:url" content="https://brandonxiang.vercel.app/blog/{post.slug}">
+  <meta property="og:url" content="https://brandonxiang.top/blog/{post.slug}">
 	<meta property="og:type" content="article">
 	<meta property="og:title" content={post.metadata.title}>
 	<!-- <meta property="og:description" content={post.metadata.description}> -->
