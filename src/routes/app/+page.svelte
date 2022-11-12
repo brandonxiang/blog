@@ -45,7 +45,7 @@
   
   <div>
     {#each apps as app, index}
-      <p><a sveltekit:prefetch href={app.url}>{app.title}</a></p>
+      <p data-sveltekit-prefetch><a href={app.url}>{app.title}</a></p>
       <div class="post-item-footer">
         <span class="post-item-date">— {app.description}</span>
       </div>

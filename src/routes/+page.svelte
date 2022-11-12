@@ -68,12 +68,12 @@
 <div class="home-container">
   <div class="home-copy">
     <h1>Welcome to BrandonXIANG Blog</h1>
-    <p>Check out my <a href="https://github.com/brandonxiang" target="_blank">GitHub</a>.</p>
+    <p>Check out my <a href="https://github.com/brandonxiang" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
     <img alt="counter" src="https://visitor-badge.glitch.me/badge?page_id=brandonxiang&right_color=%23fd6378" />
   </div>
 
   <figure>
     <img alt='Person typing on laptop' src='icon/undraw_usability_testing_2xs4.svg'>
-    <figcaption>Illustration thanks to <a href="https://undraw.co" target="_blank">Undraw</a></figcaption>
+    <figcaption>Illustration thanks to <a href="https://undraw.co" target="_blank" rel="noopener noreferrer">Undraw</a></figcaption>
   </figure>
 </div>

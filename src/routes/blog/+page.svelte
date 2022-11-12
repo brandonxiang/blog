@@ -27,7 +27,7 @@
 
 <div>
 	{#each data.posts as post, index}
-		<p><a sveltekit:prefetch href='blog/{post.slug}'>{post.metadata.title}</a></p>
+		<p data-sveltekit-prefetch><a href='blog/{post.slug}'>{post.metadata.title}</a></p>
 		<div class="post-item-footer">
 			<span class="post-item-date">— {post.metadata.date}</span>
 		</div>

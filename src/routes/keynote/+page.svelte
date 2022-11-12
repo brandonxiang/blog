@@ -115,7 +115,7 @@
   
   <div>
     {#each keynotes as keynote, index}
-      <p><a sveltekit:prefetch href={keynote.url}>{keynote.title}</a></p>
+      <p data-sveltekit-prefetch><a href={keynote.url}>{keynote.title}</a></p>
       <div class="post-item-footer">
         <span class="post-item-date">— {keynote.date}</span>
       </div>
