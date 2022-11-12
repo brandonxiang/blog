@@ -3,7 +3,7 @@
 
 	import { page } from '$app/stores';
 
-	$:segment = $page.path;
+	$:segment = $page.url.pathname;
 
 </script>
 
@@ -20,6 +20,6 @@
 
 <Nav {segment}/>
 
-<main>
+<main data-sveltekit-prefetch>
 	<slot></slot>
 </main>

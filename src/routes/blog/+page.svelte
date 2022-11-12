@@ -1,19 +1,8 @@
-<script context="module">
-  export const prerender = true;
-  
-  import { base } from '$app/paths';
+<script lang="ts">
+  import type { PageData } from './$types';
 
-  export async function load({ fetch }) {
-    const posts = await fetch(`${base}/blog.json`)
-        .then((r) => r.json());
-    return {
-      props: { posts }
-    }
-  }
-</script>
+  export let data: PageData;
 
-<script>
-  export let posts;
 </script>
 
 <style>
@@ -37,7 +26,7 @@
 <h1>最近博客</h1>
 
 <div>
-	{#each posts as post, index}
+	{#each data.posts as post, index}
 		<p><a sveltekit:prefetch href='blog/{post.slug}'>{post.metadata.title}</a></p>
 		<div class="post-item-footer">
 			<span class="post-item-date">— {post.metadata.date}</span>
