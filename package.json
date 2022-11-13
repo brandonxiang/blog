@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "scripts": {
 		"dev": "vite dev",
-		"build": "npm run build:local && cp -r posts .svelte-kit",
-    "build:local": "vite build",
+		"build": "npm run build:local && cp -r posts .vercel/output/static",
+    "build:local": "VERCEL=true vite build",
 		"preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
