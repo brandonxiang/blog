@@ -9,6 +9,7 @@ date: "2021-09-30T15:57:00.000Z"
 
 ## 我的社交
 
+- notion: [@brandonxiang](https://brandonxiang.notion.site/brandonxiang-notion-078346416d174cb0bf79e0023ef7d8af)
 - github：[@brandonxiang](https://github.com/brandonxiang)
 - 公众号： @大前端从入门到跑路
 - 掘金：[@brandonxiang](https://juejin.cn/user/2172290706443639)
@@ -30,7 +31,5 @@ date: "2021-09-30T15:57:00.000Z"
 - pyMap
 - psm
 - geojson-python-utils
-
-
 
 ![SYSU](https://brandonxiang.top/img/sysu.gif)
