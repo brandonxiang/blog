@@ -1,6 +1,16 @@
 <script>
   let keynotes = [
     {
+      title: 'nodejs服务的技术运维',
+      url: 'https://keynote.brandonxiang.top/devops.html',
+      date: 'Feb 10, 2023',
+    },
+    {
+      title: '如何清除项目中没用代码',
+      url: 'https://keynote.brandonxiang.top/remove-unused-files.html',
+      date: 'Jan 06, 2023',
+    },
+    {
       title: '前端测试左移',
       url: 'https://keynote.brandonxiang.top/shift-left-testing.html',
       date: 'Aug 03, 2022',
