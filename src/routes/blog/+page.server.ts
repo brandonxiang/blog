@@ -1,7 +1,7 @@
-import type { PageLoad } from '../../../.svelte-kit/types/src/routes/blog/$types';
 import { process } from '$lib/markdown';
 import fg from 'fast-glob';
 import dayjs from 'dayjs';
+import type { PageLoad } from '../app/$types';
 
 export const prerender = true;
 
