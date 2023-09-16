@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 	import { onNavigate } from '$app/navigation';
   import Nav from '$lib/Nav.svelte';
 

@@ -5,3 +5,4 @@ node_modules
 /.vercel
 /__sapper__
 .env
+build
