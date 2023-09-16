@@ -1,8 +1,9 @@
 <script>
 	import { onNavigate } from '$app/navigation';
 	import Nav from '$lib/Nav.svelte';
-
 	import { page } from '$app/stores';
+	import { pwaInfo } from 'virtual:pwa-info'
+	import { onMount } from 'svelte';
 
 	$: segment = $page.url.pathname;
 
@@ -16,9 +17,31 @@
 			});
 		});
 	});
+
+	onMount(async() => {
+		if (pwaInfo) {
+      const { registerSW } = await import('virtual:pwa-register')
+      registerSW({
+        immediate: true,
+        onRegistered(r) {
+          console.log(`SW Registered: ${r}`)
+        },
+        onRegisterError(error) {
+          console.log('SW registration error', error)
+        }
+      })
+    }
+	})
+
+	$: webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : ''
 </script>
 
 <Nav {segment} />
+
+
+<svelte:head>
+    {@html webManifest}
+</svelte:head>
 
 <main data-sveltekit-prefetch>
 	<slot />
