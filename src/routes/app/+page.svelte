@@ -2,7 +2,7 @@
 	let apps = [
 		{
 			title: 'brandon notion',
-			url: "https://brandonxiang.notion.site/brandonxiang-notion-078346416d174cb0bf79e0023ef7d8af?pvs=4",
+			url: "https://brandonxiang.notion.site/brandonxiang-notion-078346416d174cb0bf79e0023ef7d8af",
 			description: '不知名前端notion笔记',
 		},
 		{
@@ -77,7 +77,7 @@
 
 <div>
 	{#each apps as app, index}
-		<p data-sveltekit-prefetch><a href={app.url}>{app.title}</a></p>
+		<p data-sveltekit-prefetch><a href={app.url} target="_blank">{app.title}</a></p>
 		<div class="post-item-footer">
 			<span class="post-item-date">— {app.description}</span>
 		</div>
