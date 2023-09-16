@@ -17,6 +17,12 @@
     text-transform: uppercase;
     margin-right: 16px;
   }
+
+  @media (prefers-reduced-motion: no-preference) {
+		span.title {
+			view-transition-name: var(--name);
+		}
+	}
 </style>
 
 <svelte:head>
@@ -27,7 +33,11 @@
 
 <div>
 	{#each data.posts as post, index}
-		<p data-sveltekit-prefetch><a href='blog/{post.slug}'>{post.metadata.title}</a></p>
+		<p data-sveltekit-prefetch>
+      <a href='blog/{post.slug}'>
+        <span class="title" style:--name="post-title-{post.slug}">{post.metadata.title}</span>
+      </a>
+    </p>
 		<div class="post-item-footer">
 			<span class="post-item-date">— {post.metadata.date}</span>
 		</div>

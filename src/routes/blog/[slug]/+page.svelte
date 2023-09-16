@@ -50,7 +50,7 @@
 	<!-- <meta property="og:description" content={post.metadata.description}> -->
 </svelte:head>
 
-<h1 class="title">{data.post.metadata.title}</h1>
+<h1 class="title" style:--name="post-title-{$page.params.slug}">{data.post.metadata.title}</h1>
 <p class="info"><a href="https://github.com/brandonxiang">Brandonxiang</a> {date}</p>
 
 {@html data.post.content}
@@ -61,4 +61,12 @@
   h1.title {
     margin-bottom: 0;
   }
+
+
+	@media (prefers-reduced-motion: no-preference) {
+		h1,
+		.title {
+			view-transition-name: var(--name);
+		}
+	}
 </style>
