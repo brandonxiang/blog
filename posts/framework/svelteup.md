@@ -11,7 +11,6 @@ web component 一直是大家很想落地的一个浏览器新技术，但是实
 
 ![custom elements 兼容性](https://brandonxiang.top/img/custom-elements.png)
 
-
 svelte 和 web component 的概念一拍即合。由于 native web component 现在还不成熟，用它去实现一些页面的难度（学习成本和心智负担）会较大，不太适合新手学习。你可能会问使用像lit-element这样的框架写 web component 是否合适？《[A Comparison Of Web Component Solutions](https://hackernoon.com/a-comparison-of-web-component-solutions-xu163u3o)》、《[All the Ways to Make a Web Component](https://webcomponents.dev/blog/all-the-ways-to-make-a-web-component-april2020/)》这两篇文章很好地对比了第三方框架 svelte、stencil、lit-element、Lightning Web Components 的各个优缺点，证明了svelte在体整体体积和它的易用性有着独特的优势。《[Custom Elements Everywhere](https://custom-elements-everywhere.com/)》一文横向对比了18款框架转 web component，svelte的支持度非常好。
 
 ## 什么是 svelteup
@@ -22,7 +21,7 @@ svelteup是由三个概念混合而成，svelte是前端框架，esbuild是编�
 
 > svelteup = svelte + esbuild + web component
 
-> svelteup  = client rendering + light weight + extremely fast 
+> svelteup = client rendering + light weight + extremely fast
 
 svelteup的使用非常简单，初始约定了 component 文件夹作为组件代码的位置，而 public 文件夹则是托管静态资源的目录。这些都可以通过cli、配置文件或者js api进行配置，详情参考[文档](https://github.com/brandonxiang/svelteup)。借助于svelteup可以实现组件打包和页面开发调试等工作。
 
@@ -68,7 +67,7 @@ reveal.js 是一款完成度很高、历史悠久的在线ppt库，著名的[sli
 		width: 300px;
 		border: 1px solid #aaa;
 		border-radius: 2px;
-		box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+		box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 		padding: 1em;
 		margin: 0 0 1em 0;
 	}

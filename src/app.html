@@ -1,35 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="theme-color" content="#fff">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="default">
-		<meta name="apple-mobile-web-app-title" content="Brandon's Blog">
-		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=contain">
-		<link rel="apple-touch-icon" href="%sveltekit.assets%/icon/logo-512.png">
+		<meta name="theme-color" content="#fff" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+		<meta name="apple-mobile-web-app-title" content="Brandon's Blog" />
+		<meta
+			name="viewport"
+			content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=contain"
+		/>
+		<link rel="apple-touch-icon" href="%sveltekit.assets%/icon/logo-512.png" />
 
-		<link rel="manifest" href="%sveltekit.assets%/manifest.json" crossorigin="use-credentials">
+		<link rel="manifest" href="%sveltekit.assets%/manifest.json" crossorigin="use-credentials" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="%sveltekit.assets%/style/global2.css">
-		<link rel="stylesheet" href="%sveltekit.assets%/style/fonts1.css">
-		<link rel="stylesheet" href="%sveltekit.assets%/style/github.css">
-		<link rel="stylesheet" href="%sveltekit.assets%/style/gitalk.css">
-		<link rel="dns-prefetch" href="%sveltekit.assets%/script/gitalk.js">
+		<link rel="stylesheet" href="%sveltekit.assets%/style/global2.css" />
+		<link rel="stylesheet" href="%sveltekit.assets%/style/fonts1.css" />
+		<link rel="stylesheet" href="%sveltekit.assets%/style/github.css" />
+		<link rel="stylesheet" href="%sveltekit.assets%/style/gitalk.css" />
+		<link rel="dns-prefetch" href="%sveltekit.assets%/script/gitalk.js" />
 		<script prefetch src="%sveltekit.assets%/script/gitalk.js"></script>
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-prefetch>
-			<div>%sveltekit.body%</div>
-			<!-- Google tag (gtag.js) -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=G-QSKELYBDHP"></script>
-			<script>
-				window.dataLayer = window.dataLayer || [];
-				function gtag(){dataLayer.push(arguments);}
-				gtag('js', new Date());
+		<div>%sveltekit.body%</div>
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-QSKELYBDHP"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
 
-				gtag('config', 'G-QSKELYBDHP');
-			</script>
+			gtag('config', 'G-QSKELYBDHP');
+		</script>
 	</body>
 </html>

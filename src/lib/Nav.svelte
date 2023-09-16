@@ -1,22 +1,42 @@
-<script lang="ts">
-	export let segment: string;
+<script>
+	/** @type {string} */
+	export let segment;
 
-	type AriaCurrent = "page" | undefined
+	/** @typedef {'page' | undefined } AriaCurrent */
 
-	console.log(segment);
-
-	$: isBlog = (segment.includes('/blog') && !segment.includes('about') ? 'page' : undefined) as AriaCurrent;
-	$: isKeynote = (segment.includes('/keynote') ? 'page' : undefined) as AriaCurrent;
-	$: isApp = (segment.includes('/app') ? 'page' : undefined) as AriaCurrent;
-	$: isAbout = (segment.includes('about') ? 'page' : undefined) as AriaCurrent;
-
-
-
+	/** @type {AriaCurrent} */
+	$: isBlog = segment.includes('/blog') && !segment.includes('about') ? 'page' : undefined;
+	/** @type {AriaCurrent} */
+	$: isKeynote = segment.includes('/keynote') ? 'page' : undefined;
+	/** @type {AriaCurrent} */
+	$: isApp = segment.includes('/app') ? 'page' : undefined;
+	/** @type {AriaCurrent} */
+	$: isAbout = segment.includes('about') ? 'page' : undefined;
 </script>
+
+<nav data-sveltekit-prefetch>
+	<ul>
+		<li>
+			<a aria-current={segment === '/' ? 'page' : undefined} href="/">Home</a>
+		</li>
+		<li>
+			<a aria-current={isBlog} href="/blog">Blog</a>
+		</li>
+		<li>
+			<a aria-current={isKeynote} href="/keynote">Keynote</a>
+		</li>
+		<li>
+			<a aria-current={isApp} href="/app">App</a>
+		</li>
+		<li>
+			<a aria-current={isAbout} href="/blog/about">About</a>
+		</li>
+	</ul>
+</nav>
 
 <style>
 	nav {
-		border-bottom: 1px solid rgba(255,62,0,0.1);
+		border-bottom: 1px solid rgba(255, 62, 0, 0.1);
 		font-weight: 300;
 		padding: 0 1em;
 		view-transition-name: header;
@@ -49,7 +69,7 @@
 		content: '';
 		width: calc(100% - 1em);
 		height: 2px;
-		background-color: rgb(255,62,0);
+		background-color: rgb(255, 62, 0);
 		display: block;
 		bottom: -1px;
 	}
@@ -58,26 +78,6 @@
 		text-decoration: none;
 		padding: 1em 0.5em;
 		display: block;
-		font-weight:500
+		font-weight: 500;
 	}
 </style>
-
-<nav data-sveltekit-prefetch>
-	<ul>
-		<li>
-			<a aria-current="{segment === '/' ? 'page' : undefined}" href="/">Home</a>
-		</li>
-		<li>
-			<a aria-current={isBlog} href="/blog">Blog</a>
-		</li>
-		<li>
-			<a aria-current="{isKeynote}" href="/keynote">Keynote</a>
-		</li>
-		<li>
-			<a aria-current="{isApp}" href="/app">App</a>
-		</li>
-		<li>
-			<a  aria-current="{isAbout}" href="/blog/about">About</a>
-		</li>
-	</ul>
-</nav>

@@ -8,13 +8,13 @@ date: 2020-06-20T11:59:57.000Z
 写法如下：
 
 ```javascript
-import fs from "fs";
+import fs from 'fs';
 ```
 
 有别于 common.js 的写法：
 
 ```javascript
-const fs = require("fs");
+const fs = require('fs');
 ```
 
 ![兼容性情况](https://brandonxiang.top/img/caniuse-esmodule.png)
@@ -24,18 +24,10 @@ const fs = require("fs");
 ```html
 <!-- dimport 兼容方案 -->
 <!-- Load the "module" version on browsers that can support it. -->
-<script
-  type="module"
-  src="https://unpkg.com/dimport?module"
-  data-main="/bundle.js"
-></script>
+<script type="module" src="https://unpkg.com/dimport?module" data-main="/bundle.js"></script>
 
 <!-- Load the "nomodule" version on older browsers – acts as fallback! -->
-<script
-  type="nomodule"
-  src="https://unpkg.com/dimport/nomodule"
-  data-main="/bundle.js"
-></script>
+<script type="nomodule" src="https://unpkg.com/dimport/nomodule" data-main="/bundle.js"></script>
 ```
 
 ### ESM Import
@@ -43,41 +35,37 @@ const fs = require("fs");
 其实，最早将 ESM Import 引入到前端页面开发的是[Polymer/lit-html](https://github.com/Polymer/lit-html)，它将模版模块化，直接带到浏览器。然后激发了 preact 的调整，基于[Tagged_templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates)创造出[developit/htm](https://github.com/developit/htm)语法，这样一来，JSX 的语法直接能在浏览器使用，当然也部分失去渲染函数的魅力。用 JS 字符串模版新特性替代了 JSX，却能让 preact 直接能在浏览器运行，当时掀起了一定的影响。
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <title>htm Demo</title>
-  <script type="module">
-    import {
-      html,
-      Component,
-      render,
-    } from "https://unpkg.com/htm/preact/standalone.module.js";
+	<title>htm Demo</title>
+	<script type="module">
+		import { html, Component, render } from 'https://unpkg.com/htm/preact/standalone.module.js';
 
-    class App extends Component {
-      addTodo() {
-        const { todos = [] } = this.state;
-        this.setState({ todos: todos.concat(`Item ${todos.length}`) });
-      }
-      render({ page }, { todos = [] }) {
-        return html`
-          <div class="app">
-            <${Header} name="ToDo's (${page})" />
-            <ul>
-              ${todos.map((todo) => html` <li key="${todo}">${todo}</li> `)}
-            </ul>
-            <button onClick=${() => this.addTodo()}>Add Todo</button>
-            <${Footer}>footer content here<//>
-          </div>
-        `;
-      }
-    }
+		class App extends Component {
+			addTodo() {
+				const { todos = [] } = this.state;
+				this.setState({ todos: todos.concat(`Item ${todos.length}`) });
+			}
+			render({ page }, { todos = [] }) {
+				return html`
+					<div class="app">
+						<${Header} name="ToDo's (${page})" />
+						<ul>
+							${todos.map((todo) => html` <li key="${todo}">${todo}</li> `)}
+						</ul>
+						<button onClick=${() => this.addTodo()}>Add Todo</button>
+						<${Footer}>footer content here<//>
+					</div>
+				`;
+			}
+		}
 
-    const Header = ({ name }) => html`<h1>${name} List</h1>`;
+		const Header = ({ name }) => html`<h1>${name} List</h1>`;
 
-    const Footer = (props) => html`<footer ...${props} />`;
+		const Footer = (props) => html`<footer ...${props} />`;
 
-    render(html`<${App} page="All" />`, document.body);
-  </script>
+		render(html`<${App} page="All" />`, document.body);
+	</script>
 </html>
 ```
 

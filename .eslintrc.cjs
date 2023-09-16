@@ -1,22 +1,13 @@
 module.exports = {
 	root: true,
-  parser: '@typescript-eslint/parser',
 	extends: ['plugin:svelte/recommended'],
+	plugins: ['prettier-plugin-svelte'],
 	parserOptions: {
-    project: 'tsconfig.json',
-    extraFileExtensions: ['.svelte'],
+		project: 'tsconfig.json',
+		extraFileExtensions: ['.svelte'],
 		sourceType: 'module',
 		ecmaVersion: 2019
 	},
-	overrides: [
-    {
-      files: ['*.svelte'],
-      parser: 'svelte-eslint-parser',
-      parserOptions: {
-        parser: '@typescript-eslint/parser'
-      }
-    }
-  ],
 	ignorePatterns: ['*.cjs'],
 	env: {
 		browser: true,
@@ -24,6 +15,15 @@ module.exports = {
 		node: true
 	},
 	rules: {
-		"@typescript-eslint/ban-ts-comment": "off"
+		'@typescript-eslint/ban-ts-comment': 'off'
+	},
+	settings: {
+		svelte: {
+			kit: {
+				files: {
+					routes: 'src/routes'
+				}
+			}
+		}
 	}
 };

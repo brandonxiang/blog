@@ -38,19 +38,19 @@ yarn add next react react-dom
 
 ```json
 {
-  "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start",
-    "export": "next export"
-  }
+	"scripts": {
+		"dev": "next",
+		"build": "next build",
+		"start": "next start",
+		"export": "next export"
+	}
 }
 ```
 
 这时需要建个`\pages`的文件夹，里面新建文件`index.js`，写入 react 组件，组件会自动注入到 SPA 当中。其中 pages 是一个目录，所有的页面都会根据文件的存放格式自动生成路由，这也免去了[react-router](https://github.com/ReactTraining/react-router)的干扰。
 
 ```javascript
-export default () => <div>Welcome to next.js!</div>
+export default () => <div>Welcome to next.js!</div>;
 ```
 
 ### 项目的从一到十
@@ -64,29 +64,29 @@ export default () => <div>Welcome to next.js!</div>
 
 ```javascript
 //_app.js
-import React from "react";
-import App, { Container } from "next/app";
+import React from 'react';
+import App, { Container } from 'next/app';
 
 class MyApp extends App {
-  static async getInitialProps({ Component, ctx }) {
-    let pageProps = {};
+	static async getInitialProps({ Component, ctx }) {
+		let pageProps = {};
 
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
-    }
+		if (Component.getInitialProps) {
+			pageProps = await Component.getInitialProps(ctx);
+		}
 
-    return { pageProps };
-  }
+		return { pageProps };
+	}
 
-  render() {
-    const { Component, pageProps } = this.props;
+	render() {
+		const { Component, pageProps } = this.props;
 
-    return (
-      <Container>
-        <Component {...pageProps} />
-      </Container>
-    );
-  }
+		return (
+			<Container>
+				<Component {...pageProps} />
+			</Container>
+		);
+	}
 }
 
 export default MyApp;
@@ -98,27 +98,27 @@ export default MyApp;
 
 ```javascript
 // ./pages/_document.js
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {
-  static async getInitialProps(ctx) {
-    const initialProps = await Document.getInitialProps(ctx);
-    return { ...initialProps };
-  }
+	static async getInitialProps(ctx) {
+		const initialProps = await Document.getInitialProps(ctx);
+		return { ...initialProps };
+	}
 
-  render() {
-    return (
-      <Html>
-        <Head>
-          <style>{`body { margin: 0 } /* custom! */`}</style>
-        </Head>
-        <body className="custom_class">
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    );
-  }
+	render() {
+		return (
+			<Html>
+				<Head>
+					<style>{`body { margin: 0 } /* custom! */`}</style>
+				</Head>
+				<body className="custom_class">
+					<Main />
+					<NextScript />
+				</body>
+			</Html>
+		);
+	}
 }
 
 export default MyDocument;

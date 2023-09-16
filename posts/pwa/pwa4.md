@@ -1,6 +1,6 @@
 ---
 title: PWA笔记四：Web App Manifest 介绍
-date: "2019-11-05T18:48:00.000Z"
+date: '2019-11-05T18:48:00.000Z'
 ---
 
 首先，在 vue 的初始化 webpack 项目中存在 manifest.js，这个文件更多是静态脚本的代码指纹。但是它和 PWA 的 Web App Manifest 是两个概念。下面是 webkit.org 对它的定义。
@@ -14,37 +14,37 @@ PWA 指的是网页应用，Web App Manifest 主要针对的是单页面应用�
 
 ```json
 {
-  "background_color": "#ffffff",
-  "theme_color": "#333333",
-  "name": "Brandon's Blog",
-  "short_name": "Brandon's Blog",
-  "description": "A Web Developer's Blog",
-  "display": "standalone",
-  "start_url": "/",
-  "scope": "/",
-  "icons": [
-    {
-      "src": "logo-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "logo-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
-  "share_target": {
-    "action": "compose/share",
-    "params": {
-      "title": "title",
-      "text": "text",
-      "url": "url"
-    },
-    "method": "GET",
-    "enctype": "application/x-www-form-urlencoded"
-  },
-  "prefer_related_applications": false
+	"background_color": "#ffffff",
+	"theme_color": "#333333",
+	"name": "Brandon's Blog",
+	"short_name": "Brandon's Blog",
+	"description": "A Web Developer's Blog",
+	"display": "standalone",
+	"start_url": "/",
+	"scope": "/",
+	"icons": [
+		{
+			"src": "logo-192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "logo-512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	],
+	"share_target": {
+		"action": "compose/share",
+		"params": {
+			"title": "title",
+			"text": "text",
+			"url": "url"
+		},
+		"method": "GET",
+		"enctype": "application/x-www-form-urlencoded"
+	},
+	"prefer_related_applications": false
 }
 ```
 
@@ -72,8 +72,8 @@ PWA 指的是网页应用，Web App Manifest 主要针对的是单页面应用�
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <meta name="apple-mobile-web-app-title" content="Brandon's Blog" />
 <meta
-  name="viewport"
-  content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=contain"
+	name="viewport"
+	content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=contain"
 />
 <link rel="apple-touch-icon" href="icon/appicon.png" />
 ```

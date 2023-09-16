@@ -20,10 +20,10 @@ JSX 应该是属于 react 的精髓，模版响应等都表现在此。而面试
 会编译为：
 
 ```javascript
-createElement("img", {
-  attrs: {
-    src: require("../image.png"), // this is now a module request
-  },
+createElement('img', {
+	attrs: {
+		src: require('../image.png') // this is now a module request
+	}
 });
 ```
 
@@ -37,7 +37,7 @@ createElement("img", {
 
 ```javascript
 module.exports = {
-  presets: ["@babel/preset-react"],
+	presets: ['@babel/preset-react']
 };
 ```
 
@@ -55,32 +55,32 @@ module.exports = {
 
 ```javascript
 module.exports = {
-  entry: "./src/index.js",
-  output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "[name].bundle.js",
-  },
-  devServer: {
-    contentBase: path.resolve(__dirname, "dist"),
-    port: 9000,
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js|jsx$/,
-        use: "babel-loader",
-        exclude: /node_modules/,
-      },
-    ],
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      filename: "index.html",
-      title: "react",
-      inject: true,
-      template: "./src/index.html", // 模板地址
-    }),
-  ],
+	entry: './src/index.js',
+	output: {
+		path: path.resolve(__dirname, 'dist'),
+		filename: '[name].bundle.js'
+	},
+	devServer: {
+		contentBase: path.resolve(__dirname, 'dist'),
+		port: 9000
+	},
+	module: {
+		rules: [
+			{
+				test: /\.js|jsx$/,
+				use: 'babel-loader',
+				exclude: /node_modules/
+			}
+		]
+	},
+	plugins: [
+		new HtmlWebpackPlugin({
+			filename: 'index.html',
+			title: 'react',
+			inject: true,
+			template: './src/index.html' // 模板地址
+		})
+	]
 };
 ```
 

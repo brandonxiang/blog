@@ -1,6 +1,6 @@
 ---
 title: PWA笔记五：Workbox实战应用
-date: "2019-11-05T18:49:00.000Z"
+date: '2019-11-05T18:49:00.000Z'
 ---
 
 ## 引言
@@ -102,44 +102,41 @@ networkFirst 是显示完成后，SW 优先和后端通讯，看接口是否更�
 
 ```javascript
 {
-  plugins: [
-    new workboxPlugin(config.sw.workbox),
-    new SwRegisterWebpackPlugin(config.sw.register),
-  ];
+	plugins: [new workboxPlugin(config.sw.workbox), new SwRegisterWebpackPlugin(config.sw.register)];
 }
 ```
 
 `config.sw.workbox`指的是对应的配置参数。它会配置在`config`文件夹的`sw.js`中，用于控制 workbox。
 
 ```javascript
-const path = require("path");
-const dist = "./dist";
+const path = require('path');
+const dist = './dist';
 
 module.exports = {
-  workbox: {
-    globDirectory: dist,
-    globPatterns: ["**/*.{html,js,css}"],
-    swDest: path.join(dist, "module/service-worker.js"),
-    clientsClaim: true,
-    skipWaiting: true,
-  },
-  register: {
-    filePath: path.resolve(__dirname, "../src/module/sw-register.js"),
-    prefix: "..",
-    output: "module/sw-register.js",
-    excludes: [
-      /activitytemplate\.html/,
-      /addMember\.html/,
-      /detail\.html/,
-      /ecommand\.html/,
-      /infoDetail\.html/,
-      /insuredetail\.html/,
-      /invite\.html/,
-      /onlineBooking\.html/,
-      /productDetail\.html/,
-      /weappClientDetail\.html/,
-    ],
-  },
+	workbox: {
+		globDirectory: dist,
+		globPatterns: ['**/*.{html,js,css}'],
+		swDest: path.join(dist, 'module/service-worker.js'),
+		clientsClaim: true,
+		skipWaiting: true
+	},
+	register: {
+		filePath: path.resolve(__dirname, '../src/module/sw-register.js'),
+		prefix: '..',
+		output: 'module/sw-register.js',
+		excludes: [
+			/activitytemplate\.html/,
+			/addMember\.html/,
+			/detail\.html/,
+			/ecommand\.html/,
+			/infoDetail\.html/,
+			/insuredetail\.html/,
+			/invite\.html/,
+			/onlineBooking\.html/,
+			/productDetail\.html/,
+			/weappClientDetail\.html/
+		]
+	}
 };
 ```
 
@@ -166,14 +163,14 @@ module.exports = {
 
 ```html
 <script>
-  window.onload = function () {
-    var script = document.createElement("script");
-    var firstScript = document.getElementsByTagName("script")[0];
-    script.type = "text/javascript";
-    script.async = true;
-    script.src = "../module/sw-register.js?v=" + Date.now();
-    firstScript.parentNode.insertBefore(script, firstScript);
-  };
+	window.onload = function () {
+		var script = document.createElement('script');
+		var firstScript = document.getElementsByTagName('script')[0];
+		script.type = 'text/javascript';
+		script.async = true;
+		script.src = '../module/sw-register.js?v=' + Date.now();
+		firstScript.parentNode.insertBefore(script, firstScript);
+	};
 </script>
 ```
 
@@ -181,16 +178,16 @@ module.exports = {
 
 ```javascript
 navigator.serviceWorker &&
-  navigator.serviceWorker.register("./service-worker.js").then(() => {
-    navigator.serviceWorker.addEventListener("message", (e) => {
-      // service-worker.js 如果更新成功会 postMessage 给页面，内容为 'sw.update'
-      if (e.data === "sw.update") {
-        let dom = document.createElement("div");
-        let themeColor = document.querySelector("meta[name=theme-color]");
+	navigator.serviceWorker.register('./service-worker.js').then(() => {
+		navigator.serviceWorker.addEventListener('message', (e) => {
+			// service-worker.js 如果更新成功会 postMessage 给页面，内容为 'sw.update'
+			if (e.data === 'sw.update') {
+				let dom = document.createElement('div');
+				let themeColor = document.querySelector('meta[name=theme-color]');
 
-        themeColor && (themeColor.content = "#000");
+				themeColor && (themeColor.content = '#000');
 
-        dom.innerHTML = `
+				dom.innerHTML = `
               <style>
                   .app-refresh{background:#000;height:0;line-height:52px;overflow:hidden;position:fixed;top:0;left:0;right:0;z-index:10001;padding:0 18px;transition:all .3s ease;-webkit-transition:all .3s ease;-moz-transition:all .3s ease;-o-transition:all .3s ease;}
                   .app-refresh-wrap{display:flex;color:#fff;font-size:15px;}
@@ -204,16 +201,14 @@ navigator.serviceWorker &&
                   </div>
               </div>
           `;
-        document.body.appendChild(dom);
-        setTimeout(
-          () =>
-            (document.getElementById("app-refresh").className +=
-              " app-refresh-show"),
-          16
-        );
-      }
-    });
-  });
+				document.body.appendChild(dom);
+				setTimeout(
+					() => (document.getElementById('app-refresh').className += ' app-refresh-show'),
+					16
+				);
+			}
+		});
+	});
 ```
 
 ## 参考

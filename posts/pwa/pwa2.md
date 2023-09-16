@@ -1,6 +1,6 @@
 ---
 title: PWA笔记二：离线缓存原理
-date: "2019-10-27T21:09:00.000Z"
+date: '2019-10-27T21:09:00.000Z'
 ---
 
 ServiceWorker 既然命名为 worker，很大一部分原因就是它和 WebWorker 相关。它是在第二个线程完成缓存代理的任务，不会影响 dom 渲染的主线程，两个 Worker 之间的通讯是基于 postMessage，两个线程是不能直接进行通讯。
@@ -28,18 +28,15 @@ HTTPS 不仅仅可以保证你网页的安全性，还可以让一些比较敏�
 ServiceWorker.js(又名 sw.js)是一个独立 js，页面注册在浏览器支持的情况下，注册 sw.js 来控制 Service Worker 缓存。`register`将会触发安装声明周期，所有的源码都是有原生浏览器实现。
 
 ```javascript
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker
-    .register("/sw.js")
-    .then(function (registration) {
-      console.log(
-        "ServiceWorker registration successful with scope: ",
-        registration.scope
-      );
-    })
-    .catch(function (err) {
-      console.log("ServiceWorker registration failed: ", err);
-    });
+if ('serviceWorker' in navigator) {
+	navigator.serviceWorker
+		.register('/sw.js')
+		.then(function (registration) {
+			console.log('ServiceWorker registration successful with scope: ', registration.scope);
+		})
+		.catch(function (err) {
+			console.log('ServiceWorker registration failed: ', err);
+		});
 }
 ```
 
@@ -48,18 +45,18 @@ if ("serviceWorker" in navigator) {
 注册完成后会出发安装的生命周期，把设置好的静态文件，采用 Service Worker 的缓存方式，使用了 Cache API 来将资源缓存起来，同时使用 e.waitUntil 接手一个 Promise 来等待资源缓存成功，等到这个 Promise 状态成功后，ServiceWorker 进入 installed 状态，意味着安装完毕。这时候主线程中返回的 registration.waiting 属性代表进入 installed 状态的 ServiceWorker。
 
 ```javascript
-var CACHE_NAME = "my_cache";
-var urlsToCache = ["/index.html", "/css/style.css", "/js/script.js"];
+var CACHE_NAME = 'my_cache';
+var urlsToCache = ['/index.html', '/css/style.css', '/js/script.js'];
 //这里的self代表ServiceWorkerGlobalScope
-self.addEventListener("install", function (event) {
-  //这里的waitUtil会在安装成功之前执行一些预装的操作，但是只建议做一些轻量级和非常重要资源的缓存，减少安装失败的概率。安装成功
-  //后ServiceWorker状态会从installing变为installed
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(function (cache) {
-      console.log("Opendhe : ", cache);
-      return cache.addAll(urlsToCache);
-    })
-  );
+self.addEventListener('install', function (event) {
+	//这里的waitUtil会在安装成功之前执行一些预装的操作，但是只建议做一些轻量级和非常重要资源的缓存，减少安装失败的概率。安装成功
+	//后ServiceWorker状态会从installing变为installed
+	event.waitUntil(
+		caches.open(CACHE_NAME).then(function (cache) {
+			console.log('Opendhe : ', cache);
+			return cache.addAll(urlsToCache);
+		})
+	);
 });
 ```
 
@@ -72,23 +69,23 @@ skipWaiting()意味着新 SW 控制了之前用旧 SW 获取的页面，也就�
 安装完，则会进入激活状态。如果之前已有 ServiceWorker，这个版本只是对 ServiceWorker 进行了更新。如果你在`event.waitUntil()`中传入了一个 Promise，SW 将会缓存住功能性事件(fetch,push,sync 等等)，直到 Promise 返回 resolve 的时候再触发，也就是说，当你的 fetch 事件被触发的时候，SW 已经被完全激活了。
 
 ```javascript
-self.addEventListener("activate", (event) => {
-  event.waitUntil(
-    caches
-      .keys()
-      .then((keys) =>
-        Promise.all(
-          keys.map((key) => {
-            if (!expectedCaches.includes(key)) {
-              return caches.delete(key);
-            }
-          })
-        )
-      )
-      .then(() => {
-        // V2控制缓存
-      })
-  );
+self.addEventListener('activate', (event) => {
+	event.waitUntil(
+		caches
+			.keys()
+			.then((keys) =>
+				Promise.all(
+					keys.map((key) => {
+						if (!expectedCaches.includes(key)) {
+							return caches.delete(key);
+						}
+					})
+				)
+			)
+			.then(() => {
+				// V2控制缓存
+			})
+	);
 });
 ```
 
@@ -97,16 +94,16 @@ self.addEventListener("activate", (event) => {
 fetch 请求是有别于 xhr 请求，sw 提供监听拦截 fetch 的事件，对于命中缓存的数据可以直接返回请求。当接受到 fetch 请求时，会直接返回`event.respondWith` 得到 Promise 结果。这样我们可以捕获页面所有的 fetch 请求。
 
 ```javascript
-self.addEventListener("fetch", function (event) {
-  event.respondWith(
-    caches.match(event.request).then(function (response) {
-      // Cache hit - return response
-      if (response) {
-        return response;
-      }
-      return fetch(event.request);
-    })
-  );
+self.addEventListener('fetch', function (event) {
+	event.respondWith(
+		caches.match(event.request).then(function (response) {
+			// Cache hit - return response
+			if (response) {
+				return response;
+			}
+			return fetch(event.request);
+		})
+	);
 });
 ```
 

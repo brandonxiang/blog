@@ -30,14 +30,14 @@ Next.js 已经能够在一个项目不同路由支持不同的渲染模式。
 ```javascript
 // modules/Home.tsx
 export const getPrerenderProps = async (ctx) => {
-  // SSG读取环境变量，并作为兜底参数
-  const defaultLimits = process.env.limits || 0;
-  // SSR和CSR动态渲染从URL上获取参数
-  const _limits = ctx?.query?._limits || defaultLimits;
-  // 获取远程动态数据
-  const res = await axios.get('https://jsonplaceholder.typicode.com/photos?_limit=' + _limits);
-  // 传递给各种渲染模式
-  return { props: { photos: res.data } };
+	// SSG读取环境变量，并作为兜底参数
+	const defaultLimits = process.env.limits || 0;
+	// SSR和CSR动态渲染从URL上获取参数
+	const _limits = ctx?.query?._limits || defaultLimits;
+	// 获取远程动态数据
+	const res = await axios.get('https://jsonplaceholder.typicode.com/photos?_limit=' + _limits);
+	// 传递给各种渲染模式
+	return { props: { photos: res.data } };
 };
 ```
 
@@ -46,17 +46,17 @@ export const getPrerenderProps = async (ctx) => {
 ```javascript
 // modules/Home.tsx
 function Home({ photos }) {
-  let _photos = photos || [];
-  return (
-    <div className="photos">
-      {_photos.map((photo, index) => (
-        <figure key={index}>
-          <img src={photo.thumbnailUrl} alt={photo.title} />
-          <figcaption>{photo.title}</figcaption>
-        </figure>
-      ))}
-    </div>
-  );
+	let _photos = photos || [];
+	return (
+		<div className="photos">
+			{_photos.map((photo, index) => (
+				<figure key={index}>
+					<img src={photo.thumbnailUrl} alt={photo.title} />
+					<figcaption>{photo.title}</figcaption>
+				</figure>
+			))}
+		</div>
+	);
 }
 
 export const Page = Home;
@@ -84,16 +84,16 @@ CSR 模式则是自定义的`getPrerenderProps` 在 useEffect 中渲染，在页
 ```javascript
 // index_csr.js
 export default () => {
-  const router = useRouter();
-  const [extraProps, setExtraProps] = useState({});
+	const router = useRouter();
+	const [extraProps, setExtraProps] = useState({});
 
-  useEffect(() => {
-    getPrerenderProps(router).then(({ props }) => {
-      setExtraProps(props);
-    });
-  }, [router]);
+	useEffect(() => {
+		getPrerenderProps(router).then(({ props }) => {
+			setExtraProps(props);
+		});
+	}, [router]);
 
-  return <Page {...extraProps} />;
+	return <Page {...extraProps} />;
 };
 ```
 

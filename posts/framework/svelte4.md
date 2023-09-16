@@ -50,13 +50,11 @@ mustache 则是模版语言中的语法。
 
 ```html
 <ul>
-  {#each cats as { id, name }, i}
-  <li>
-    <a target="_blank" href="https://www.youtube.com/watch?v={id}">
-      {i + 1}: {name}
-    </a>
-  </li>
-  {/each}
+	{#each cats as { id, name }, i}
+	<li>
+		<a target="_blank" href="https://www.youtube.com/watch?v={id}"> {i + 1}: {name} </a>
+	</li>
+	{/each}
 </ul>
 ```
 
@@ -68,13 +66,13 @@ svelte 的 script 被分为 instance 和 module 两种。instance 指的是[svel
 
 ```html
 <script context="module">
-  const elements = new Set();
+	const elements = new Set();
 
-  export function stopAll() {
-    elements.forEach((element) => {
-      element.pause();
-    });
-  }
+	export function stopAll() {
+		elements.forEach((element) => {
+			element.pause();
+		});
+	}
 </script>
 ```
 
@@ -91,10 +89,10 @@ script 的解析主要靠的是[code-red](https://github.com/Rich-Harris/code-re
 重点聊一下数据流，《runtime 源码解读》讲到 svelte 是单向数据流，将代码中变量的赋值转换成为`$$invalidate`，它并没有采用 vue 中的双向绑定的机制，而是直接在语法树中判断变量的赋值的语句，待变量触发变化时，引起 Fragment 的 update 以及 Component 的 update。
 
 ```javascript
-node.type === "AssignmentExpression" &&
-  node.operator === "=" &&
-  nodes_match(node.left, node.right) &&
-  tail.length === 0;
+node.type === 'AssignmentExpression' &&
+	node.operator === '=' &&
+	nodes_match(node.left, node.right) &&
+	tail.length === 0;
 ```
 
 ## 总结

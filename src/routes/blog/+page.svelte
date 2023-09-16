@@ -1,29 +1,7 @@
-<script lang="ts">
-  import type { PageData } from './$types';
-
-  export let data: PageData;
-
+<script>
+	/** @type {import('./$types').PageData} */
+	export let data;
 </script>
-
-<style>
-  .post-item-footer {
-    font-family: Rubik, sans-serif;
-    font-weight: 700;
-  }
-
-  .post-item-date {
-    color: #AAA;
-    text-align: left;
-    text-transform: uppercase;
-    margin-right: 16px;
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-		span.title {
-			view-transition-name: var(--name);
-		}
-	}
-</style>
 
 <svelte:head>
 	<title>Blog</title>
@@ -34,12 +12,32 @@
 <div>
 	{#each data.posts as post, index}
 		<p data-sveltekit-prefetch>
-      <a href='blog/{post.slug}'>
-        <span class="title" style:--name="post-title-{post.slug}">{post.metadata.title}</span>
-      </a>
-    </p>
+			<a href="blog/{post.slug}">
+				<span class="title" style:--name="post-title-{post.slug}">{post.metadata.title}</span>
+			</a>
+		</p>
 		<div class="post-item-footer">
 			<span class="post-item-date">— {post.metadata.date}</span>
 		</div>
 	{/each}
 </div>
+
+<style>
+	.post-item-footer {
+		font-family: Rubik, sans-serif;
+		font-weight: 700;
+	}
+
+	.post-item-date {
+		color: #aaa;
+		text-align: left;
+		text-transform: uppercase;
+		margin-right: 16px;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		span.title {
+			view-transition-name: var(--name);
+		}
+	}
+</style>

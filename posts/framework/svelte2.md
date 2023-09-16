@@ -34,7 +34,7 @@ date: 2020-02-06T12:51:00.000Z
 这里采用 webpack 的 node API，先运行服务端配置的 webpack，得到 svelte 组件对象，`AppServer.render`则会得到预渲染得到的 html，css，head 等字符串，将其拼接到 index.html，再运行客户端配置的 webpack，则会得到动态渲染好的页面。
 
 ```javascript
-const { default: AppServer } = require("../dist/server");
+const { default: AppServer } = require('../dist/server');
 const App = await AppServer.render();
 ```
 
@@ -49,23 +49,21 @@ const App = await AppServer.render();
 ```html
 // App.svelte
 <script context="module">
-  import axios from 'axios';
-  export async function preload() {
-    const { data } = await axios.get(
-      `https://jsonplaceholder.typicode.com/photos?_limit=20`
-    );
-    return { photos: data };
-  }
+	import axios from 'axios';
+	export async function preload() {
+		const { data } = await axios.get(`https://jsonplaceholder.typicode.com/photos?_limit=20`);
+		return { photos: data };
+	}
 </script>
 ```
 
 服务端的代码如下，preload 的方法在组件渲染前先调用，得到预取的数据，将预取的数据传入组件内进行预渲染，得到有内容的组件。
 
 ```javascript
-const { default: AppServer, preload } = require("../dist/server");
+const { default: AppServer, preload } = require('../dist/server');
 let propsData = {};
 if (preload) {
-  propsData = await preload();
+	propsData = await preload();
 }
 const App = await AppServer.render(propsData);
 ```

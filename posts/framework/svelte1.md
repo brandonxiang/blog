@@ -1,6 +1,6 @@
 ---
 title: Svelte笔记一：入门脚手架
-date: "2019-10-27T08:38:00.000Z"
+date: '2019-10-27T08:38:00.000Z'
 ---
 
 > 源码 github 地址在此，记得点星：[brandonxiang/svelte-webpack-mpa](https://github.com/brandonxiang/svelte-webpack-mpa)
@@ -40,7 +40,7 @@ svelte 则是省去前面两步，直接更新 dom，它是一个 compiler，对
 
 ```javascript
 if (changed.name) {
-  text.data = name;
+	text.data = name;
 }
 ```
 
@@ -113,23 +113,21 @@ svelte 进入 3.0 后，语法借鉴了 vue 的 SFC 语法，非常简单。[官
 
 ```html
 <script>
-  let cats = [
-    { id: "J---aiyznGQ", name: "Keyboard Cat" },
-    { id: "z_AbfPXTKms", name: "Maru" },
-    { id: "OUtn3pvWmpg", name: "Henri The Existential Cat" },
-  ];
+	let cats = [
+		{ id: 'J---aiyznGQ', name: 'Keyboard Cat' },
+		{ id: 'z_AbfPXTKms', name: 'Maru' },
+		{ id: 'OUtn3pvWmpg', name: 'Henri The Existential Cat' }
+	];
 </script>
 
 <h1>The Famous Cats of YouTube</h1>
 
 <ul>
-  {#each cats as { id, name }, i}
-  <li>
-    <a target="_blank" href="https://www.youtube.com/watch?v={id}">
-      {i + 1}: {name}
-    </a>
-  </li>
-  {/each}
+	{#each cats as { id, name }, i}
+	<li>
+		<a target="_blank" href="https://www.youtube.com/watch?v={id}"> {i + 1}: {name} </a>
+	</li>
+	{/each}
 </ul>
 ```
 

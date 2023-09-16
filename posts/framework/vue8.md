@@ -42,8 +42,8 @@ dll 打包在`config`中的`dll.js`中控制，把公共全量使用的 npm 包�
 
 ```javascript
 module.exports = {
-  path: "static/dll",
-  libs: ["vue/dist/vue.esm.js", "vue-router"],
+	path: 'static/dll',
+	libs: ['vue/dist/vue.esm.js', 'vue-router']
 };
 ```
 

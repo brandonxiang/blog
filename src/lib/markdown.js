@@ -9,26 +9,20 @@ import highlight from 'rehype-highlight';
 import yaml from 'js-yaml';
 import dayjs from 'dayjs';
 
-const parser = unified()
-    .use(parse)
-    .use(gfm)
-    .use(frontmatter, ['yaml']);
+const parser = unified().use(parse).use(gfm).use(frontmatter, ['yaml']);
 
-const runner = unified()
-    .use(remark2rehype)
-    .use(highlight)
-    .use(rehypeStringify);
+const runner = unified().use(remark2rehype).use(highlight).use(rehypeStringify);
 
 export function process(filename) {
-  const slug = filename.split('.')[0];
-  const tree = parser.parse(vfile.readSync(filename));
-  let metadata = null;
+	const slug = filename.split('.')[0];
+	const tree = parser.parse(vfile.readSync(filename));
+	let metadata = null;
 
-  if (tree.children.length > 0 && tree.children[0].type == "yaml") {
-    metadata = yaml.load(tree.children[0].value);
-    tree.children = tree.children.slice(1, tree.children.length);
-    metadata.date = dayjs(metadata.date).format("MMM D, YYYY");
-  }
-  const content = runner.stringify(runner.runSync(tree));
-  return { metadata, content, slug };
+	if (tree.children.length > 0 && tree.children[0].type == 'yaml') {
+		metadata = yaml.load(tree.children[0].value);
+		tree.children = tree.children.slice(1, tree.children.length);
+		metadata.date = dayjs(metadata.date).format('MMM D, YYYY');
+	}
+	const content = runner.stringify(runner.runSync(tree));
+	return { metadata, content, slug };
 }
