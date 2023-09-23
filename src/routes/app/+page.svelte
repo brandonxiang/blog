@@ -21,6 +21,11 @@
 			description: 'leaflet兼容vue3的老牌组件封装库'
 		},
 		{
+			title: 'wgis-kit',
+			url: 'https://wgis.brandonxiang.top/',
+			description: 'webgis的老牌封装工具库'
+		},
+		{
 			title: 'svelteup',
 			url: 'https://github.com/brandonxiang/svelteup',
 			description: 'web component + svelte + esbuild = svelteup'
