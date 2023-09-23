@@ -15,7 +15,11 @@
 			url: 'https://pb.brandonxiang.top/',
 			description: 'Protobuffer转typescript类型定义文件'
 		},
-
+		{
+			title: 'vueleaflet',
+			url: 'https://vueleaflet.brandonxiang.top/',
+			description: 'leaflet兼容vue3的老牌组件封装库'
+		},
 		{
 			title: 'svelteup',
 			url: 'https://github.com/brandonxiang/svelteup',
