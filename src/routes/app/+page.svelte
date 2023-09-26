@@ -10,7 +10,7 @@
 			url: 'https://pwaland.brandonxiang.top/',
 			description: 'PWA应用推荐网站'
 		},
-		{
+    {
 			title: 'pb to typescript',
 			url: 'https://pb.brandonxiang.top/',
 			description: 'Protobuffer转typescript类型定义文件'
@@ -27,7 +27,7 @@
 		},
 		{
 			title: 'svelteup',
-			url: 'https://github.com/brandonxiang/svelteup',
+			url: 'https://svelteup.brandonxiang.top',
 			description: 'web component + svelte + esbuild = svelteup'
 		},
 		{
