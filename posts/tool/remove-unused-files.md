@@ -1,5 +1,5 @@
 ---
-title: quickpage有趣的多页面项目架构
+title: 简单清理掉项目中没用的180+文件
 date: 2023-11-08T12:00:00.000Z
 ---
 
@@ -35,11 +35,11 @@ eslint最常用的就是官方的no-unused-vars这一条规则。
 
 暂时这个工具只能找到所有的 export 函数，并没有文件粒度，并不能满足我们的“诉求”。我们希望能把完全没用的文件直接删除掉，所以我提了一个issue。
 
-![找出所有 export 的文件](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/00d75503df6c48bb8a05796f2dab0d46~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=2892\&h=1784\&s=523492\&e=png\&b=ffffff)
+![找出所有 export 的文件](https://brandonxiang.top/img/issue.png)
 
 我查看了源码，parse过后，会通过`getExportMap`获取每个文件，且它的所有exports内容。我写了一个PR，在和作者沟通交流下，尽量以最小的 api 改动情况来处理。利用一个参数`findCompletelyUnusedFiles`来控制是否找出完全没有被使用的文件，参考[PR#254](https://github.com/pzavolinsky/ts-unused-exports/pull/254)。
 
-![PR 细节](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f1f489fde5674dc0ac8cada722eb77b3~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=2316\&h=1810\&s=426636\&e=png\&b=ffffff)
+![PR 细节](https://brandonxiang.top/img/pr.png)
 
 改动涉及最核心内容，如下。将该文件的真实所有 export 和 unused export 作对比，以此判断它是完全没用的文件。
 
