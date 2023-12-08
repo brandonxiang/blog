@@ -1,9 +1,19 @@
 <script>
 	let keynotes = [
 		{
+			title: '微服务实战之BFF云端一体开发实战',
+			url: 'https://keynote.brandonxiang.top/bff.html',
+			date: 'Feb 10, 2023'
+		},
+		{
 			title: 'nodejs服务的技术运维',
 			url: 'https://keynote.brandonxiang.top/devops.html',
 			date: 'Feb 10, 2023'
+		},
+		{
+			title: 'nodejs包管理器的前世今生',
+			url: 'https://keynote.brandonxiang.top/devops.html',
+			date: 'Jan 31, 2023'
 		},
 		{
 			title: '如何清除项目中没用代码',
@@ -22,7 +32,7 @@
 		},
 		{
 			title: '前端项目架构设计',
-			url: 'https://keynote.brandonxiang.top/how-to-learn-fe.html',
+			url: 'https://keynote.brandonxiang.top/aroom.html',
 			date: 'Nov 12, 2021'
 		},
 		{
