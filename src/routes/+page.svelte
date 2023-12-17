@@ -16,10 +16,6 @@
 				rel="noopener noreferrer">GitHub</a
 			>.
 		</p>
-		<img
-			alt="counter"
-			src="https://visitor-badge.glitch.me/badge?page_id=brandonxiang&right_color=%23fd6378"
-		/>
 	</div>
 
 	<figure>

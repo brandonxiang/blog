@@ -28,7 +28,7 @@
 					admin: ['brandonxiang'],
 					id: location.pathname,
 					distractionFreeMode: false,
-					createIssueManually: true
+					createIssueManually: false,
 				});
 
 				gitalk.render(container);
