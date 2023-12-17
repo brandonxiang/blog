@@ -36,9 +36,9 @@
 		}
 	}
 
-	page.subscribe(gitalkAction);
+	// page.subscribe(gitalkAction);
 	onMount(async () => {
-		await gitalkAction();
+		// await gitalkAction();
 	});
 </script>
 
