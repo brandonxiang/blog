@@ -40,7 +40,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@sveltejs/kit": "^2.0.2",
+		"@sveltejs/kit": "^2.4.3",
 		"fast-glob": "^3.3.2",
 		"svelte": "^4.2.8",
 		"workbox-window": "^7.0.0"
