@@ -57,7 +57,7 @@
 
 <div id="gitalk-container"></div>
 
-<style lang="less">
+<style>
 	h1.title {
 		margin-bottom: 0;
 	}

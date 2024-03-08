@@ -11,15 +11,14 @@
 		"format": "prettier --write  --plugin prettier-plugin-svelte ."
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-static": "^3.0.0",
-		"@sveltejs/vite-plugin-svelte": "^3.0.1",
+		"@sveltejs/adapter-static": "^3.0.1",
+		"@sveltejs/vite-plugin-svelte": "^3.0.2",
 		"@vite-pwa/sveltekit": "^0.3.0",
 		"dayjs": "^1.11.10",
 		"eslint": "^8.56.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.35.1",
 		"js-yaml": "^4.1.0",
-		"less": "^4.2.0",
 		"prettier": "^3.1.1",
 		"prettier-plugin-svelte": "^3.1.2",
 		"rehype-highlight": "^7.0.0",
