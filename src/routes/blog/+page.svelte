@@ -12,9 +12,15 @@
 <div>
 	{#each data.posts as post, index}
 		<p data-sveltekit-prefetch>
-			<a href="blog/{post.slug}">
-				<span class="title" style:--name="post-title-{post.slug}">{post.metadata.title}</span>
-			</a>
+			{#if post.redirect}
+				<a href="{post.redirect}">
+					<span class="title">{post.metadata.title}</span>
+				</a>
+			{:else}
+				<a href="blog/{post.slug}">
+					<span class="title" style:--name="post-title-{post.slug}">{post.metadata.title}</span>
+				</a>
+			{/if}
 		</p>
 		<div class="post-item-footer">
 			<span class="post-item-date">— {post.metadata.date}</span>

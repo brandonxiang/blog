@@ -16,13 +16,13 @@ const runner = unified().use(remark2rehype).use(highlight).use(rehypeStringify);
 /**
  * 
  * @param {string} filename 
- * @returns 
+ * @returns { {metadata: {date: string; title: string;}, content: string, slug?: string, redirect?: string} }
  */
 export function process(filename) {
 	const slug = filename.split('.')[0];
 	const tree = parser.parse(readSync(filename));
-	/** @type {{date: string}} */
-	let metadata = {date: ''};
+	/** @type {{date: string; title: string;}} */
+	let metadata = {date: '', title: ''};
 
 	if (tree.children.length > 0 && tree.children[0].type == 'yaml') {
 		//@ts-ignore
