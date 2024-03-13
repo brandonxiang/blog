@@ -13,7 +13,7 @@
 	{#each data.posts as post, index}
 		<p data-sveltekit-prefetch>
 			{#if post.redirect}
-				<a href="{post.redirect}">
+				<a href="{post.redirect}" target="_blank">
 					<span class="title">{post.metadata.title}</span>
 				</a>
 			{:else}
