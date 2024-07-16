@@ -17,7 +17,7 @@ NODE_OPTIONS = --openssl - legacy - provider;
 
 推荐，vscode插件查看 package.json 中各依赖最新的版本，你可以挑取核心依赖专门进行升级。也可以利用 knip 剪枝掉没用的 dependencies。
 
-![version lens](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2e205fa25e1c47a7bac16b4d916cbba0~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=407&h=216&s=59719&e=gif&f=48&b=262820)
+![version lens](https://brandonxiang.top/img/show-releases.gif)
 
 ### 1.2 taze
 
@@ -172,6 +172,6 @@ export default defineConfig(() => {
 
 antd 3 是 less 编写样式，利用 vite 加载，所有资源是 bundless，js 和 css 都按需引入，进行起服务调试，如下图。这样也是会造成冷启动显得较慢，很多同学就会误认为 vite 启动很慢，其实 vite 早已经实现预打包了，但是利用 babel-plugin-import 和 vite-plugin-importer 的工具调试和预打包相违背。总共 446 资源 request，antd 占用 96 个，包含 js、css 和 less，所有资源加载独立的。冷启动耗时 17.02s。
 
-![antd 升级](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4089df2e45b04012956f6de01c846ff4~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=2370&h=1876&s=717735&e=png&b=fafafa)
+![antd 升级](https://brandonxiang.top/img/upgrade-dependencies.png)
 
 解决方案是把 antd3 升级到 antd 5，由于 antd 5 的样式是利用 cssinjs 编写，不利用 less 来按按需匹配样式。结合 vite 会预打包为一个包，在这种情况下只会加载 antd.js，冷启动时间2.04s。
