@@ -31,7 +31,7 @@ const notionPosts = [
 			date: 'Mar 11, 2024',
 			title: '全栈项目脚手架'
 		},
-		redirect: 'https://brandonxiang.notion.site/5b6b7445f4e04655b032aa69ed477db7'	
+		redirect: 'https://brandonxiang.notion.site/app-5454570fee2c4750b297de7843ba2e09'	
 	}
 	
 ]
