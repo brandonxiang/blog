@@ -14,19 +14,29 @@
 		<link rel="apple-touch-icon" href="%sveltekit.assets%/icon/logo-512.png" />
 		<!-- basic SEO -->
 		<title>Brandonxiang Blog</title>
-		<meta name ="keywords" content="brandon,blog,frontend,ai,web3,web,develop,code,study,keynote,大前端从入门到跑路,大前端,前端技术,学习">
-		<meta name ="description" content="how to learn web developing, deep in web3, working in advanced technology">
-		<meta name="author" content="brandon,xiang,weiping">
+		<meta
+			name="keywords"
+			content="brandon,blog,frontend,ai,web3,web,develop,code,study,keynote,大前端从入门到跑路,大前端,前端技术,学习"
+		/>
+		<meta
+			name="description"
+			content="how to learn web developing, deep in web3, working in advanced technology"
+		/>
+		<meta name="author" content="brandon,xiang,weiping" />
 		<meta name="baidu-site-verification" content="codeva-4t8ltiVBxm" />
 		<meta name="bytedance-verification-code" content="Y4AK9wtLPUsKfCuq5if1" />
+		<meta name="google-site-verification" content="MQdBjCYo3QxXfgSUWRpQqf45gezO73pkIGIXKhX01fk" />
 		<!-- og SEO -->
 		<meta property="og:url" content="https://brandonxiang.top" />
 		<meta property="og:type" content="article" />
 		<meta property="og:title" content="Brandonxiang Blog" />
-		<meta property="og:description" content="Here is Brandon's Blog,how to learn web developing, deep in web3, working in advanced technology" />
+		<meta
+			property="og:description"
+			content="Here is Brandon's Blog,how to learn web developing, deep in web3, working in advanced technology"
+		/>
 		<meta property="og:url" content="https://brandonxiang.top" />
 		<meta property="og:image" content="%sveltekit.assets%/icon/logo-512.png" />
-    <!-- basic style -->
+		<!-- basic style -->
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="%sveltekit.assets%/style/global2.css" />
@@ -35,10 +45,6 @@
 		<link rel="stylesheet" href="%sveltekit.assets%/style/gitalk.css" />
 		<link rel="dns-prefetch" href="%sveltekit.assets%/script/gitalk.js" />
 		<script prefetch src="%sveltekit.assets%/script/gitalk.js"></script>
-		%sveltekit.head%
-	</head>
-	<body data-sveltekit-prefetch>
-		<div>%sveltekit.body%</div>
 		<!-- Google tag (gtag.js) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-QSKELYBDHP"></script>
 		<script>
@@ -50,5 +56,9 @@
 
 			gtag('config', 'G-QSKELYBDHP');
 		</script>
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-prefetch>
+		<div>%sveltekit.body%</div>
 	</body>
 </html>
