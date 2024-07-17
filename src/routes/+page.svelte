@@ -1,11 +1,3 @@
-<svelte:head>
-	<title>Brandon's Blog</title>
-	<meta property="og:url" content="https://brandonxiang.top" />
-	<meta property="og:type" content="article" />
-	<meta property="og:title" content="Brandon\'s Blog" />
-	<meta property="og:description" content="Here is Brandon's Blog" />
-</svelte:head>
-
 <div class="home-container">
 	<div class="home-copy">
 		<h1>Welcome to BrandonXIANG Blog</h1>
