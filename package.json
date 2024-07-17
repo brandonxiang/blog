@@ -11,8 +11,7 @@
 		"format": "prettier --write  --plugin prettier-plugin-svelte ."
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-static": "^3.0.1",
-		"@sveltejs/adapter-vercel": "^5.4.1",
+		"@sveltejs/adapter-auto": "^3.2.2",
 		"@sveltejs/vite-plugin-svelte": "^3.0.2",
 		"@vite-pwa/sveltekit": "^0.3.0",
 		"dayjs": "^1.11.10",
@@ -40,7 +39,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@sveltejs/kit": "^2.0.2",
+		"@sveltejs/kit": "^2.5.18",
 		"fast-glob": "^3.3.2",
 		"svelte": "^4.2.8",
 		"workbox-window": "^7.0.0"
