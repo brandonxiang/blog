@@ -43,18 +43,24 @@
 </script>
 
 <svelte:head>
+	<!-- basic SEO -->
 	<title>{data.post.metadata.title}</title>
+	<meta
+		name="description"
+		content={data.post.metadata.description}
+	/>
+	<!-- og SEO -->
 	<meta property="og:url" content="https://brandonxiang.top/blog/{data.post.slug}" />
 	<meta property="og:type" content="article" />
 	<meta property="og:title" content={data.post.metadata.title} />
-	<!-- <meta property="og:description" content={post.metadata.description}> -->
+	<meta property="og:description" content={data.post.metadata.description}>
 </svelte:head>
 
 <h1 class="title" style:--name="post-title-{$page.params.slug}">{data.post.metadata.title}</h1>
 <p class="info"><a href="https://github.com/brandonxiang">Brandonxiang</a> {date}</p>
-
-{@html data.post.content}
-
+<article>
+	{@html data.post.content}
+</article>
 <div id="gitalk-container"></div>
 
 <style>

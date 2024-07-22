@@ -1,6 +1,7 @@
 ---
 title: PWA笔记五：Workbox实战应用
 date: '2019-11-05T18:49:00.000Z'
+description: 前端工程化
 ---
 
 ## 引言

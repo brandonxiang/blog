@@ -1,6 +1,7 @@
 ---
 title: PWA笔记三：App Shell模型
 date: '2019-11-05T16:41:00.000Z'
+description: 前端工程化
 ---
 
 ## 引子

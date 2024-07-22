@@ -1,6 +1,7 @@
 ---
 title: ESM Import与Bundle Free
 date: 2020-06-20T11:59:57.000Z
+description: 前端工程化
 ---
 
 随着前端模块化的发展，在 nodejs 领域的模块化主要分为了 common.js，umd，es module 三大种类。其中 umd 是可以兼容浏览器运行的，common.js 只能在 nodejs 环境运行，es module 是属于未来的一种前端模块化，能够同时满足服务端和浏览器端的代码编写。es module 也是现在前端工程师写代码最常用的模式。模块化的写法大家也不会陌生，也是未来重要的发展方向。

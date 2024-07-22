@@ -1,6 +1,7 @@
 ---
 title: svelteup -- 实现 web component 的最佳实践
 date: 2021-11-06T12:51:00.000Z
+description: 前端工程化
 ---
 
 ## 背景

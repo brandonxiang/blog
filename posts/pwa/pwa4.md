@@ -1,6 +1,7 @@
 ---
 title: PWA笔记四：Web App Manifest 介绍
 date: '2019-11-05T18:48:00.000Z'
+description: 前端工程化
 ---
 
 首先，在 vue 的初始化 webpack 项目中存在 manifest.js，这个文件更多是静态脚本的代码指纹。但是它和 PWA 的 Web App Manifest 是两个概念。下面是 webkit.org 对它的定义。

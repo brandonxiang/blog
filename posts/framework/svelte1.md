@@ -1,6 +1,7 @@
 ---
 title: Svelte笔记一：入门脚手架
 date: '2019-10-27T08:38:00.000Z'
+description: 前端工程化
 ---
 
 > 源码 github 地址在此，记得点星：[brandonxiang/svelte-webpack-mpa](https://github.com/brandonxiang/svelte-webpack-mpa)

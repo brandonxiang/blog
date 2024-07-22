@@ -1,6 +1,7 @@
 ---
 title: React技术栈前端项目依赖升级
 date: 2024-04-23T12:00:00.000Z
+description: 前端工程化
 ---
 
 技术债务来自旧项目的依赖过久，React 16 + antd 3 + webpack 4。React 新版本的批处理优化了，antd 最新已经由 css-in-js 重写了，不用再配置 less 等预先编译器。旧版本的 webpack 在 nodejs 20 会出现 openssl 的报错，需要配置以下环境变量才能正常运行，长期看，这些项目依赖已经不符合长期迭代。

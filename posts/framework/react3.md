@@ -1,6 +1,7 @@
 ---
 title: React笔记三：从0开始搭建项目配置
 date: 2019-01-06T11:59:57.000Z
+description: 如何用最简单的 webpack4 和 babel7 的最简单的配置方法，配置一个前端项目，这篇博客说明 react 项目的编译原理等
 ---
 
 随着[create-react-app](https://github.com/facebook/create-react-app)，[create-react-native-app](https://github.com/react-community/create-react-native-app)，[vue-cli](https://github.com/vuejs/vue-cli)和[poi](https://github.com/egoist/poi)等一系列脚手架的大行其道，让很多入门级的前端工程师往往并不知道 webpack 最基础的原理与配置方法。

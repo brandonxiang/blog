@@ -2,7 +2,7 @@
 	import { onNavigate } from '$app/navigation';
 	import Nav from '$lib/Nav.svelte';
 	import { page } from '$app/stores';
-	import { pwaInfo } from 'virtual:pwa-info'
+	import { pwaInfo } from 'virtual:pwa-info';
 	import { onMount } from 'svelte';
 
 	$: segment = $page.url.pathname;
@@ -18,30 +18,53 @@
 		});
 	});
 
-	onMount(async() => {
+	onMount(async () => {
 		if (pwaInfo) {
-      const { registerSW } = await import('virtual:pwa-register')
-      registerSW({
-        immediate: true,
-        onRegistered(r) {
-          console.log(`SW Registered: ${r}`)
-        },
-        onRegisterError(error) {
-          console.log('SW registration error', error)
-        }
-      })
-    }
-	})
+			const { registerSW } = await import('virtual:pwa-register');
+			registerSW({
+				immediate: true,
+				onRegistered(r) {
+					console.log(`SW Registered: ${r}`);
+				},
+				onRegisterError(error) {
+					console.log('SW registration error', error);
+				}
+			});
+		}
+	});
 
-	$: webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : ''
+	$: webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : '';
+
+		/** @type {import('./$types').PageData} */
+		export let data;
 </script>
 
 <Nav {segment} />
 
-
 <svelte:head>
-    {@html webManifest}
+	<!-- basic SEO -->
+	<title>Brandonxiang Blog</title>
+	<meta
+		name="keywords"
+		content="brandon,blog,frontend,ai,web3,web,develop,code,study,keynote,大前端从入门到跑路,大前端,前端技术,学习"
+	/>
+	<meta
+		name="description"
+		content="how to learn web developing, deep in web3, working in advanced technology"
+	/>
+	<!-- og SEO -->
+	<meta property="og:url" content="https://brandonxiang.top" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Brandonxiang Blog" />
+	<meta
+		property="og:description"
+		content="Here is Brandon's Blog,how to learn web developing, deep in web3, working in advanced technology"
+	/>
+	<meta property="og:url" content="https://brandonxiang.top" />
+	<meta property="og:image" content="/icon/logo-512.png" />
+	{@html webManifest}
 </svelte:head>
+
 
 <main data-sveltekit-prefetch>
 	<slot />

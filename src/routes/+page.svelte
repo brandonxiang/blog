@@ -33,9 +33,6 @@
 		flex: 1;
 		min-height: 350px;
 	}
-	.home-copy img {
-		width: 5em;
-	}
 
 	h1 {
 		font-weight: 700;

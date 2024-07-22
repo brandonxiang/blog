@@ -1,6 +1,7 @@
 ---
 title: 关于我
 date: '2018-07-30T15:57:00.000Z'
+description: 前端工程化
 ---
 
 一位web developer，一位有灵魂的全栈开发工程师。
