@@ -4,6 +4,10 @@
 	import { page } from '$app/stores';
 	import { pwaInfo } from 'virtual:pwa-info';
 	import { onMount } from 'svelte';
+	import pageInfoStore from '../store/head';
+	import { get } from 'svelte/store';
+
+	let { title, description, url, keywords } = get(pageInfoStore)
 
 	$: segment = $page.url.pathname;
 
@@ -34,37 +38,33 @@
 	});
 
 	$: webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : '';
-
-		/** @type {import('./$types').PageData} */
-		export let data;
 </script>
 
 <Nav {segment} />
 
 <svelte:head>
 	<!-- basic SEO -->
-	<title>Brandonxiang Blog</title>
+	<title>{title}</title>
 	<meta
 		name="keywords"
-		content="brandon,blog,frontend,ai,web3,web,develop,code,study,keynote,大前端从入门到跑路,大前端,前端技术,学习"
+		content={keywords}
 	/>
 	<meta
 		name="description"
-		content="how to learn web developing, deep in web3, working in advanced technology"
+		content={description}
 	/>
 	<!-- og SEO -->
-	<meta property="og:url" content="https://brandonxiang.top" />
+	<meta property="og:url" content={url} />
 	<meta property="og:type" content="article" />
-	<meta property="og:title" content="Brandonxiang Blog" />
+	<meta property="og:title" content={title}/>
 	<meta
 		property="og:description"
-		content="Here is Brandon's Blog,how to learn web developing, deep in web3, working in advanced technology"
+		content={description}
 	/>
-	<meta property="og:url" content="https://brandonxiang.top" />
 	<meta property="og:image" content="/icon/logo-512.png" />
+	<!-- pwa -->
 	{@html webManifest}
 </svelte:head>
-
 
 <main data-sveltekit-prefetch>
 	<slot />
