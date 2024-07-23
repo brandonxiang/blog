@@ -7,12 +7,9 @@ const config = {
 		sveltekit(),
 		SvelteKitPWA({
 			strategies: 'generateSW',
-			injectRegister: 'auto',
+			injectRegister: 'inline',
 			registerType: 'autoUpdate',
 			srcDir: './src',
-			workbox: {
-				globPatterns: ['client/**/*.{js,css,ico,png,svg,webp,woff,woff2}']
-			},
 			manifest: {
 				"background_color": "#ffffff",
 				"theme_color": "#333333",

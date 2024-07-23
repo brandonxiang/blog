@@ -15,6 +15,16 @@ export async function GET() {
 				<lastmod>2024-05-20T12:00:00+00:00</lastmod>
 				<priority>1.0</priority>
 			</url>
+			<url>
+			  <loc>https://brandonxiang.top/blog</loc>
+				<lastmod>2024-05-20T12:00:00+00:00</lastmod>
+				<priority>0.8</priority>
+			</url>
+			<url>
+			  <loc>https://brandonxiang.top/keynote</loc>
+				<lastmod>2024-05-20T12:00:00+00:00</lastmod>
+				<priority>0.5</priority>
+			</url>
 		</urlset>`.trim(),
 		{
 			headers: {

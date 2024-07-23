@@ -8,8 +8,11 @@ const config = {
 	preprocess: preprocess(),
 
 	kit: {
+		paths: {
+			relative: false,
+		},
 		// hydrate the <div id="svelte"> element in src/app.html
-		adapter: adapter()
+		adapter: adapter(),
 	}
 };
 

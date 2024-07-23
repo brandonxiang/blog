@@ -42,6 +42,6 @@
 		"@sveltejs/kit": "^2.5.18",
 		"fast-glob": "^3.3.2",
 		"svelte": "^4.2.18",
-		"workbox-window": "^7.0.0"
+		"workbox-window": "^7.1.0"
 	}
 }
