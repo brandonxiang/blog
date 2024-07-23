@@ -13,7 +13,7 @@
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.2.2",
 		"@sveltejs/vite-plugin-svelte": "^3.0.2",
-		"@vite-pwa/sveltekit": "^0.3.0",
+		"@vite-pwa/sveltekit": "^0.6.0",
 		"dayjs": "^1.11.10",
 		"eslint": "^8.56.0",
 		"eslint-config-prettier": "^9.1.0",
@@ -34,8 +34,8 @@
 		"typescript": "^5.3.3",
 		"unified": "^11.0.4",
 		"vite": "^5.3.4",
-		"vite-plugin-pwa": "^0.17.4",
-		"@types/js-yaml": "^4.0.9"
+		"@types/js-yaml": "^4.0.9",
+		"@types/dom-view-transitions": "^1.0.5"
 	},
 	"type": "module",
 	"dependencies": {
