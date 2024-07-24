@@ -13,6 +13,8 @@
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.2.2",
 		"@sveltejs/vite-plugin-svelte": "^3.0.2",
+		"@types/dom-view-transitions": "^1.0.5",
+		"@types/js-yaml": "^4.0.9",
 		"@vite-pwa/sveltekit": "^0.6.0",
 		"dayjs": "^1.11.10",
 		"eslint": "^8.56.0",
@@ -33,14 +35,13 @@
 		"to-vfile": "^8.0.0",
 		"typescript": "^5.3.3",
 		"unified": "^11.0.4",
-		"vite": "^5.3.4",
-		"@types/js-yaml": "^4.0.9",
-		"@types/dom-view-transitions": "^1.0.5"
+		"vite": "^5.3.4"
 	},
 	"type": "module",
 	"dependencies": {
 		"@sveltejs/kit": "^2.5.18",
 		"fast-glob": "^3.3.2",
+		"feed": "^4.2.2",
 		"svelte": "^4.2.18",
 		"workbox-window": "^7.1.0"
 	}

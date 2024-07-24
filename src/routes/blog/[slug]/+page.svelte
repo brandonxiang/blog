@@ -3,7 +3,6 @@
 	import { page } from '$app/stores';
 	import { variables } from '$lib/variables';
 	import { browser } from '$app/environment';
-	import pageInfoStore from '../../../store/head';
 
 	/** @type {import('./$types').PageData} */
 	export let data;

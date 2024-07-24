@@ -16,7 +16,7 @@ const runner = unified().use(remark2rehype).use(highlight).use(rehypeStringify);
 /**
  * 
  * @param {string} filename 
- * @returns { {metadata: {date: string; title: string; description: string}, content: string, slug?: string, redirect?: string} }
+ * @returns {import('../interface/post.js').PostType}
  */
 export function process(filename) {
 	const slug = filename.split('.')[0];

@@ -1,5 +1,4 @@
-import { process } from '$lib/markdown';
-import fg from 'fast-glob';
+import { getPosts } from '$lib/getPosts';
 import dayjs from 'dayjs';
 
 export const prerender = true;
@@ -38,16 +37,8 @@ const notionPosts = [
 
 /** @type {import('./$types').PageServerLoad} */
 export const load = async () => {
-	/** @type {{metadata: {date: string; title: string;}, content?: string, slug?: string, redirect?: string}[]} */
-	let posts = fg.sync('posts/*/*.md').map((pathname) => {
-		const { metadata } = process(pathname);
 
-		const slug = pathname.replace('posts/', '').replace('.md', '').replace('/', '-');
-		return {
-			metadata,
-			slug
-		};
-	});
+	let posts = getPosts();
 
 	posts = posts.concat(notionPosts)
 	// sort the posts by create date.
