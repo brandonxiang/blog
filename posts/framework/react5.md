@@ -1,7 +1,7 @@
 ---
 title: React笔记五：使用Next.js实现React SSR的优雅降级
 date: 2021-05-10T00:13:53.000Z
-description: 前端工程化
+description: React SSR 最成熟的开源框架是Next.js，这么多年保持着强劲的生命力，它的创始团队 vercel（曾用名 zeit），如今更关注于 SSR 和 serverless 的结合。随着服务端的容器化技术以及 serverless 技术不断完善，在国外可能 SSR 的降级已经不是一个必要命题。
 ---
 
 ## 前言
