@@ -2,6 +2,8 @@ import { getPostContent, getPosts } from "$lib/getPosts";
 import dayjs from "dayjs";
 import { Feed } from "feed";
 
+export const prerender = true;
+
 const author = {
   name: "Brandon Xiang",
   email: "brandonxiang.xiang@shopee.com",
@@ -29,6 +31,8 @@ export async function GET() {
   articles.sort(
 		(a, b) => +dayjs(b.metadata.date, 'MMM D, YYYY') - +dayjs(a.metadata.date, 'MMM D, YYYY')
 	)
+
+  console.log("rss articles: ", articles);
 
   for (const article of articles) {
     feed.addItem({
