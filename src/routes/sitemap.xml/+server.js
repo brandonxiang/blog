@@ -1,4 +1,15 @@
+import { getPosts } from "$lib/getPosts";
+import dayjs from "dayjs";
+
 export async function GET() {
+
+	const articles = getPosts();
+
+	articles.sort(
+		(a, b) => +dayjs(b.metadata.date, 'MMM D, YYYY') - +dayjs(a.metadata.date, 'MMM D, YYYY')
+	)
+
+
 	return new Response(
 		`
 		<?xml version="1.0" encoding="UTF-8" ?>
@@ -23,8 +34,15 @@ export async function GET() {
 			<url>
 			  <loc>https://brandonxiang.top/keynote</loc>
 				<lastmod>2024-05-20T12:00:00+00:00</lastmod>
-				<priority>0.5</priority>
+				<priority>0.8</priority>
 			</url>
+			${articles.map(article => {
+				return `<url>
+			  <loc>${`https://brandonxiang.top/blog/${article.slug}`}</loc>
+				<lastmod>${new Date(article.metadata.date)}</lastmod>
+				<priority>0.8</priority>
+			</url>`;
+			}).join('')}
 		</urlset>`.trim(),
 		{
 			headers: {
