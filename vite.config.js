@@ -6,6 +6,10 @@ const config = {
 	plugins: [
 		sveltekit(),
 		SvelteKitPWA({
+			workbox: {
+				globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+				navigateFallbackDenylist: [/^\/rss.xml/]
+			},
 			strategies: 'generateSW',
 			injectRegister: 'inline',
 			registerType: 'autoUpdate',

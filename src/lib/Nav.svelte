@@ -5,6 +5,8 @@
 	/** @typedef {'page' | undefined } AriaCurrent */
 
 	/** @type {AriaCurrent} */
+	$: isRss = segment.includes('rss') ? 'page' : undefined;
+	/** @type {AriaCurrent} */
 	$: isBlog = segment.includes('/blog') && !segment.includes('about') ? 'page' : undefined;
 	/** @type {AriaCurrent} */
 	$: isKeynote = segment.includes('/keynote') ? 'page' : undefined;
@@ -21,6 +23,9 @@
 		</li>
 		<li>
 			<a aria-current={isBlog} href="/blog">Blog</a>
+		</li>
+		<li>
+			<a aria-current={isRss} href="https://brandonxiang.top/rss.xml" target="_blank">RSS</a>
 		</li>
 		<li>
 			<a aria-current={isKeynote} href="/keynote">Keynote</a>

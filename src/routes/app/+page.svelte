@@ -82,7 +82,7 @@
 	<title>Keynote</title>
 </svelte:head>
 
-<h1>应用推荐</h1>
+<h1>App Recommend</h1>
 
 <div>
 	{#each apps as app, index}
