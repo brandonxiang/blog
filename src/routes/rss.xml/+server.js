@@ -32,8 +32,6 @@ export async function GET() {
 		(a, b) => +dayjs(b.metadata.date, 'MMM D, YYYY') - +dayjs(a.metadata.date, 'MMM D, YYYY')
 	)
 
-  console.log("rss articles: ", articles);
-
   for (const article of articles) {
     feed.addItem({
       title: article.metadata.title,

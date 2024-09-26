@@ -22,13 +22,13 @@
 			<a aria-current={segment === '/' ? 'page' : undefined} href="/">Home</a>
 		</li>
 		<li>
-			<a aria-current={isBlog} href="/blog">Blog</a>
+			<a aria-current={isBlog} href="/blog">Post</a>
 		</li>
 		<li>
 			<a aria-current={isRss} href="https://brandonxiang.top/rss.xml" target="_blank">RSS</a>
 		</li>
 		<li>
-			<a aria-current={isKeynote} href="/keynote">Keynote</a>
+			<a aria-current={isKeynote} href="/keynote">Slide</a>
 		</li>
 		<li>
 			<a aria-current={isApp} href="/app">App</a>

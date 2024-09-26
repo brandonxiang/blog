@@ -1,7 +1,7 @@
 ---
 title: Brandon CV
 date: 2023-12-16T11:59:57.000Z
-description: 前端工程化
+description: Brandonxiang's CV, Weiping.xiang's CV
 ---
 
 My Chinese name is Weiping XIANG.
