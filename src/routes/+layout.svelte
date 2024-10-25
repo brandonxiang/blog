@@ -6,10 +6,17 @@
 	import { onMount } from 'svelte';
 	import pageInfoStore from '../store/head';
 	import { get } from 'svelte/store';
+	/**
+	 * @typedef {Object} Props
+	 * @property {import('svelte').Snippet} [children]
+	 */
+
+	/** @type {Props} */
+	let { children } = $props();
 
 	let { title, description, url, keywords } = get(pageInfoStore)
 
-	$: segment = $page.url.pathname;
+	let segment = $derived($page.url.pathname);
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
@@ -37,7 +44,7 @@
 		}
 	});
 
-	$: webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : '';
+	let webManifest = $derived(pwaInfo ? pwaInfo.webManifest.linkTag : '');
 </script>
 
 <Nav {segment} />
@@ -72,7 +79,7 @@
 </svelte:head>
 
 <main data-sveltekit-prefetch>
-	<slot />
+	{@render children?.()}
 </main>
 
 <style>

@@ -1,19 +1,25 @@
 <script>
-	/** @type {string} */
-	export let segment;
+	
+	/**
+	 * @typedef {Object} Props
+	 * @property {string} segment
+	 */
+
+	/** @type {Props} */
+	let { segment } = $props();
 
 	/** @typedef {'page' | undefined } AriaCurrent */
 
 	/** @type {AriaCurrent} */
-	$: isRss = segment.includes('rss') ? 'page' : undefined;
+	let isRss = $derived(segment.includes('rss') ? 'page' : undefined);
 	/** @type {AriaCurrent} */
-	$: isBlog = segment.includes('/blog') && !segment.includes('about') ? 'page' : undefined;
+	let isBlog = $derived(segment.includes('/blog') && !segment.includes('about') ? 'page' : undefined);
 	/** @type {AriaCurrent} */
-	$: isKeynote = segment.includes('/keynote') ? 'page' : undefined;
+	let isKeynote = $derived(segment.includes('/keynote') ? 'page' : undefined);
 	/** @type {AriaCurrent} */
-	$: isApp = segment.includes('/app') ? 'page' : undefined;
+	let isApp = $derived(segment.includes('/app') ? 'page' : undefined);
 	/** @type {AriaCurrent} */
-	$: isAbout = segment.includes('about') ? 'page' : undefined;
+	let isAbout = $derived(segment.includes('about') ? 'page' : undefined);
 </script>
 
 <nav data-sveltekit-prefetch>
