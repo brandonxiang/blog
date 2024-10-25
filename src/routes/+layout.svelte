@@ -61,7 +61,12 @@
 		property="og:description"
 		content={description}
 	/>
-	<meta property="og:image" content="/icon/logo-512.png" />
+	<meta property="twitter:description" content={description}>
+	<meta property="og:image" content="https://brandonxiang.top/icon/logo-512.png" />
+	<meta property="twitter:image" content="https://brandonxiang.top/icon/logo-512.png">
+	<meta property="twitter:card" content="summary_large_image">
+	<meta property="og:site_name" content={title}>
+	<meta property="twitter:title" content={title}>
 	<!-- pwa -->
 	{@html webManifest}
 </svelte:head>
