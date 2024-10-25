@@ -30,7 +30,7 @@
 		"remark-parse": "^11.0.0",
 		"remark-rehype": "^11.1.0",
 		"svelte-check": "^4.0.0",
-		"svelte-preprocess": "^6.0.0",
+		"svelte-preprocess": "^6.0.3",
 		"taze": "0.16.7",
 		"to-vfile": "^8.0.0",
 		"typescript": "^5.6.2",
