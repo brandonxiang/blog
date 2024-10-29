@@ -8,7 +8,7 @@ const config = {
 		SvelteKitPWA({
 			workbox: {
 				globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
-				navigateFallbackDenylist: [/^\/rss.xml/]
+				navigateFallbackDenylist: [/^\/rss.xml/, /^\/sitemap.xml/, /^\/robots.txt/]
 			},
 			strategies: 'generateSW',
 			injectRegister: 'inline',

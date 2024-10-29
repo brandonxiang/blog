@@ -1,6 +1,8 @@
 import { getPosts } from "$lib/getPosts";
 import dayjs from "dayjs";
 
+export const prerender = true;
+
 export async function GET() {
 
 	const articles = getPosts();
