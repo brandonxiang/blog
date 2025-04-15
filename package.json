@@ -39,7 +39,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@sveltejs/kit": "^2.7.2",
+		"@sveltejs/kit": "^2.20.6",
 		"fast-glob": "^3.3.2",
 		"feed": "^4.2.2",
 		"svelte": "^5.1.2",
