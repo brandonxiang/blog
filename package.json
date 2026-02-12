@@ -15,7 +15,7 @@
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
 		"@types/dom-view-transitions": "^1.0.5",
 		"@types/js-yaml": "^4.0.9",
-		"@vite-pwa/sveltekit": "^0.6.6",
+		"@vite-pwa/sveltekit": "^1.1.0",
 		"dayjs": "^1.11.13",
 		"eslint": "^8.57.0",
 		"eslint-config-prettier": "^9.1.0",
