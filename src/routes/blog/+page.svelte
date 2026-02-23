@@ -13,7 +13,7 @@
 	<title>Blog</title>
 </svelte:head>
 
-<h1>Recent Posts</h1>
+<h1>Recent Posts <a class="rss" href="https://brandonxiang.top/rss.xml" target="_blank" aria-label="RSS Feed">RSS</a></h1>
 
 <div>
 	{#each data.posts as post, index}
@@ -51,5 +51,25 @@
 		span.title {
 			view-transition-name: var(--name);
 		}
+	}
+
+	h1 {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+	}
+
+	.rss {
+		font-size: 0.5em;
+		font-weight: normal;
+		color: #666;
+		padding: 0.25em 0.5em;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		text-decoration: none;
+	}
+
+	.rss:hover {
+		background-color: #f5f5f5;
 	}
 </style>

@@ -8,7 +8,7 @@ My Chinese name is Weiping XIANG.
 
 ## Self-Introduction
 
-1. 9 years of web front-end development experience, widely dabbled in front-end development, and have in-depth research in front-end engineering. I have a Geek spirit with pursuing clean code. Skilled in React, Vue, React Native, Nodejs, webpack, vite and etc.
+1. 12 years of web front-end development experience, widely dabbled in front-end development, and have in-depth research in front-end engineering. I have a Geek spirit with pursuing clean code. Skilled in React, Vue, React Native, Nodejs, webpack, vite and etc.
 2. The technical rank is Expert Engineer, with full-stack development ability (Nodejs server, Web, React Native)
 3. As a Tech Leader, I have the ability to lead the team and train team members. I have already assisted 9 colleagues in the team to complete promotion defense
 4. Participated in two company-level Tech Summits (in English), one Tencent cloud organization open technology sharing, wrote an article on the company's official account, and assisted team members to publish two official account articles

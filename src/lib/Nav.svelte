@@ -11,8 +11,6 @@
 	/** @typedef {'page' | undefined } AriaCurrent */
 
 	/** @type {AriaCurrent} */
-	let isRss = $derived(segment.includes('rss') ? 'page' : undefined);
-	/** @type {AriaCurrent} */
 	let isBlog = $derived(segment.includes('/blog') && !segment.includes('about') ? 'page' : undefined);
 	/** @type {AriaCurrent} */
 	let isKeynote = $derived(segment.includes('/keynote') ? 'page' : undefined);
@@ -29,9 +27,6 @@
 		</li>
 		<li>
 			<a aria-current={isBlog} href="/blog">Post</a>
-		</li>
-		<li>
-			<a aria-current={isRss} href="https://brandonxiang.top/rss.xml" target="_blank">RSS</a>
 		</li>
 		<li>
 			<a aria-current={isKeynote} href="/keynote">Slide</a>
