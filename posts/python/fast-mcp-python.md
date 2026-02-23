@@ -1,6 +1,6 @@
 ---
-title: AI 时代如何重新学习 Python: fast-mcp
-date: '2025-07-14T14:00:00.000Z'
+title: AI 时代如何重新学习Python:fast-mcp
+date: '2026-02-22T14:00:00.000Z'
 description: 本文是 Fast-MCP 最基础入门文，简单介绍其作为 Python 轻量 MCP 框架的优势，讲解安装、简单服务器搭建、三种通信方式及核心工具，助力新手快速上手。
 ---
 
