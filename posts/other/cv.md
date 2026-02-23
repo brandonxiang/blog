@@ -1,5 +1,5 @@
 ---
-title: Brandon CV
+title: About Brandon Xiang
 date: 2023-12-16T11:59:57.000Z
 description: Brandonxiang's CV, Weiping.xiang's CV
 ---
@@ -118,3 +118,24 @@ The achievement was shared in the company-level TechSummit.
 1. Background: Mitra is a platform for selling digital products for small shop in Southeast Asia, aiming to solve the difficulty of charging and paying caused by the low penetration rate of mobile devices in Southeast Asia. There are many customized localization requirements for merchants. For bill information, order information, receipt information, SMS information, we implemented configurable processing of low-level code, so that operators can directly modify fields, formats, display order, change pages in real time, and improve operation and maintenance efficiency.
 2. Responsibilities: Responsible for overall scheme design, technical scheme review and code review of each part;as the project PIC, I presided over the weekly project meeting and aligned risks.
 3. Results: The overall efficiency of goods online has been improved by 75%, saving the workload of product communication, development, testing and other R&D processes.
+
+我是一位web developer，一位有灵魂的全栈开发工程师。
+
+我追求的是成为一名优秀的Open Sourcer以及新技术的布道者。千里之行，始于足下。
+
+## 我的社交
+
+- notion: [@brandonxiang](https://brandonxiang.notion.site/brandonxiang-notion-078346416d174cb0bf79e0023ef7d8af)
+- github：[@brandonxiang](https://github.com/brandonxiang)
+- 公众号： @大前端从入门到跑路
+- 掘金：[@brandonxiang](https://juejin.cn/user/2172290706443639)
+- 简书：[@brandonxiang](https://www.jianshu.com/u/64467c788eb7)
+- 微博：[@一久肆叁](https://weibo.com/xwpisme)
+- 知乎：[@项伟平](https://www.zhihu.com/people/xiang-wei-ping)
+- QQ：@1542453460
+
+![扫码关注公众号](https://brandonxiang.top/img/wechat.jpg)
+
+> **扫码关注公众号**
+
+![SYSU](https://brandonxiang.top/img/sysu.gif)

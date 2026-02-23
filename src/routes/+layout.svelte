@@ -6,6 +6,8 @@
 	import { onMount } from 'svelte';
 	import pageInfoStore from '../store/head';
 	import { get } from 'svelte/store';
+	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+	import { injectAnalytics } from '@vercel/analytics/sveltekit';
 	/**
 	 * @typedef {Object} Props
 	 * @property {import('svelte').Snippet} [children]
@@ -30,6 +32,9 @@
 	});
 
 	onMount(async () => {
+		injectSpeedInsights();
+		injectAnalytics();
+
 		if (pwaInfo) {
 			const { registerSW } = await import('virtual:pwa-register');
 			registerSW({

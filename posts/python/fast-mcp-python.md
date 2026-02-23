@@ -6,8 +6,6 @@ description: 本文是 Fast-MCP 最基础入门文，简单介绍其作为 Pytho
 
 ![Fast-MCP](https://brandonxiang.top/img/fast-mcp-github.png)
 
-![Fast-MCP](https://brandonxiang.top/img/fast-mcp.png)
-
 ## 一、引子
 
 在 AI 时代，模型上下文协议（Model Context Protocol, MCP）成为了连接 AI 模型与外部工具和资源的重要标准。**Fast-MCP** 是一个专为 Python 开发者设计的轻量级、高性能的 MCP 框架，它简化了 MCP 服务器的开发过程，让开发者能够快速构建和部署自己的 MCP 服务。

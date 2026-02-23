@@ -40,7 +40,7 @@
 			<a aria-current={isApp} href="/app">App</a>
 		</li>
 		<li>
-			<a aria-current={isAbout} href="https://brandonxiang.notion.site/brandonxiang-notion-078346416d174cb0bf79e0023ef7d8af" target="_blank">About</a>
+			<a aria-current={isAbout} href="/blog/other-cv">About</a>
 		</li>
 	</ul>
 </nav>
