@@ -8,7 +8,7 @@ description: 介绍了三个AI技能平台：skillsmp以聚合和检索为主，
 
 # 如何找到想要的 agent skill 
 
-无论是 openclaw 还是 claude coded等工具，都已经离不开 skill 的“赋能”。今天我们聊聊 **skillsmp**、**skills.sh**、**ctx7 skill** 这三个AI skill 平台以及工具。逐个拆解每个工具的特点，给出明确的推荐方向，帮大家快速挑到适配自己的工具，全程大白话，好懂不绕弯~
+无论是 openclaw 还是 claude code 等工具，都已经离不开 skill 的“赋能”。今天我们聊聊 **skillsmp**、**skills.sh**、**ctx7 skill** 这三个AI skill 平台以及工具。逐个拆解每个工具的特点，给出明确的推荐方向，帮大家快速挑到适配自己的工具，全程大白话，好懂不绕弯~
 
 ## 一、skillsmp
 
@@ -33,7 +33,7 @@ npx skills search find-skills
 npx skills add vercel-labs/skills@find-skills
 ```
 
-从界面上我们也可以看到热门 skill的集合仓库，例如：vercel-labs/skills， anthropics/skills 等。
+从界面上我们也可以看到热门 skill的集合仓库，例如：vercel-labs/skills， anthropics/skills 等。且它能支持 self-hosted gitlab，可自定义安装私有 skills。
 
 ## 三、ctx7 skill
 
@@ -49,6 +49,3 @@ npx ctx7 skills suggest
 ## 总结：三者核心特点以及推荐倾向
 
 总结核心差异：skillsmp重聚合检索（技能多而全），skills.sh重跨平台分发（安装快、适配广），ctx7 skill重编码专属（精准适配编程）。我个人推荐倾向优先选skills.sh，它具备不错地排行榜界面，且工具支持软连接避免 skill 重复复制的情况。vercel 的 find-skills 也很不错地提供了 claw 的另外自由拓展的空间，是 clawhub 之外很不错的拓展手段。
-
-
-> （注：文档部分内容可能由 AI 生成）
