@@ -34,6 +34,7 @@ for `svelte-check` and production build verification.
 ## Task 1: Create the Static Privacy Route
 
 **Files:**
+
 - Create: `src/routes/privacy/+page.server.js`
 - Create: `src/routes/privacy/+page.svelte`
 
@@ -303,6 +304,7 @@ Expected: commit succeeds with only the two privacy route files included.
 ## Task 2: Verify the Route
 
 **Files:**
+
 - Check: `src/routes/privacy/+page.server.js`
 - Check: `src/routes/privacy/+page.svelte`
 
