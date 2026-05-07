@@ -13,11 +13,11 @@ export const load = async ({ params }) => {
 
 	pageInfoStore.set({
 		title: post.metadata.title,
-		description: post.metadata.description,
+		description: post.metadata.description ?? '',
 		url: `https://brandonxiang.top/blog/${post.slug}`,
-		keywords: 'brandon,blog,frontend,ai,web3,web,develop,code,study,keynote,大前端从入门到跑路,大前端,前端技术,学习'
-	})
-
+		keywords:
+			'brandon,blog,frontend,ai,web3,web,develop,code,study,keynote,大前端从入门到跑路,大前端,前端技术,学习'
+	});
 
 	return { post };
 };

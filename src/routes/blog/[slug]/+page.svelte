@@ -4,7 +4,6 @@
 	import { variables } from '$lib/variables';
 	import { browser } from '$app/environment';
 
-	
 	/**
 	 * @typedef {Object} Props
 	 * @property {import('./$types').PageData} data
@@ -13,7 +12,7 @@
 	/** @type {Props} */
 	let { data } = $props();
 	// @ts-ignore
-	let date = data.post.metadata.date.toUpperCase();
+	let date = $derived(data.post.metadata.date.toUpperCase());
 
 	async function gitalkAction() {
 		if (browser) {
@@ -34,7 +33,7 @@
 					admin: ['brandonxiang'],
 					id: location.pathname,
 					distractionFreeMode: false,
-					createIssueManually: false,
+					createIssueManually: false
 				});
 
 				gitalk.render(container);
@@ -47,7 +46,6 @@
 		// await gitalkAction();
 	});
 </script>
-
 
 <h1 class="title" style:--name="post-title-{$page.params.slug}">{data.post.metadata.title}</h1>
 <p class="info"><a href="https://github.com/brandonxiang">Brandonxiang</a> {date}</p>
