@@ -93,7 +93,7 @@ The achievement was shared in the company-level TechSummit.
 1. Introduction: The business had the demand of webpage grayscale publishing, so that some users could experience the new version of content first, reducing the publishing risk.
 2. Responsibilities: Built a webpage grayscale publishing system by using fastify+openresty technology, and stored the business html as gray content in the database. Openresty displayed the corresponding page template for users who hit the rule through the user information in the cookie. This could meet a series of R&D cycle work such as page construction, publishing, gray, rollback, etc. And proposed the combination with micro front-end technology, displayed multiple template systems in a html page through forwarding and Qiankun, and realized the independent publishing of multiple teams.
 3. Results: Played a decisive role in the large-scale demand changes such as changing the trademark on the official website and the version change of the admission process. Combined with multiple test environments and micro front-end technology, it could meet all webpage publishing in the product line.
-    This achievement was shared in the company-level TechSummit.
+   This achievement was shared in the company-level TechSummit.
 
 ### Project 4 Virtual Multiple Test Environment
 

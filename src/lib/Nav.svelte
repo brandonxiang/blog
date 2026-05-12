@@ -1,5 +1,4 @@
 <script>
-	
 	/**
 	 * @typedef {Object} Props
 	 * @property {string} segment
@@ -11,7 +10,9 @@
 	/** @typedef {'page' | undefined } AriaCurrent */
 
 	/** @type {AriaCurrent} */
-	let isBlog = $derived(segment.includes('/blog') && !segment.includes('about') ? 'page' : undefined);
+	let isBlog = $derived(
+		segment.includes('/blog') && !segment.includes('about') ? 'page' : undefined
+	);
 	/** @type {AriaCurrent} */
 	let isKeynote = $derived(segment.includes('/keynote') ? 'page' : undefined);
 	/** @type {AriaCurrent} */

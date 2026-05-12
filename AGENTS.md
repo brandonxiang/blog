@@ -24,16 +24,19 @@ npm run preview      # Preview production build locally
 ```bash
 npm run check              # Run svelte-check (TypeScript + Svelte type checking)
 npm run check:watch        # Watch mode for type checking
+npm run test               # Run unit tests with Vitest
+npm run test:watch         # Watch mode for unit tests
 npm run lint               # Run prettier --check AND eslint
 npm run format             # Format code with prettier (writes changes)
 ```
 
 ### Running a Single Test
 
-This project does not have a dedicated test framework configured. To test functionality manually:
+Use Vitest's file filtering to run a single test file:
 
-1. Use `npm run dev` to start the development server
-2. Navigate to `http://localhost:5173` to verify changes
+```bash
+npm run test -- src/lib/markdown.test.js
+```
 
 ## Code Style Guidelines
 
@@ -64,10 +67,10 @@ let metadata = { date: '', title: '' };
 
 ```svelte
 <script>
-  /** @type {{segment: string}} */
-  let { segment } = $props();
+	/** @type {{segment: string}} */
+	let { segment } = $props();
 
-  let isActive = $derived(segment.includes('/blog'));
+	let isActive = $derived(segment.includes('/blog'));
 </script>
 ```
 

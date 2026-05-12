@@ -120,7 +120,7 @@
 <h1>Recent Slides</h1>
 
 <div>
-	{#each keynotes as keynote, index}
+	{#each keynotes as keynote, index (`${keynote.title}-${keynote.date}-${index}`)}
 		<p data-sveltekit-prefetch><a href={keynote.url} target="_blank">{keynote.title}</a></p>
 		<div class="post-item-footer">
 			<span class="post-item-date">— {keynote.date}</span>

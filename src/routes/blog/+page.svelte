@@ -1,5 +1,4 @@
 <script>
-	
 	/**
 	 * @typedef {Object} Props
 	 * @property {import('./$types').PageData} data
@@ -13,17 +12,24 @@
 	<title>Blog</title>
 </svelte:head>
 
-<h1>Recent Posts <a class="rss" href="https://brandonxiang.top/rss.xml" target="_blank" aria-label="RSS Feed">RSS</a></h1>
+<h1>
+	Recent Posts <a
+		class="rss"
+		href="https://brandonxiang.top/rss.xml"
+		target="_blank"
+		aria-label="RSS Feed">RSS</a
+	>
+</h1>
 
 <div>
-	{#each data.posts as post, index}
+	{#each data.posts as post, index (post.slug || `${post.metadata.title}-${post.metadata.date}-${index}`)}
 		<p data-sveltekit-prefetch>
 			{#if post.redirect}
-				<a href="{post.redirect}" target="_blank">
+				<a href={post.redirect} target="_blank">
 					<span class="title">{post.metadata.title}</span>
 				</a>
 			{:else}
-				<a href="blog/{post.slug}">
+				<a href="/blog/{post.slug}">
 					<span class="title" style:--name="post-title-{post.slug}">{post.metadata.title}</span>
 				</a>
 			{/if}

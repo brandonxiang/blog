@@ -14,6 +14,7 @@
 	// @ts-ignore
 	let date = $derived(data.post.metadata.date.toUpperCase());
 
+	// eslint-disable-next-line no-unused-vars
 	async function gitalkAction() {
 		if (browser) {
 			const container = document.querySelector('#gitalk-container');
@@ -46,6 +47,10 @@
 		// await gitalkAction();
 	});
 </script>
+
+<svelte:head>
+	<link rel="stylesheet" href="/style/github.css" />
+</svelte:head>
 
 <h1 class="title" style:--name="post-title-{$page.params.slug}">{data.post.metadata.title}</h1>
 <p class="info"><a href="https://github.com/brandonxiang">Brandonxiang</a> {date}</p>

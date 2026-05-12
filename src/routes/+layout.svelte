@@ -16,7 +16,7 @@
 	/** @type {Props} */
 	let { children } = $props();
 
-	let { title, description, url, keywords } = get(pageInfoStore)
+	let { title, description, url, keywords } = get(pageInfoStore);
 
 	let segment = $derived($page.url.pathname);
 
@@ -32,8 +32,35 @@
 	});
 
 	onMount(async () => {
-		injectSpeedInsights();
-		injectAnalytics();
+		const isLocalPreview = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+
+		if (!isLocalPreview) {
+			/** @type {Window & { dataLayer?: unknown[]; gtag?: (...args: unknown[]) => void; requestIdleCallback?: (callback: () => void, options?: { timeout?: number }) => number }} */
+			const analyticsWindow = window;
+
+			const loadAnalytics = () => {
+				injectSpeedInsights();
+				injectAnalytics();
+
+				analyticsWindow.dataLayer = analyticsWindow.dataLayer || [];
+				analyticsWindow.gtag = (...args) => {
+					analyticsWindow.dataLayer?.push(args);
+				};
+				analyticsWindow.gtag('js', new Date());
+				analyticsWindow.gtag('config', 'G-QSKELYBDHP');
+
+				const script = document.createElement('script');
+				script.async = true;
+				script.src = 'https://www.googletagmanager.com/gtag/js?id=G-QSKELYBDHP';
+				document.head.appendChild(script);
+			};
+
+			if (analyticsWindow.requestIdleCallback) {
+				analyticsWindow.requestIdleCallback(loadAnalytics, { timeout: 5000 });
+			} else {
+				globalThis.setTimeout(loadAnalytics, 3000);
+			}
+		}
 
 		if (pwaInfo) {
 			const { registerSW } = await import('virtual:pwa-register');
@@ -57,33 +84,24 @@
 <svelte:head>
 	<!-- basic SEO -->
 	<title>{title}</title>
-	<meta
-		name="keywords"
-		content={keywords}
-	/>
-	<meta
-		name="description"
-		content={description}
-	/>
+	<meta name="keywords" content={keywords} />
+	<meta name="description" content={description} />
 	<!-- og SEO -->
 	<meta property="og:url" content={url} />
 	<meta property="og:type" content="article" />
-	<meta property="og:title" content={title}/>
-	<meta
-		property="og:description"
-		content={description}
-	/>
-	<meta property="twitter:description" content={description}>
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="twitter:description" content={description} />
 	<meta property="og:image" content="https://brandonxiang.top/icon/logo-512.png" />
-	<meta property="twitter:image" content="https://brandonxiang.top/icon/logo-512.png">
-	<meta property="twitter:card" content="summary_large_image">
-	<meta property="og:site_name" content={title}>
-	<meta property="twitter:title" content={title}>
+	<meta property="twitter:image" content="https://brandonxiang.top/icon/logo-512.png" />
+	<meta property="twitter:card" content="summary_large_image" />
+	<meta property="og:site_name" content={title} />
+	<meta property="twitter:title" content={title} />
 	<!-- pwa -->
 	{@html webManifest}
 </svelte:head>
 
-<main data-sveltekit-prefetch>
+<main class:home-main={segment === '/'} data-sveltekit-prefetch>
 	{@render children?.()}
 </main>
 
@@ -95,6 +113,12 @@
 		padding: 2em;
 		margin: 0 auto;
 		box-sizing: border-box;
+	}
+
+	main.home-main {
+		display: flex;
+		min-height: calc(100svh - 3.625rem);
+		width: 100%;
 	}
 
 	@keyframes fade-in {

@@ -4,7 +4,6 @@ date: 2024-11-29T11:59:57.000Z
 description: React Router 7 实战
 ---
 
-
 ![React Router 7 SSR 无痛升级之旅.png](https://brandonxiang.top/img/react-router.png)
 
 ## Nextjs 的 OTA 用户之路
@@ -17,10 +16,10 @@ SSR 和 CSR 已经是老生常谈的话题，但是，伴随着 nextjs 的日益
 'use client'
 
 import { useState } from 'react'
- 
+
 export default function Counter() {
   const [count, setCount] = useState(0)
- 
+
   return (
     <div>
       <p>Count: {count}</p>
@@ -35,17 +34,17 @@ export default function Counter() {
 export default function Page() {
   async function createInvoice(formData: FormData) {
     'use server'
- 
+
     const rawFormData = {
       customerId: formData.get('customerId'),
       amount: formData.get('amount'),
       status: formData.get('status'),
     }
- 
+
     // mutate data
     // revalidate cache
   }
- 
+
   return <form action={createInvoice}>...</form>
 }
 ```
@@ -59,7 +58,6 @@ React Router 升级到最新的版本，最大的特点是把多个概念进行�
 另一个优点在于 React Router 官方推荐使用 vite，vite 优先推荐 esm 的模块化思路，代表着未来的 Web 端发展方向，默认的 esm 产物已经能够满足绝大多数浏览器了，如果要考虑浏览器兼容性问题，可以使用 [vite-plugin-legacy](https://github.com/vitejs/vite/tree/main/packages/plugin-legacy) 来实现旧浏览器代码转译。
 
 > 正如官网所说：You can use it maximally as a React framework or minimally as a library with your own architecture. 你能够用它作为一个框架，也可以用它作为一个 library。
-> 
 
 ## CSR升级步骤
 
@@ -76,7 +74,6 @@ React Router 升级到最新的版本，最大的特点是把多个概念进行�
 从 react-router 6 到 7 的升级是无痛的，api 调整并不大。所有的 react-router-dom 引用改成了 react-router。这是你就是把它作为 library 的形式使用。
 
 > CSR 初始化项目模板可以参考
-> 
 
 [https://github.com/brandonxiang/vite-antd-starter](https://github.com/brandonxiang/vite-antd-starter)
 
@@ -139,29 +136,30 @@ ReactDOM.createRoot(root).render(
 
 ```jsx
 export const getRoutes = () => {
-  const res = menus.map((menu) => {
+	const res = menus.map((menu) => {
+		if (menu.layoutPath && menu.subMenu) {
+			return layout(
+				menu.layoutPath,
+				menu.subMenu.map((item) => {
+					return route(item.routePath, item.routeFile);
+				})
+			);
+		}
 
-    if (menu.layoutPath && menu.subMenu) {
-      return layout(menu.layoutPath, menu.subMenu.map((item) => {
-        return route(item.routePath, item.routeFile);
-      }));
-    }
+		if (menu.routeFile) {
+			if (menu.routePath === 'index') {
+				return index(menu.routeFile);
+			}
+			return route(menu.routePath, menu.routeFile);
+		}
 
-    if(menu.routeFile) {
-      if (menu.routePath === 'index') {
-        return index(menu.routeFile);
-      }
-      return route(menu.routePath, menu.routeFile);
-    }
-
-    return null;
-  });
-  return compact(res);
+		return null;
+	});
+	return compact(res);
 };
 ```
 
 > SSR 初始化模板可参考：
-> 
 
 [https://github.com/brandonxiang/vite-antd-ssr-starter](https://github.com/brandonxiang/vite-antd-ssr-starter)
 

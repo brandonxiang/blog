@@ -45,51 +45,51 @@ const Boxes = memo(_Boxes);
 
 ```jsx
 function App() {
-  const [age, setAge] = React.useState(0);
-  const [boxWidth, setBoxWidth] = React.useState(1);
+	const [age, setAge] = React.useState(0);
+	const [boxWidth, setBoxWidth] = React.useState(1);
 
-  const id = React.useId();
+	const id = React.useId();
 
-  // Age 属性的变更不会影响 boxes 属性变化
-  const boxes = useMemo(() => {
-    return [
-      { flex: boxWidth, background: 'hsl(345deg 100% 50%)' },
-      { flex: 3, background: 'hsl(260deg 100% 40%)' },
-      { flex: 1, background: 'hsl(50deg 100% 60%)' },
-    ];
-  }, [boxWidth]);
+	// Age 属性的变更不会影响 boxes 属性变化
+	const boxes = useMemo(() => {
+		return [
+			{ flex: boxWidth, background: 'hsl(345deg 100% 50%)' },
+			{ flex: 3, background: 'hsl(260deg 100% 40%)' },
+			{ flex: 1, background: 'hsl(50deg 100% 60%)' }
+		];
+	}, [boxWidth]);
 
-  return (
-    <>
-      <Boxes boxes={boxes} />
+	return (
+		<>
+			<Boxes boxes={boxes} />
 
-      <section>
-        <button onClick={() => {
-          setAge(age + 1)
-        }}>
-          Increment age
-        </button>
-        <p>Hello! You are {age}.</p>
-      </section>
+			<section>
+				<button
+					onClick={() => {
+						setAge(age + 1);
+					}}
+				>
+					Increment age
+				</button>
+				<p>Hello! You are {age}.</p>
+			</section>
 
-      <section>
-        <label htmlFor={`${id}-box-width`}>
-          First box width:
-        </label>
-        <input
-          id={`${id}-box-width`}
-          type="range"
-          min={1}
-          max={5}
-          step={0.01}
-          value={boxWidth}
-          onChange={(event) => {
-            setBoxWidth(Number(event.target.value));
-          }}
-        />
-      </section>
-    </>
-  );
+			<section>
+				<label htmlFor={`${id}-box-width`}>First box width:</label>
+				<input
+					id={`${id}-box-width`}
+					type="range"
+					min={1}
+					max={5}
+					step={0.01}
+					value={boxWidth}
+					onChange={(event) => {
+						setBoxWidth(Number(event.target.value));
+					}}
+				/>
+			</section>
+		</>
+	);
 }
 ```
 
@@ -99,19 +99,19 @@ function App() {
 
 ```jsx
 const Main = () => {
-  const [state, dispatch] = useReducer(reducer, { age: 42 });
-  
-  // 利用useMemo 或者 useCallback 来保护 Context 不会做出过多重渲染
-  const contextValue = useMemo(() => {
-    return { state, dispatch };
-  }, [state, dispatch]);
-  
-  return (
-    <MyContext.Provider value={contextValue}>
-      <App />
-    </MyContext.Provider>
-  )
-}
+	const [state, dispatch] = useReducer(reducer, { age: 42 });
+
+	// 利用useMemo 或者 useCallback 来保护 Context 不会做出过多重渲染
+	const contextValue = useMemo(() => {
+		return { state, dispatch };
+	}, [state, dispatch]);
+
+	return (
+		<MyContext.Provider value={contextValue}>
+			<App />
+		</MyContext.Provider>
+	);
+};
 ```
 
 《[useContext + useReducer re-renders](https://www.nielskrijger.com/posts/2021-02-16/use-reducer-and-use-context/)》
@@ -136,9 +136,8 @@ React Devtool 的 Profiler 能协助我们排查 React 渲染次数和渲染堆�
 2. 刷新页面或者做其他操作
 3. 停止记录
 4. 参考快照记录
-    
+
 ![Google Chrome React DevTool Profiler](https://brandonxiang.top/img/debug-profiler.gif)
-    
 
 同时，我们还能够通过“highlight updates when components render”来可视化整个渲染过程。
 

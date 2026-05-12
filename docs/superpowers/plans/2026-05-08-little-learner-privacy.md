@@ -87,52 +87,48 @@ Create `src/routes/privacy/+page.svelte` with:
 
 		<h3>1. App purpose</h3>
 		<p>
-			little-learner is an infant and toddler flashcard learning app provided by the
-			individual developer Brandon Xiang.
+			little-learner is an infant and toddler flashcard learning app provided by the individual
+			developer Brandon Xiang.
 		</p>
 
 		<h3>2. Data collection</h3>
 		<p>
-			little-learner does not collect, upload, sell, or share personal data. The app does
-			not provide user accounts and does not use advertising, analytics, or crash reporting
-			SDKs.
+			little-learner does not collect, upload, sell, or share personal data. The app does not
+			provide user accounts and does not use advertising, analytics, or crash reporting SDKs.
 		</p>
 
 		<h3>3. Permissions and local resources</h3>
 		<p>
-			The app may use network access to load remote flashcard content, images, and audio.
-			Storage access is used only to cache or save the app's own flashcard resources locally
-			on the device. The app does not read the user's photos, files, contacts, location,
-			camera, or microphone. Audio playback is used for learning content and does not record
-			audio.
+			The app may use network access to load remote flashcard content, images, and audio. Storage
+			access is used only to cache or save the app's own flashcard resources locally on the device.
+			The app does not read the user's photos, files, contacts, location, camera, or microphone.
+			Audio playback is used for learning content and does not record audio.
 		</p>
 
 		<h3>4. Children's privacy</h3>
 		<p>
-			little-learner is designed for learning with young children and does not knowingly
-			collect children's personal information. If you believe any personal information has
-			been provided to us, please contact us so we can review and address the issue.
+			little-learner is designed for learning with young children and does not knowingly collect
+			children's personal information. If you believe any personal information has been provided to
+			us, please contact us so we can review and address the issue.
 		</p>
 
 		<h3>5. Data retention and deletion</h3>
 		<p>
-			Because little-learner does not collect personal data or create user accounts, there is
-			no server-side personal data to retain or delete. Local cached app resources can be
-			removed by clearing the app's data in Android system settings or by uninstalling the
-			app.
+			Because little-learner does not collect personal data or create user accounts, there is no
+			server-side personal data to retain or delete. Local cached app resources can be removed by
+			clearing the app's data in Android system settings or by uninstalling the app.
 		</p>
 
 		<h3>6. Data handling and security</h3>
 		<p>
-			Because little-learner does not collect personal data, the app does not transmit
-			personal data to our servers. Remote learning resources should be loaded through normal
-			network connections.
+			Because little-learner does not collect personal data, the app does not transmit personal data
+			to our servers. Remote learning resources should be loaded through normal network connections.
 		</p>
 
 		<h3>7. Updates</h3>
 		<p>
-			If the app's data practices change, this policy will be updated on this page before
-			the change is released where required.
+			If the app's data practices change, this policy will be updated on this page before the change
+			is released where required.
 		</p>
 	</section>
 
@@ -140,9 +136,7 @@ Create `src/routes/privacy/+page.svelte` with:
 		<h2 id="chinese-policy">中文</h2>
 
 		<h3>1. 应用用途</h3>
-		<p>
-			little-learner 是由个人开发者 Brandon Xiang 提供的婴幼儿闪卡教学应用。
-		</p>
+		<p>little-learner 是由个人开发者 Brandon Xiang 提供的婴幼儿闪卡教学应用。</p>
 
 		<h3>2. 数据收集</h3>
 		<p>
@@ -176,9 +170,7 @@ Create `src/routes/privacy/+page.svelte` with:
 		</p>
 
 		<h3>7. 政策更新</h3>
-		<p>
-			如果应用的数据处理方式发生变化，我们会在必要时先更新本页面的隐私政策。
-		</p>
+		<p>如果应用的数据处理方式发生变化，我们会在必要时先更新本页面的隐私政策。</p>
 	</section>
 
 	<footer class="contact">

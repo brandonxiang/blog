@@ -2,10 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<meta
-			name="viewport"
-			content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=contain"
-		/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 		<!-- pwa -->
 		<meta name="theme-color" content="#fff" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -17,27 +14,251 @@
 		<meta name="baidu-site-verification" content="codeva-4t8ltiVBxm" />
 		<meta name="bytedance-verification-code" content="Y4AK9wtLPUsKfCuq5if1" />
 		<meta name="google-site-verification" content="MQdBjCYo3QxXfgSUWRpQqf45gezO73pkIGIXKhX01fk" />
-		
+
 		<!-- basic style -->
 		<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="%sveltekit.assets%/style/global2.css" />
-		<link rel="stylesheet" href="%sveltekit.assets%/style/fonts1.css" />
-		<link rel="stylesheet" href="%sveltekit.assets%/style/github.css" />
-		<link rel="stylesheet" href="%sveltekit.assets%/style/gitalk.css" />
-		<link rel="dns-prefetch" href="%sveltekit.assets%/script/gitalk.js" />
-		<script prefetch src="%sveltekit.assets%/script/gitalk.js"></script>
-		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-QSKELYBDHP"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag() {
-				dataLayer.push(arguments);
+		<style>
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
 			}
-			gtag('js', new Date());
 
-			gtag('config', 'G-QSKELYBDHP');
-		</script>
+			body {
+				margin: 0;
+				font-family:
+					-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Helvetica Neue', Arial,
+					sans-serif;
+				font-size: 16px;
+				font-style: normal;
+				-webkit-font-smoothing: antialiased;
+				-webkit-text-stroke-width: 0.2px;
+				-moz-osx-font-smoothing: grayscale;
+				line-height: 1.6;
+				color: #36393b;
+			}
+
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				font-weight: 700;
+				line-height: 1.2;
+				margin: 0 0 0.5em;
+			}
+
+			h1 {
+				font-size: 4em;
+				margin: 0 0 1em;
+			}
+
+			h2 {
+				margin: 1.6em 0 0;
+				font-size: 1.8em;
+			}
+
+			h3 {
+				font-size: 1.5em;
+			}
+
+			h4 {
+				font-size: 1.4em;
+			}
+
+			h5 {
+				font-size: 1.3em;
+			}
+
+			h6 {
+				font-size: 1.2em;
+			}
+
+			p,
+			ul,
+			ol {
+				font-size: 1.3rem;
+				line-height: 1.75em;
+				margin: 1.2em 0;
+			}
+
+			ol,
+			ul {
+				padding-left: 2rem;
+				-webkit-padding-start: 5%;
+				-webkit-padding-end: 5%;
+			}
+
+			li {
+				margin: 1rem 0;
+			}
+
+			li p {
+				margin-bottom: 0.5rem;
+				margin-top: 0.5rem;
+			}
+
+			a {
+				color: inherit;
+				transition: color linear 0.15s;
+			}
+
+			a:hover {
+				color: #fd6378;
+			}
+
+			p a {
+				text-decoration: none;
+				box-shadow: inset 0 -0.12em 0 #fd6378;
+				transition:
+					box-shadow 0.2s ease-in-out,
+					color 0.2s ease-in-out;
+			}
+
+			p a:hover {
+				box-shadow: inset 0 -1.5em 0 #fd6378;
+				color: #fff;
+			}
+
+			img {
+				max-width: 100%;
+			}
+
+			hr {
+				background-image: linear-gradient(
+					to right,
+					rgba(0, 0, 0, 0),
+					rgba(253, 99, 120, 0.8),
+					rgba(0, 0, 0, 0)
+				);
+				border: 0;
+				height: 2px;
+				margin: 40px auto;
+			}
+
+			code {
+				font-family: 'SF Mono', menlo, inconsolata, monospace;
+				font-size: calc(1em - 2px);
+				color: #555;
+				background-color: #f0f0f0;
+				padding: 0.2em 0.4em;
+				border-radius: 2px;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
+
+			pre {
+				border-radius: 8px !important;
+				margin: 1.2em 0 !important;
+			}
+
+			pre code {
+				padding: 0;
+			}
+
+			blockquote {
+				border-left: 4px solid #cccccc;
+				font-size: 1.4em;
+				font-style: italic;
+				margin: 2rem 0;
+				padding-left: 2rem;
+				padding-right: 2rem;
+			}
+
+			blockquote p {
+				padding-bottom: 6px;
+			}
+
+			blockquote footer {
+				font-size: 1.1rem;
+				text-align: right;
+			}
+
+			figure {
+				padding: 0;
+				border: 0;
+				font-size: 100%;
+				font: inherit;
+				vertical-align: baseline;
+				-webkit-margin-start: 0;
+				-webkit-margin-end: 0;
+				margin: 0 0 3em;
+			}
+
+			table {
+				border-collapse: collapse;
+				font-family: Rubik, sans-serif;
+				font-size: 1.125em;
+				margin: 2em 0;
+			}
+
+			th {
+				border-bottom: 2px solid #cccccc;
+				padding: 0.4em 0.8em;
+			}
+
+			td {
+				padding: 0.4em 0.8em;
+			}
+
+			.container {
+				margin: 0 auto;
+				max-width: 42em;
+				width: 100%;
+			}
+
+			.content h1 {
+				font-size: 3em;
+				margin: 1em 0;
+			}
+
+			@media (max-width: 1020px) {
+				h1 {
+					font-size: 2em;
+				}
+
+				.content h1 {
+					font-size: 2.4em;
+				}
+			}
+
+			@media (max-width: 480px) {
+				body,
+				html {
+					font-size: 14px;
+				}
+
+				p,
+				ul,
+				ol {
+					font-size: 1.2rem;
+					margin: 1em 0;
+				}
+			}
+
+			@media (prefers-reduced-motion) {
+				::view-transition-group(*),
+				::view-transition-old(*),
+				::view-transition-new(*) {
+					animation: none !important;
+				}
+			}
+
+			@media (prefers-reduced-motion: no-preference) {
+				:root::view-transition-old(root) {
+					animation:
+						90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+						300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+				}
+
+				:root::view-transition-new(root) {
+					animation:
+						210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
+						300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+				}
+			}
+		</style>
 		<!-- Meta Pixel Code -->
 		<!-- <script>
 			!function(f,b,e,v,n,t,s)
@@ -54,7 +275,7 @@
 			<noscript><img height="1" width="1" style="display:none"
 			src="https://www.facebook.com/tr?id=1006384017609332&ev=PageView&noscript=1"
 			/></noscript> -->
-	<!-- End Meta Pixel Code -->
+		<!-- End Meta Pixel Code -->
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-prefetch>

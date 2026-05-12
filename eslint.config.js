@@ -1,11 +1,14 @@
 import js from '@eslint/js';
 import svelte from 'eslint-plugin-svelte';
 import svelteParser from 'svelte-eslint-parser';
-import skipFormatting from 'eslint-plugin-prettier';
 import tseslint from '@typescript-eslint/eslint-plugin';
 import tsparser from '@typescript-eslint/parser';
+import globals from 'globals';
 
 export default [
+	{
+		ignores: ['*.cjs', 'node_modules', 'dist', 'build', '.svelte-kit', 'static']
+	},
 	js.configs.recommended,
 	...svelte.configs['flat/recommended'],
 	{
@@ -14,10 +17,15 @@ export default [
 			parser: svelteParser,
 			parserOptions: {
 				parser: tsparser
+			},
+			globals: {
+				...globals.browser
 			}
 		},
 		rules: {
-			'prettier/prettier': 'off'
+			'prettier/prettier': 'off',
+			'svelte/no-at-html-tags': 'off',
+			'svelte/no-navigation-without-resolve': 'off'
 		}
 	},
 	{
@@ -25,13 +33,12 @@ export default [
 		languageOptions: {
 			parser: tsparser,
 			parserOptions: {
-				project: './tsconfig.json',
 				sourceType: 'module',
-				ecmaVersion: 2019
+				ecmaVersion: 2022
 			},
 			globals: {
-				browser: true,
-				node: true
+				...globals.browser,
+				...globals.node
 			}
 		},
 		plugins: {
@@ -43,6 +50,9 @@ export default [
 		}
 	},
 	{
-		ignores: ['*.cjs', 'node_modules', 'dist', 'build', '.svelte-kit']
+		files: ['**/*.d.ts'],
+		rules: {
+			'no-unused-vars': 'off'
+		}
 	}
 ];

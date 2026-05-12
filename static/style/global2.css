@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  font-family:"webfont" !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", "Helvetica Neue", Arial, sans-serif;
   font-size:16px;
   font-style:normal;
   -webkit-font-smoothing: antialiased;

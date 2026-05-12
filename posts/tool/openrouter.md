@@ -65,7 +65,7 @@ DATA_DIR=~/.open-webui uvx open-webui@latest serve
 
 ![](https://brandonxiang.top/img/openrouter-4.png)
 
-Open Router、Windsurf 和 Cline 的完美结合，为开发者们打造了一个强大的 AI 开发环境。 开发者可以利用 Windsurf 强大的 AI 能力，通过 Cline 友好交互体验，高效地进行代码开发。 Open Router 的智能路由功能，可以优化成本和性能，让开发者专注于更具创造性的任务。 
+Open Router、Windsurf 和 Cline 的完美结合，为开发者们打造了一个强大的 AI 开发环境。 开发者可以利用 Windsurf 强大的 AI 能力，通过 Cline 友好交互体验，高效地进行代码开发。 Open Router 的智能路由功能，可以优化成本和性能，让开发者专注于更具创造性的任务。
 
 ## 总结
 

@@ -6,7 +6,6 @@ author: Weiping Xiang
 Tags: Frontend, Javascript, React, npm
 ---
 
-
 如果你是在 VSCODE 或者 sublime 上使用 vim 模式的的大牛，这篇博文明显不适合你。它是一个简单的入门教程，给一些技术小白了解并熟悉 vim 的基本操作。如果你有买 Android 平板（例如小米平板等），你可以利用 termux 来配置 terminal，使用 vim 查看代码。
 
 ## 一、基础操作

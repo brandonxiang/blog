@@ -244,7 +244,7 @@ $$.ctx = instance
 				if (ready) make_dirty(component, i);
 			}
 			return ret;
-	  })
+		})
 	: [];
 ```
 

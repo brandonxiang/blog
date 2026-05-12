@@ -4,7 +4,6 @@ date: '2025-02-14T15:57:00.000Z'
 description: 本文主要介绍了前端工程化的相关内容，包括前端开发流程的标准化、自动化和模块化。通过工程化手段，可以提升前端项目的开发效率、代码质量和可维护性。常见的前端工程化实践包括使用构建工具（如 Webpack、Vite）、模块化开发、自动化测试、持续集成与部署等。这些方法帮助团队更高效地协作，降低出错率，加快产品迭代速度。
 ---
 
-
 ![OIP.jpeg](https://brandonxiang.top/img/OIP.jpeg)
 
 大前端人都在学 rust，我却学习 python。因为 AI 时代，Python 成为了很多工具的首选语言，它能够帮助大家快速的建立 AI 应用，“人生苦短，我用 Python”，这一句话的含金量在 AI 时代再一次焕发生命。所以为何我们不从前端 JavaScript 的视角，来重新学习一下 Python？
@@ -118,7 +117,7 @@ Python 3.5 引入了 `typing` 模块，用于为动态类型语言提供静态�
 - **可靠性:** `ruff` 旨在提供准确的诊断，减少误报和漏报。
 - **统一化:** `ruff` 可以替代多个工具，简化了开发流程。
 
-配置主要通过 `ruff.toml` 文件进行。  可以将该文件放在项目根目录或用户主目录，**检查整个项目:**
+配置主要通过 `ruff.toml` 文件进行。 可以将该文件放在项目根目录或用户主目录，**检查整个项目:**
 
 ```bash
 ruff check .
@@ -133,9 +132,9 @@ ruff check .
 ```python
 import asyncio
 
-async def main():    
-  print("Start")    
-  await asyncio.sleep(1)# 非阻塞等待    
+async def main():
+  print("Start")
+  await asyncio.sleep(1)# 非阻塞等待
   print("End")
   asyncio.run(main())# 运行主协程
 
@@ -146,17 +145,17 @@ async def main():
 使用 `asyncio.gather()` 或 `create_task()` 实现并发：
 
 ```python
-async def task_one():    
-  await asyncio.sleep(2)    
+async def task_one():
+  await asyncio.sleep(2)
   return "Task 1 Done"
-  
-async def task_two():    
-  await asyncio.sleep(1)    
+
+async def task_two():
+  await asyncio.sleep(1)
   return "Task 2 Done"
-  
-async def main():    
-# 并发执行并获取结果    
-  results = await asyncio.gather(task_one(), task_two())    
+
+async def main():
+# 并发执行并获取结果
+  results = await asyncio.gather(task_one(), task_two())
   print(results)# ['Task 1 Done', 'Task 2 Done']
   asyncio.run(main())
 ```
@@ -164,13 +163,13 @@ async def main():
 ### **4.3 错误处理**
 
 ```python
-async def risky_task():    
+async def risky_task():
   raise ValueError("Oops!")
- 
-async def main():    
-  try:        
-    await risky_task()    
-    except ValueError as e:        
+
+async def main():
+  try:
+    await risky_task()
+    except ValueError as e:
     print(f"Caught error: {e}")
 ```
 

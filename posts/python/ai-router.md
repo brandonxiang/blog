@@ -4,7 +4,6 @@ date: '2025-02-28T17:17:00.000Z'
 description: OpenRouter 作为 AI 路由平台，结合多款工具，帮助开发者高效、灵活地接入和管理多种大模型，提升智能应用开发效率。
 ---
 
-
 ![post](https://brandonxiang.top/img/ai-router.png)
 
 ## 目标： **告别繁琐、灵活应变**

@@ -2,15 +2,15 @@
 	let apps = [
 		{
 			title: 'brandon notion',
-			url: "https://brandonxiang.notion.site/brandonxiang-notion-078346416d174cb0bf79e0023ef7d8af",
-			description: '不知名前端notion笔记',
+			url: 'https://brandonxiang.notion.site/brandonxiang-notion-078346416d174cb0bf79e0023ef7d8af',
+			description: '不知名前端notion笔记'
 		},
 		{
 			title: 'pwaland',
 			url: 'https://pwaland.brandonxiang.top/',
 			description: 'PWA应用推荐网站'
 		},
-    {
+		{
 			title: 'pb to typescript',
 			url: 'https://pb.brandonxiang.top/',
 			description: 'Protobuffer转typescript类型定义文件'
@@ -39,7 +39,7 @@
 			title: 'babel-plugin-react-native-style-adaptation',
 			url: 'https://github.com/kukudeshiyi/babel-plugin-react-native-style-adaptation',
 			description: 'react native 样式适配神器'
-		}, 
+		},
 		{
 			title: 'ts-unused-exports',
 			url: 'https://github.com/pzavolinsky/ts-unused-exports',
@@ -74,7 +74,7 @@
 			title: 'psm',
 			url: 'https://github.com/brandonxiang/psm',
 			description: 'python 换源工具'
-		},
+		}
 	];
 </script>
 
@@ -85,7 +85,7 @@
 <h1>App Recommend</h1>
 
 <div>
-	{#each apps as app, index}
+	{#each apps as app (app.url)}
 		<p data-sveltekit-prefetch><a href={app.url} target="_blank">{app.title}</a></p>
 		<div class="post-item-footer">
 			<span class="post-item-date">— {app.description}</span>

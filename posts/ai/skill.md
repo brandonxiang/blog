@@ -6,7 +6,7 @@ description: 介绍了三个AI技能平台：skillsmp以聚合和检索为主，
 
 ![cover](https://brandonxiang.top/img/ai-cover.png)
 
-# 如何找到想要的 agent skill 
+# 如何找到想要的 agent skill
 
 无论是 openclaw 还是 claude code 等工具，都已经离不开 skill 的“赋能”。今天我们聊聊 **skillsmp**、**skills.sh**、**ctx7 skill** 这三个AI skill 平台以及工具。逐个拆解每个工具的特点，给出明确的推荐方向，帮大家快速挑到适配自己的工具，全程大白话，好懂不绕弯~
 

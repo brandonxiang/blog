@@ -4,7 +4,6 @@ date: '2025-05-10T15:57:00.000Z'
 description: Streamlit是一个开源Python库，允许用户快速将数据科学和机器学习脚本转化为交互式Web应用，无需HTML、CSS或JavaScript。它与多种数据库兼容，支持快速迭代和用户反馈，适合数据科学家和Python开发者使用。
 ---
 
-
 ![image.png](https://brandonxiang.top/img/python2.png)
 
 在 AI 时代，你如果只学一门计算机语言，我觉得它会是 python。因为它简单，容易入门。生态链丰富，各种各样的工具，宛如“瑞士军刀”。

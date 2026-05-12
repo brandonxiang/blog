@@ -67,7 +67,6 @@ STAR梳理应该是最常见的一种方式。Situation（情境）、Task（任
 
 ![structuredthinking](https://brandonxiang.top/img/structuredthinking.png)
 
-
 我常用“幕布”于PPT大纲、测试用例管理、技术规划和重要事项管理等。
 
 ## 碎片化思维

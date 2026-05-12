@@ -1,5 +1,5 @@
-import {readSync} from 'to-vfile';
-import {unified} from 'unified';
+import { readSync } from 'to-vfile';
+import { unified } from 'unified';
 import parse from 'remark-parse';
 import gfm from 'remark-gfm';
 import remark2rehype from 'remark-rehype';
@@ -14,15 +14,15 @@ const parser = unified().use(parse).use(gfm).use(frontmatter, ['yaml']);
 const runner = unified().use(remark2rehype).use(highlight).use(rehypeStringify);
 
 /**
- * 
- * @param {string} filename 
+ *
+ * @param {string} filename
  * @returns {import('../interface/post.js').PostType}
  */
 export function process(filename) {
 	const slug = filename.split('.')[0];
 	const tree = parser.parse(readSync(filename));
 	/** @type {{date: string; title: string;}} */
-	let metadata = {date: '', title: ''};
+	let metadata = { date: '', title: '' };
 
 	if (tree.children.length > 0 && tree.children[0].type == 'yaml') {
 		//@ts-ignore

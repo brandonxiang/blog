@@ -25,22 +25,20 @@ const notionPosts = [
 		},
 		redirect: 'https://brandonxiang.notion.site/32df21d29f4641dda400d9129569bf95'
 	},
-	{			
+	{
 		metadata: {
 			date: 'Mar 11, 2024',
 			title: '全栈项目脚手架'
 		},
-		redirect: 'https://brandonxiang.notion.site/app-5454570fee2c4750b297de7843ba2e09'	
+		redirect: 'https://brandonxiang.notion.site/app-5454570fee2c4750b297de7843ba2e09'
 	}
-	
-]
+];
 
 /** @type {import('./$types').PageServerLoad} */
 export const load = async () => {
-
 	let posts = getPosts();
 
-	posts = posts.concat(notionPosts)
+	posts = posts.concat(notionPosts);
 	// sort the posts by create date.
 	// @ts-ignore
 	posts.sort(

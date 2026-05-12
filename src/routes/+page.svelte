@@ -11,7 +11,14 @@
 	</div>
 
 	<figure>
-		<img alt="Person typing on laptop" src="icon/undraw_usability_testing_2xs4.svg" />
+		<img
+			alt="Person typing on laptop"
+			src="icon/undraw_usability_testing_2xs4.svg"
+			width="1008"
+			height="780"
+			fetchpriority="high"
+			decoding="async"
+		/>
 		<figcaption>
 			Illustration thanks to <a href="https://undraw.co" target="_blank" rel="noopener noreferrer"
 				>Undraw</a
@@ -26,8 +33,8 @@
 		display: flex;
 		flex: 1;
 		justify-content: center;
-		margin: 2em 0;
-		min-height: 400px;
+		margin: 0;
+		min-height: 0;
 	}
 	.home-copy {
 		flex: 1;

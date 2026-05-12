@@ -4,18 +4,15 @@ date: '2025-07-16T14:00:00.000Z'
 description: 把 Cursor 打扮成为 VSCode 的样子
 ---
 
-
 Cursor 大家用的已经很久了吧，不知道大家习惯了 Cursor 的定制样式吗？
 
 我下载 Cursor 后，做的第一事情，就是把它还原回 vscode 的样子，让它舒服一点，也让我自己舒服一点。
 
 ## **Step 1 设置侧边栏为纵向布局**
 
-打开设置（你可以command + P 或者 ctrl+P，注意这里是 VS Code Settings，不是Cursor Settings， 或者你从首选项里面找）  
-
+打开设置（你可以command + P 或者 ctrl+P，注意这里是 VS Code Settings，不是Cursor Settings， 或者你从首选项里面找）
 
 ![打开设置](https://files.mdnice.com/user/18682/129b0ce8-094f-4044-b184-d73f3fab3fba.png)
-
 
 设置 workbench.activityBar.orientation 为 vertical
 
@@ -28,7 +25,6 @@ Cursor 大家用的已经很久了吧，不知道大家习惯了 Cursor 的定�
 你可以command + P 或者 ctrl+P，找到 code theme。
 
 ![打开主题设置](https://files.mdnice.com/user/18682/7ab73868-d4f1-4842-b74d-e4ff13a685e3.png)
-
 
 把颜色设置为Dark(Visual Studio)。
 

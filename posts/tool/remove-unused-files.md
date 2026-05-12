@@ -95,7 +95,7 @@ Object.keys(rest)
 .map((key) => {
   const exportNames = rest[key].map(r=> r.exportName).join(',')
   console.log(chalk.green(key) + ' ' + exportNames);
-}) 
+})
 
 if(result.unusedFiles) {
   console.log('no used files: ');
@@ -106,18 +106,17 @@ if(result.unusedFiles) {
     fs.unlinkSync(r);
   })
 }
- ```
+```
 
 ### 手段三：人工调整已有代码的合理性
 
 在删除完代码后，项目中 ts-unused-export 还会扫描出一些部分 export 废弃的文件，我们只能按照自身的情况做出调整。每个团队的代码分层情况有所不同。这些文件可能不需要改动，也可能是需要调整该纯函数位置。我们应该把它们放在合理的位置。
 
-![代码优化](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/073fe255899d4cf3921c956bee1ffdf1~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=1316\&h=784\&s=70398\&e=png\&a=1\&b=1d1d1d)
+![代码优化](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/073fe255899d4cf3921c956bee1ffdf1~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=1316&h=784&s=70398&e=png&a=1&b=1d1d1d)
 
 ## 总结
 
 首先“清除废弃代码”是一个低频操作。可能我们一年或者几年，清理一次即可，保证代码的“清爽”。所以放在 webpack 等构建工具执行反而不太合适，脚本偶尔扫描，把一些废弃代码清干净，你的DX（developing experience）又回来了。
-
 
 当然你忍受能力很强也可以“不做”。这篇文章适合具有轻度“代码强迫症”的同学食用。
 
