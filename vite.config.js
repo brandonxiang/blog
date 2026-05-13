@@ -7,9 +7,11 @@ const config = defineConfig({
 		sveltekit(),
 		SvelteKitPWA({
 			workbox: {
+				clientsClaim: true,
 				globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
 				navigateFallbackDenylist: [/^\/rss.xml/, /^\/sitemap.xml/, /^\/robots.txt/],
-				maximumFileSizeToCacheInBytes: 5000000
+				maximumFileSizeToCacheInBytes: 5000000,
+				skipWaiting: true
 			},
 			strategies: 'generateSW',
 			injectRegister: 'inline',

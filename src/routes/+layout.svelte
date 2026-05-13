@@ -66,8 +66,14 @@
 			const { registerSW } = await import('virtual:pwa-register');
 			registerSW({
 				immediate: true,
-				onRegistered(r) {
-					console.log(`SW Registered: ${r}`);
+				onRegistered(registration) {
+					registration?.update();
+					window.setInterval(
+						() => {
+							registration?.update();
+						},
+						60 * 60 * 1000
+					);
 				},
 				onRegisterError(error) {
 					console.log('SW registration error', error);
