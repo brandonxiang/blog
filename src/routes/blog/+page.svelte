@@ -8,10 +8,6 @@
 	let { data } = $props();
 </script>
 
-<svelte:head>
-	<title>Blog</title>
-</svelte:head>
-
 <section class="posts-shell">
 	<div class="posts-hero">
 		<h1>

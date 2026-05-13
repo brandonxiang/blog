@@ -1,4 +1,5 @@
 import { getPosts } from '$lib/getPosts';
+import { createSeo, SITE_NAME, SITE_URL } from '$lib/seo';
 import dayjs from 'dayjs';
 
 export const prerender = true;
@@ -45,5 +46,14 @@ export const load = async () => {
 		(a, b) => +dayjs(b.metadata.date, 'MMM D, YYYY') - +dayjs(a.metadata.date, 'MMM D, YYYY')
 	);
 
-	return { posts };
+	return {
+		posts,
+		seo: createSeo({
+			title: `Recent Posts - ${SITE_NAME}`,
+			description:
+				'浏览 BrandonXIANG Blog 的最新技术文章，涵盖前端工程化、Svelte、React、PWA、AI 工具、Python 与开发效率实践。',
+			url: `${SITE_URL}/blog`,
+			type: 'website'
+		})
+	};
 };

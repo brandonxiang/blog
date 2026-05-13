@@ -3,11 +3,26 @@ export const prerender = true;
 export async function GET() {
 	return new Response(
 		`
-User-agent: Googlebot
-Disallow: /keynote/
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
 
 User-agent: Googlebot
-Disallow: /app/
+Allow: /
 
 User-agent: *
 Allow: /

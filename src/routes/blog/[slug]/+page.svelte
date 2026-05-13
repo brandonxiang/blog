@@ -15,7 +15,8 @@
 	let date = $derived(data.post.metadata.date.toUpperCase());
 	let category = $derived(data.post.category ?? 'Blog');
 	let toc = $derived(data.post.toc ?? []);
-	let encodedShareUrl = $derived(encodeURIComponent($page.url.href));
+	let shareUrl = $derived(data.seo?.url ?? $page.url.href);
+	let encodedShareUrl = $derived(encodeURIComponent(shareUrl));
 	let encodedShareTitle = $derived(encodeURIComponent(data.post.metadata.title));
 	let twitterShareUrl = $derived(
 		`https://twitter.com/intent/tweet?url=${encodedShareUrl}&text=${encodedShareTitle}`

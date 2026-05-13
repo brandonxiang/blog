@@ -4,10 +4,9 @@
 	import { page } from '$app/stores';
 	import { pwaInfo } from 'virtual:pwa-info';
 	import { onMount } from 'svelte';
-	import pageInfoStore from '../store/head';
-	import { get } from 'svelte/store';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	import { injectAnalytics } from '@vercel/analytics/sveltekit';
+	import { defaultSeo } from '$lib/seo';
 	/**
 	 * @typedef {Object} Props
 	 * @property {import('svelte').Snippet} [children]
@@ -16,9 +15,12 @@
 	/** @type {Props} */
 	let { children } = $props();
 
-	let { title, description, url, keywords } = get(pageInfoStore);
-
 	let segment = $derived($page.url.pathname);
+	let seo = $derived($page.data.seo ?? defaultSeo);
+	let jsonLd = $derived(JSON.stringify(seo.jsonLd ?? defaultSeo.jsonLd));
+	let jsonLdScript = $derived(
+		'<script type="application/ld+json">' + jsonLd + '</scr' + 'ipt>'
+	);
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
@@ -89,20 +91,22 @@
 
 <svelte:head>
 	<!-- basic SEO -->
-	<title>{title}</title>
-	<meta name="keywords" content={keywords} />
-	<meta name="description" content={description} />
+	<title>{seo.title}</title>
+	<meta name="keywords" content={seo.keywords} />
+	<meta name="description" content={seo.description} />
+	<link rel="canonical" href={seo.url} />
 	<!-- og SEO -->
-	<meta property="og:url" content={url} />
-	<meta property="og:type" content="article" />
-	<meta property="og:title" content={title} />
-	<meta property="og:description" content={description} />
-	<meta property="twitter:description" content={description} />
-	<meta property="og:image" content="https://brandonxiang.top/icon/logo-512.png" />
-	<meta property="twitter:image" content="https://brandonxiang.top/icon/logo-512.png" />
-	<meta property="twitter:card" content="summary_large_image" />
-	<meta property="og:site_name" content={title} />
-	<meta property="twitter:title" content={title} />
+	<meta property="og:url" content={seo.url} />
+	<meta property="og:type" content={seo.type} />
+	<meta property="og:title" content={seo.title} />
+	<meta property="og:description" content={seo.description} />
+	<meta property="og:image" content={seo.image} />
+	<meta property="og:site_name" content="BrandonXIANG Blog" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={seo.title} />
+	<meta name="twitter:description" content={seo.description} />
+	<meta name="twitter:image" content={seo.image} />
+	{@html jsonLdScript}
 	<!-- pwa -->
 	{@html webManifest}
 </svelte:head>
