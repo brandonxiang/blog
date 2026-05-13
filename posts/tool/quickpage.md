@@ -1,7 +1,7 @@
 ---
 title: quickpage有趣的多页面项目架构
 date: 2022-01-01T12:00:00.000Z
-description: 前端工程化
+description: 介绍 quickpage 多页面项目架构，说明它如何基于 Vite 支持多框架页面、按需开发和按需构建，改善传统 webpack 多页面项目的调试效率。
 ---
 
 ## 前言

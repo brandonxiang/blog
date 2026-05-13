@@ -1,7 +1,7 @@
 ---
 title: PWA笔记二：离线缓存原理
 date: '2019-10-27T21:09:00.000Z'
-description: 前端工程化
+description: PWA 系列第二篇，介绍 Service Worker 离线缓存原理，覆盖 HTTPS 前提、作用域、注册流程以及 install、activate、fetch 等生命周期。
 ---
 
 ServiceWorker 既然命名为 worker，很大一部分原因就是它和 WebWorker 相关。它是在第二个线程完成缓存代理的任务，不会影响 dom 渲染的主线程，两个 Worker 之间的通讯是基于 postMessage，两个线程是不能直接进行通讯。

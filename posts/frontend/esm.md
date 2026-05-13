@@ -1,7 +1,7 @@
 ---
 title: 在Nodejs或浏览器运行ESM代码
 date: 2021-10-01T11:23:57.000Z
-description: 前端工程化
+description: 介绍如何在 Node.js 和浏览器中运行 ES Module 代码，比较编译工具、第三方 loader、原生 Node.js ESM 和浏览器 ESM 的使用方式。
 ---
 
 ## 前言

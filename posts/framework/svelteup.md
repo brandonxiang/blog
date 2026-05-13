@@ -1,7 +1,7 @@
 ---
 title: svelteup -- 实现 web component 的最佳实践
 date: 2021-11-06T12:51:00.000Z
-description: 前端工程化
+description: 介绍 svelteup 作为 Svelte Web Component 打包工具的设计和适用场景，并通过在线演示、Chrome 扩展和版本切换工具展示实践方式。
 ---
 
 ## 背景

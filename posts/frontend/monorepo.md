@@ -1,7 +1,7 @@
 ---
 title: 如何合并已有仓库到大仓
 date: 2023-11-09T12:00:00.000Z
-description: 前端工程化
+description: 介绍如何把已有多个仓库合并到 monorepo，同时通过 git read-tree 保留提交历史，并说明同步子仓库变更时的取舍。
 ---
 
 ## 背景

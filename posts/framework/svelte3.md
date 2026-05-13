@@ -1,7 +1,7 @@
 ---
 title: Svelte笔记三：runtime源码解读
 date: 2020-08-08T12:51:00.000Z
-description: 前端工程化
+description: Svelte 笔记第三篇，解读 Svelte runtime 源码，围绕 Fragment、Component 和数据流说明它如何在没有虚拟 DOM 的情况下运行。
 ---
 
 svelte 的源码很简单是由两大部分组成，compiler 和 runtime。

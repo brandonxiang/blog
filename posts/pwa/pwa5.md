@@ -1,7 +1,7 @@
 ---
 title: PWA笔记五：Workbox实战应用
 date: '2019-11-05T18:49:00.000Z'
-description: 前端工程化
+description: PWA 系列第五篇，结合 Workbox 实战讲解 Service Worker 缓存、Web Push、Background Sync 和项目插件接入方式。
 ---
 
 ## 引言

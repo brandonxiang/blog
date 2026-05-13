@@ -1,7 +1,7 @@
 ---
 title: Vue笔记十：Vue-cli3.0
 date: 2018-08-14T22:53:47.000Z
-description: 前端工程化
+description: Vue 笔记第十篇，介绍 Vue CLI 3 的升级变化，覆盖旧版 vue init 兼容、基础用法、vue ui 功能和未来工程化方向。
 ---
 
 有很多开发者在等着 Vue3.0 的到来，但是大版本的升级往往意味着 upgrade gap，这意味着以前的项目升级的风险。盼着盼着却盼来了 Vue3.0 的到来，在半年的 beta 迭代后，终于出了正式版本。

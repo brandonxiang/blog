@@ -1,7 +1,7 @@
 ---
 title: Svelte笔记二：从零搭建服务端渲染
 date: 2020-02-06T12:51:00.000Z
-description: 前端工程化
+description: Svelte 笔记第二篇，从零搭建 Svelte 服务端渲染项目，说明 webpack 配置、preload 数据拉取和同构渲染的核心流程。
 ---
 
 > 源码 github 地址在此，记得点星：[svelte-ssr](https://github.com/brandonxiang/svelte-ssr)

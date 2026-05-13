@@ -1,8 +1,8 @@
+import { defineConfig } from 'vite-plus';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { SvelteKitPWA } from '@vite-pwa/sveltekit';
 
-/** @type {import('vite').UserConfig} */
-const config = {
+const config = defineConfig({
 	plugins: [
 		sveltekit(),
 		SvelteKitPWA({
@@ -49,7 +49,15 @@ const config = {
 				prefer_related_applications: false
 			}
 		})
-	]
-};
+	],
+	fmt: {
+		useTabs: true,
+		singleQuote: true,
+		trailingComma: 'none',
+		printWidth: 100,
+		sortPackageJson: false,
+		ignorePatterns: ['.svelte-kit/**', 'static/**', 'build/**', 'node_modules/**']
+	}
+});
 
 export default config;

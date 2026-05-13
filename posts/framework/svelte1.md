@@ -1,7 +1,7 @@
 ---
 title: Svelte笔记一：入门脚手架
 date: '2019-10-27T08:38:00.000Z'
-description: 前端工程化
+description: Svelte 笔记第一篇，介绍 Svelte 的轻量化优势、无虚拟 DOM 思路，并记录多页面脚手架的搭建、开发和样式配置方式。
 ---
 
 > 源码 github 地址在此，记得点星：[brandonxiang/svelte-webpack-mpa](https://github.com/brandonxiang/svelte-webpack-mpa)

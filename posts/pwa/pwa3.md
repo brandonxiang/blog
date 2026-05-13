@@ -1,7 +1,7 @@
 ---
 title: PWA笔记三：App Shell模型
 date: '2019-11-05T16:41:00.000Z'
-description: 前端工程化
+description: PWA 系列第三篇，围绕 App Shell 模型讨论首屏白屏优化，介绍骨架屏、接口缓存和离线能力在 Web 应用中的组合方式。
 ---
 
 ## 引子

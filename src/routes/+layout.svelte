@@ -108,16 +108,19 @@
 <style>
 	main {
 		position: relative;
-		max-width: 56em;
-		background-color: white;
-		padding: 2em;
+		max-width: 76rem;
+		background: transparent;
+		padding: clamp(1.5rem, 5vw, 4rem) clamp(1.2rem, 4vw, 3rem);
 		margin: 0 auto;
 		box-sizing: border-box;
+		width: 100%;
 	}
 
 	main.home-main {
 		display: flex;
-		min-height: calc(100svh - 3.625rem);
+		max-width: none;
+		min-height: calc(100svh - 3.75rem);
+		padding-block: clamp(2rem, 5vw, 4.5rem);
 		width: 100%;
 	}
 

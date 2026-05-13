@@ -1,5 +1,6 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vite-plus/test';
 import { getPostContent, getPosts } from './getPosts.js';
+import { apps, keynotes } from './showcaseData.js';
 
 const mocks = vi.hoisted(() => ({
 	globSync: vi.fn(),
@@ -68,5 +69,28 @@ describe('getPostContent', () => {
 
 		expect(getPostContent('framework-svelte3')).toBe(post);
 		expect(mocks.processPost).toHaveBeenCalledWith('posts/framework/svelte3.md');
+	});
+});
+
+describe('showcaseData', () => {
+	it('keeps slide and app resources available for the shared showcase tabs', () => {
+		expect(keynotes.length).toBeGreaterThan(0);
+		expect(apps.length).toBeGreaterThan(0);
+
+		expect(keynotes[0]).toEqual(
+			expect.objectContaining({
+				title: expect.any(String),
+				url: expect.stringMatching(/^https:\/\//),
+				date: expect.any(String)
+			})
+		);
+
+		expect(apps[0]).toEqual(
+			expect.objectContaining({
+				title: expect.any(String),
+				url: expect.stringMatching(/^https:\/\//),
+				description: expect.any(String)
+			})
+		);
 	});
 });

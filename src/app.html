@@ -4,7 +4,8 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 		<!-- pwa -->
-		<meta name="theme-color" content="#fff" />
+		<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#0f1117" media="(prefers-color-scheme: dark)" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
 		<meta name="apple-mobile-web-app-title" content="Brandonxiang Blog" />
@@ -17,6 +18,71 @@
 
 		<!-- basic style -->
 		<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
+		<script>
+			(() => {
+				const storageKey = 'brandonxiang-theme';
+				const root = document.documentElement;
+
+				const getStoredTheme = () => {
+					try {
+						const theme = localStorage.getItem(storageKey);
+						return theme === 'dark' || theme === 'light' ? theme : null;
+					} catch {
+						return null;
+					}
+				};
+
+				const getSystemTheme = () =>
+					window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+				const updateControls = (theme) => {
+					document.querySelectorAll('[data-theme-toggle]').forEach((control) => {
+						const isDark = theme === 'dark';
+						control.textContent = isDark ? 'Light' : 'Dark';
+						control.setAttribute(
+							'aria-label',
+							isDark ? 'Switch to light mode' : 'Switch to dark mode'
+						);
+						control.setAttribute('aria-pressed', String(isDark));
+					});
+				};
+
+				const applyTheme = (theme, persist) => {
+					root.dataset.theme = theme;
+					if (persist) {
+						try {
+							localStorage.setItem(storageKey, theme);
+						} catch {
+							// Keep the selected theme for this page view when storage is unavailable.
+						}
+					}
+					updateControls(theme);
+				};
+
+				const storedTheme = getStoredTheme();
+				if (storedTheme) root.dataset.theme = storedTheme;
+
+				document.addEventListener('DOMContentLoaded', () => {
+					applyTheme(storedTheme || root.dataset.theme || getSystemTheme(), false);
+
+					document.addEventListener('click', (event) => {
+						const control =
+							event.target instanceof Element ? event.target.closest('[data-theme-toggle]') : null;
+						if (!control) return;
+
+						applyTheme(
+							(root.dataset.theme || getSystemTheme()) === 'dark' ? 'light' : 'dark',
+							true
+						);
+					});
+
+					const systemTheme = window.matchMedia?.('(prefers-color-scheme: dark)');
+					systemTheme?.addEventListener('change', () => {
+						if (!getStoredTheme()) applyTheme(getSystemTheme(), false);
+					});
+				});
+			})();
+		</script>
 		<style>
 			*,
 			*::before,
@@ -24,18 +90,114 @@
 				box-sizing: border-box;
 			}
 
+			:root {
+				color-scheme: light;
+				--color-background: #fafafa;
+				--color-surface: #ffffff;
+				--color-surface-soft: #f5f5f5;
+				--color-text: #1f2938;
+				--color-muted: #6b7280;
+				--color-border: #e5e7eb;
+				--color-primary: #ff4d4f;
+				--color-primary-dark: #dc2626;
+				--color-on-primary: #ffffff;
+				--color-sky: #6b7280;
+				--color-coral: #ff4d4f;
+				--color-selection-bg: color-mix(in srgb, var(--color-primary) 18%, white);
+				--color-selection-text: var(--color-primary-dark);
+				--color-link-underline: color-mix(in srgb, var(--color-primary) 70%, white);
+				--color-link-hover-bg: color-mix(in srgb, var(--color-primary) 14%, white);
+				--color-code-text: #4b5563;
+				--color-code-bg: #f3f4f6;
+				--color-hover-tint: color-mix(in srgb, var(--color-primary) 3%, transparent);
+				--color-feature-icon-bg: color-mix(in srgb, var(--color-primary) 10%, white);
+				--shadow-panel: 0 14px 38px rgba(31, 41, 56, 0.08);
+				--font-display:
+					Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+					'PingFang SC', 'Hiragino Sans GB', 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif;
+				--font-body:
+					Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+					'PingFang SC', 'Hiragino Sans GB', 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif;
+				--font-accent: ui-monospace, 'SF Mono', 'Cascadia Code', 'Roboto Mono', Menlo, monospace;
+				--text-xs: 0.75rem;
+				--text-sm: 0.8125rem;
+				--text-md: 0.875rem;
+				--text-base: 1rem;
+				--text-lg: 1.125rem;
+				--text-xl: 1.5rem;
+				--text-title: clamp(2rem, 3.2vw, 2.625rem);
+			}
+
+			:root[data-theme='dark'] {
+				color-scheme: dark;
+				--color-background: #0f1117;
+				--color-surface: #151922;
+				--color-surface-soft: #1d2330;
+				--color-text: #eef2f8;
+				--color-muted: #9aa4b2;
+				--color-border: #2a3140;
+				--color-primary: #ff5a5f;
+				--color-primary-dark: #ff7a7e;
+				--color-on-primary: #16090b;
+				--color-sky: #8b95a5;
+				--color-coral: #ff5a5f;
+				--color-selection-bg: rgba(255, 90, 95, 0.24);
+				--color-selection-text: #ffffff;
+				--color-link-underline: rgba(255, 90, 95, 0.68);
+				--color-link-hover-bg: rgba(255, 90, 95, 0.16);
+				--color-code-text: #d7dee9;
+				--color-code-bg: #1c2230;
+				--color-hover-tint: rgba(255, 90, 95, 0.08);
+				--color-feature-icon-bg: rgba(255, 90, 95, 0.14);
+				--shadow-panel: 0 18px 44px rgba(0, 0, 0, 0.28);
+			}
+
+			@media (prefers-color-scheme: dark) {
+				:root:not([data-theme='light']) {
+					color-scheme: dark;
+					--color-background: #0f1117;
+					--color-surface: #151922;
+					--color-surface-soft: #1d2330;
+					--color-text: #eef2f8;
+					--color-muted: #9aa4b2;
+					--color-border: #2a3140;
+					--color-primary: #ff5a5f;
+					--color-primary-dark: #ff7a7e;
+					--color-on-primary: #16090b;
+					--color-sky: #8b95a5;
+					--color-coral: #ff5a5f;
+					--color-selection-bg: rgba(255, 90, 95, 0.24);
+					--color-selection-text: #ffffff;
+					--color-link-underline: rgba(255, 90, 95, 0.68);
+					--color-link-hover-bg: rgba(255, 90, 95, 0.16);
+					--color-code-text: #d7dee9;
+					--color-code-bg: #1c2230;
+					--color-hover-tint: rgba(255, 90, 95, 0.08);
+					--color-feature-icon-bg: rgba(255, 90, 95, 0.14);
+					--shadow-panel: 0 18px 44px rgba(0, 0, 0, 0.28);
+				}
+			}
+
+			html {
+				background: var(--color-background);
+			}
+
 			body {
 				margin: 0;
-				font-family:
-					-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'Helvetica Neue', Arial,
-					sans-serif;
+				background: var(--color-background);
+				font-family: var(--font-body);
 				font-size: 16px;
 				font-style: normal;
 				-webkit-font-smoothing: antialiased;
 				-webkit-text-stroke-width: 0.2px;
 				-moz-osx-font-smoothing: grayscale;
-				line-height: 1.6;
-				color: #36393b;
+				line-height: 1.65;
+				color: var(--color-text);
+			}
+
+			::selection {
+				background: var(--color-selection-bg);
+				color: var(--color-selection-text);
 			}
 
 			h1,
@@ -44,42 +206,44 @@
 			h4,
 			h5,
 			h6 {
-				font-weight: 700;
-				line-height: 1.2;
+				font-family: var(--font-display);
+				font-weight: 800;
+				letter-spacing: 0;
+				line-height: 1.15;
 				margin: 0 0 0.5em;
 			}
 
 			h1 {
-				font-size: 4em;
-				margin: 0 0 1em;
+				font-size: var(--text-title);
+				margin: 0 0 0.55em;
 			}
 
 			h2 {
 				margin: 1.6em 0 0;
-				font-size: 1.8em;
+				font-size: clamp(1.35rem, 2.5vw, 1.625rem);
 			}
 
 			h3 {
-				font-size: 1.5em;
+				font-size: 1.25em;
 			}
 
 			h4 {
-				font-size: 1.4em;
+				font-size: 1.12em;
 			}
 
 			h5 {
-				font-size: 1.3em;
+				font-size: 1em;
 			}
 
 			h6 {
-				font-size: 1.2em;
+				font-size: 0.92em;
 			}
 
 			p,
 			ul,
 			ol {
-				font-size: 1.3rem;
-				line-height: 1.75em;
+				font-size: var(--text-base);
+				line-height: 1.78;
 				margin: 1.2em 0;
 			}
 
@@ -105,20 +269,20 @@
 			}
 
 			a:hover {
-				color: #fd6378;
+				color: var(--color-primary-dark);
 			}
 
 			p a {
 				text-decoration: none;
-				box-shadow: inset 0 -0.12em 0 #fd6378;
+				box-shadow: inset 0 -0.08em 0 var(--color-link-underline);
 				transition:
 					box-shadow 0.2s ease-in-out,
 					color 0.2s ease-in-out;
 			}
 
 			p a:hover {
-				box-shadow: inset 0 -1.5em 0 #fd6378;
-				color: #fff;
+				box-shadow: inset 0 -1.5em 0 var(--color-link-hover-bg);
+				color: var(--color-primary-dark);
 			}
 
 			img {
@@ -129,7 +293,7 @@
 				background-image: linear-gradient(
 					to right,
 					rgba(0, 0, 0, 0),
-					rgba(253, 99, 120, 0.8),
+					color-mix(in srgb, var(--color-primary) 70%, transparent),
 					rgba(0, 0, 0, 0)
 				);
 				border: 0;
@@ -138,17 +302,18 @@
 			}
 
 			code {
-				font-family: 'SF Mono', menlo, inconsolata, monospace;
+				font-family: var(--font-accent);
 				font-size: calc(1em - 2px);
-				color: #555;
-				background-color: #f0f0f0;
+				color: var(--color-code-text);
+				background-color: var(--color-code-bg);
 				padding: 0.2em 0.4em;
-				border-radius: 2px;
+				border-radius: 3px;
 				-webkit-font-smoothing: antialiased;
 				-moz-osx-font-smoothing: grayscale;
 			}
 
 			pre {
+				border: 1px solid var(--color-border);
 				border-radius: 8px !important;
 				margin: 1.2em 0 !important;
 			}
@@ -158,8 +323,8 @@
 			}
 
 			blockquote {
-				border-left: 4px solid #cccccc;
-				font-size: 1.4em;
+				border-left: 4px solid var(--color-primary);
+				font-size: 1.08em;
 				font-style: italic;
 				margin: 2rem 0;
 				padding-left: 2rem;
@@ -188,13 +353,13 @@
 
 			table {
 				border-collapse: collapse;
-				font-family: Rubik, sans-serif;
-				font-size: 1.125em;
+				font-family: var(--font-body);
+				font-size: var(--text-md);
 				margin: 2em 0;
 			}
 
 			th {
-				border-bottom: 2px solid #cccccc;
+				border-bottom: 2px solid var(--color-border);
 				padding: 0.4em 0.8em;
 			}
 
@@ -209,17 +374,17 @@
 			}
 
 			.content h1 {
-				font-size: 3em;
+				font-size: clamp(1.8rem, 4vw, 2.6rem);
 				margin: 1em 0;
 			}
 
 			@media (max-width: 1020px) {
 				h1 {
-					font-size: 2em;
+					font-size: clamp(1.8rem, 5vw, 2.3rem);
 				}
 
 				.content h1 {
-					font-size: 2.4em;
+					font-size: clamp(1.65rem, 5vw, 2.25rem);
 				}
 			}
 
@@ -232,7 +397,7 @@
 				p,
 				ul,
 				ol {
-					font-size: 1.2rem;
+					font-size: var(--text-base);
 					margin: 1em 0;
 				}
 			}

@@ -143,7 +143,7 @@
 	.summary,
 	.meta-list,
 	.contact p {
-		color: #666;
+		color: var(--color-muted);
 	}
 
 	.eyebrow {
@@ -161,7 +161,7 @@
 	}
 
 	.meta-list {
-		border-left: 3px solid #fd6378;
+		border-left: 3px solid var(--color-primary);
 		margin: 2em 0 0;
 		padding-left: 1rem;
 	}
@@ -186,7 +186,7 @@
 	}
 
 	h2 {
-		border-bottom: 1px solid #eee;
+		border-bottom: 1px solid var(--color-border);
 		padding-bottom: 0.35em;
 	}
 
@@ -195,7 +195,7 @@
 	}
 
 	.contact {
-		border-top: 1px solid #eee;
+		border-top: 1px solid var(--color-border);
 		margin-top: 3em;
 		padding-top: 2em;
 	}

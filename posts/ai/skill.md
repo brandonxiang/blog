@@ -1,7 +1,7 @@
 ---
 title: 如何找到想要的 agent skill
 date: '2026-02-21T14:00:00.000Z'
-description: 介绍了三个AI技能平台：skillsmp以聚合和检索为主，索引23万+开源技能；skills.sh专注于跨平台分发和一键安装，适合高频实用技能；ctx7 skill专注于编码类技能的全流程管理，适合开发者。[推荐优先选择skills.sh](http://xn--skills-978ik3mr73crtb802o055a.sh/)，因其界面友好和支持软连接，避免技能重复复制。
+description: 介绍 skillsmp、skills.sh 和 ctx7 skill 三个 AI 技能平台的定位与使用场景，帮助开发者按检索、分发和编码工作流选择合适工具。
 ---
 
 ![cover](https://brandonxiang.top/img/ai-cover.png)

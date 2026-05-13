@@ -1,7 +1,7 @@
 ---
 title: PWA笔记一：Web的万物基础缓存
 date: '2019-10-27T21:08:00.000Z'
-description: 前端工程化
+description: PWA 系列第一篇，梳理 Web 缓存基础，比较 HTTP 强缓存、协商缓存和 Service Worker 缓存的机制与适用场景。
 ---
 
 ## 前言

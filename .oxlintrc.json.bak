@@ -115,18 +115,18 @@
 			"files": ["*.svelte", "**/*.svelte"],
 			"rules": {
 				"no-inner-declarations": "off",
-				"no-self-assign": "off",
-				"no-undef": "off"
+				"no-self-assign": "off"
 			},
 			"jsPlugins": ["eslint-plugin-svelte"]
 		},
 		{
 			"files": ["**/*.svelte"],
 			"rules": {
+				"prettier/prettier": "off",
 				"svelte/no-at-html-tags": "off",
 				"svelte/no-navigation-without-resolve": "off"
 			},
-			"jsPlugins": ["eslint-plugin-svelte"],
+			"jsPlugins": ["eslint-plugin-prettier", "eslint-plugin-svelte"],
 			"env": {
 				"browser": true
 			}
@@ -134,8 +134,10 @@
 		{
 			"files": ["**/*.ts", "**/*.js"],
 			"rules": {
+				"prettier/prettier": "off",
 				"typescript/ban-ts-comment": "off"
 			},
+			"jsPlugins": ["eslint-plugin-prettier"],
 			"env": {
 				"browser": true,
 				"node": true

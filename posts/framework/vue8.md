@@ -1,7 +1,7 @@
 ---
 title: Vue笔记八：多页面打包框架（mpa）
 date: 2018-01-06T16:01:09.000Z
-description: 前端工程化
+description: Vue 笔记第八篇，记录基于 webpack 的 Vue 多页面打包框架实践，包含多页面脚手架、构建方式、性能优化和 webpack 升级经验。
 ---
 
 > 该文章已经过时，请移步[Vue 笔记十：Vue-cli3.0](https://brandonxiang.top/blog/vue10)
