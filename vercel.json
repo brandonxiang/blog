@@ -1,4 +1,26 @@
 {
+	"redirects": [
+		{
+			"source": "/index.html",
+			"destination": "/",
+			"permanent": true
+		},
+		{
+			"source": "/blog/svelte3",
+			"destination": "/blog/framework-svelte3",
+			"permanent": true
+		},
+		{
+			"source": "/blog/svelte4",
+			"destination": "/blog/framework-svelte4",
+			"permanent": true
+		},
+		{
+			"source": "/blog/tool-about",
+			"destination": "/blog",
+			"permanent": true
+		}
+	],
 	"headers": [
 		{
 			"source": "/sw.js",

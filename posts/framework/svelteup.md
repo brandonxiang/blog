@@ -6,7 +6,7 @@ description: 介绍 svelteup 作为 Svelte Web Component 打包工具的设计�
 
 ## 背景
 
-svelte是新晋的前端框架。在打包体积和页面显示性能上有着不可磨灭的意义。现在越来越多网站上都已经能看到它的身影。之前我也对它的源码有了深入的解读，《[Svelte笔记三：runtime源码解读](https://brandonxiang.top/blog/svelte3)》和《[Svelte笔记四：compile源码解析](https://brandonxiang.top/blog/svelte4)》两篇文章可以作为参考。 svelte的优势很明显， 主要在体积极小和预编译组件逻辑。没有virtual dom，让业务代码更加纯粹地集中在页面显示上。
+svelte是新晋的前端框架。在打包体积和页面显示性能上有着不可磨灭的意义。现在越来越多网站上都已经能看到它的身影。之前我也对它的源码有了深入的解读，《[Svelte笔记三：runtime源码解读](https://brandonxiang.top/blog/framework-svelte3)》和《[Svelte笔记四：compile源码解析](https://brandonxiang.top/blog/framework-svelte4)》两篇文章可以作为参考。 svelte的优势很明显， 主要在体积极小和预编译组件逻辑。没有virtual dom，让业务代码更加纯粹地集中在页面显示上。
 
 web component 一直是大家很想落地的一个浏览器新技术，但是实际应用上我们却很难看到。即使是在微前端方面它都非常难落地。web component和Server Side Rendering（SSR）的两个概念是不搭的，它更多一切从浏览器出发，在不考虑ie的兼容性的情况下，已经达到了可用的情况。它的使用方式很简单，直接在页面中写入自定义的标签即可，例如 `<my-element />`，但是 native web component 的开发语法确实让开发者难以适应。
 
