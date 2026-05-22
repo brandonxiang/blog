@@ -138,7 +138,9 @@
 	<div class="post-content">
 		<header class="post-header">
 			<p class="eyebrow">#{category}</p>
-			<h1 class="title" style:--name="post-title-{$page.params.slug}">{data.post.metadata.title}</h1>
+			<h1 class="title" style:--name={`post-title-${$page.params.slug}`}>
+				{data.post.metadata.title}
+			</h1>
 			<p class="info"><a href="https://github.com/brandonxiang">Brandonxiang</a> · {date}</p>
 		</header>
 

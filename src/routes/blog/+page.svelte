@@ -31,7 +31,9 @@
 			>
 				<span class="post-item-date">{post.metadata.date}</span>
 				<span class="post-content">
-					<span class="title" style:--name="post-title-{post.slug}">{post.metadata.title}</span>
+					<span class="title" style:--name={post.slug ? `post-title-${post.slug}` : 'none'}>
+						{post.metadata.title}
+					</span>
 					{#if post.metadata.description}
 						<span class="description">{post.metadata.description}</span>
 					{/if}
