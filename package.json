@@ -44,7 +44,6 @@
 		"@sveltejs/kit": "^3.1.0",
 		"@vercel/analytics": "^2.0.1",
 		"@vercel/speed-insights": "^2.0.0",
-		"fast-glob": "^3.3.3",
 		"feed": "^6.0.0",
 		"svelte": "^5.57.2"
 	},
