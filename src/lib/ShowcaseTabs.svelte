@@ -31,10 +31,6 @@ const tabs = [
 	let current = $derived(tabs.find((tab) => tab.id === activeTab) ?? tabs[0]);
 </script>
 
-<svelte:head>
-	<title>{current.heading}</title>
-</svelte:head>
-
 <section class="showcase-shell">
 	<div class="showcase-hero">
 		<h1>{current.heading}</h1>

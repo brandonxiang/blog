@@ -7,11 +7,13 @@
 		"preview": "vp preview",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
+		"typecheck": "tsc --noEmit --project ./tsconfig.json",
 		"test": "vp test",
 		"test:watch": "vp test watch",
 		"lint": "vp fmt . --check && vp lint .",
 		"format": "vp fmt . --write",
-		"images:optimize": "node scripts/optimize-images.mjs"
+		"images:optimize": "node scripts/optimize-images.mjs",
+		"indexnow": "node scripts/indexnow.mjs"
 	},
 	"imports": {
 		"#lib/*": "./src/lib/*"
@@ -21,6 +23,7 @@
 		"@sveltejs/vite-plugin-svelte": "^7.3.1",
 		"@types/dom-view-transitions": "^1.0.6",
 		"@types/hast": "^3.0.5",
+		"@types/mdast": "^4.0.4",
 		"@types/node": "^26.6.5",
 		"dayjs": "^1.11.23",
 		"eslint-plugin-svelte": "^3.23.1",

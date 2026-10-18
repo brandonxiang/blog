@@ -5,7 +5,15 @@
 	import { onMount } from 'svelte';
 	import { injectSpeedInsights } from '@vercel/speed-insights';
 	import { inject, pageview } from '@vercel/analytics';
-	import { defaultSeo } from '#lib/seo.js';
+	import {
+		defaultSeo,
+		SITE_AUTHOR_URL,
+		SITE_IMAGE_HEIGHT,
+		SITE_IMAGE_WIDTH,
+		SITE_NAME,
+		SITE_TWITTER,
+		SITE_URL
+	} from '#lib/seo.js';
 	/**
 	 * @typedef {Object} Props
 	 * @property {import('svelte').Snippet} [children]
@@ -20,6 +28,15 @@
 	let jsonLdScript = $derived(
 		'<script type="application/ld+json">' + jsonLd + '</scr' + 'ipt>'
 	);
+	let breadcrumbScript = $derived(
+		seo.breadcrumbJsonLd
+			? '<script type="application/ld+json">' +
+				JSON.stringify(seo.breadcrumbJsonLd) +
+				'</scr' +
+				'ipt>'
+			: null
+	);
+	let isArticle = $derived(seo.type === 'article');
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
@@ -100,18 +117,50 @@
 	<meta name="keywords" content={seo.keywords} />
 	<meta name="description" content={seo.description} />
 	<link rel="canonical" href={seo.url} />
+	<!--
+		`max-image-preview:large` lets Google show full-size post covers in Image
+		Search, and `max-snippet:-1` stops it from truncating meta descriptions.
+	-->
+	<meta
+		name="robots"
+		content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+	/>
+	<!-- lets feed readers discover /rss.xml from any page -->
+	<link
+		rel="alternate"
+		type="application/rss+xml"
+		title="{SITE_NAME} RSS Feed"
+		href="{SITE_URL}/rss.xml"
+	/>
 	<!-- og SEO -->
 	<meta property="og:url" content={seo.url} />
 	<meta property="og:type" content={seo.type} />
 	<meta property="og:title" content={seo.title} />
 	<meta property="og:description" content={seo.description} />
 	<meta property="og:image" content={seo.image} />
-	<meta property="og:site_name" content="BrandonXIANG Blog" />
+	<meta property="og:image:alt" content={seo.imageAlt ?? SITE_NAME} />
+	<meta property="og:image:type" content={seo.imageType ?? 'image/png'} />
+	<meta property="og:image:width" content={String(seo.imageWidth ?? SITE_IMAGE_WIDTH)} />
+	<meta property="og:image:height" content={String(seo.imageHeight ?? SITE_IMAGE_HEIGHT)} />
+	<meta property="og:site_name" content={SITE_NAME} />
+	<meta property="og:locale" content={seo.locale} />
+	{#if isArticle}
+		<meta property="article:published_time" content={seo.publishedTime} />
+		<meta property="article:modified_time" content={seo.modifiedTime} />
+		<meta property="article:section" content={seo.section} />
+		<meta property="article:author" content={SITE_AUTHOR_URL} />
+	{/if}
 	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content={SITE_TWITTER} />
+	<meta name="twitter:creator" content={SITE_TWITTER} />
 	<meta name="twitter:title" content={seo.title} />
 	<meta name="twitter:description" content={seo.description} />
 	<meta name="twitter:image" content={seo.image} />
+	<meta name="twitter:image:alt" content={seo.imageAlt ?? SITE_NAME} />
 	{@html jsonLdScript}
+	{#if breadcrumbScript}
+		{@html breadcrumbScript}
+	{/if}
 </svelte:head>
 
 <main class:home-main={segment === '/'} data-sveltekit-prefetch>

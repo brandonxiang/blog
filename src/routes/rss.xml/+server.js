@@ -1,28 +1,31 @@
 import { getPostContent, getPosts } from '#lib/getPosts.js';
+import { SITE_DESCRIPTION, SITE_LANG, SITE_NAME, SITE_URL } from '#lib/seo.js';
 import dayjs from 'dayjs';
 import { Feed } from 'feed';
 
 export const prerender = true;
 
 const author = {
-	name: 'Brandon Xiang',
-	email: 'brandonxiang.xiang@shopee.com',
-	link: 'https://brandonxiang.top/'
+	name: SITE_NAME.replace(' Blog', ''),
+	email: 'brandon.xiang@gmail.com',
+	link: `${SITE_URL}/blog/other-cv`
 };
 
 export async function GET() {
 	const feed = new Feed({
-		title: 'Brandonxiang Blog',
-		description:
-			"Here is Brandon's Blog,how to learn web developing, deep in web3, working in advanced technology",
-		id: 'https://brandonxiang.top/',
-		link: 'https://brandonxiang.top/',
-		language: 'en', // optional, used only in RSS 2.0, possible values: http://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes
-		favicon: 'https://brandonxiang.top/favicon.ico',
-		copyright: `Copyright ${new Date().getFullYear().toString()}, brandonxiang`,
+		title: SITE_NAME,
+		description: SITE_DESCRIPTION,
+		id: `${SITE_URL}/`,
+		link: `${SITE_URL}/`,
+		// The feed declared `en` while every post is Chinese-first, which made
+		// readers sort and filter it against the wrong language.
+		language: SITE_LANG,
+		favicon: `${SITE_URL}/favicon.ico`,
+		image: `${SITE_URL}/icon/logo-512.png`,
+		copyright: `Copyright ${new Date().getFullYear().toString()}, ${SITE_NAME}`,
 		generator: '🍉', // optional, default = 'Feed for Node.js'
 		feedLinks: {
-			rss: 'https://brandonxiang.top/rss.xml'
+			rss: `${SITE_URL}/rss.xml`
 		},
 		author,
 		ttl: 60
@@ -38,7 +41,7 @@ export async function GET() {
 			title: article.metadata.title,
 			description: article.metadata.description,
 			content: getPostContent(article?.slug || '').content,
-			link: `https://brandonxiang.top/blog/${article.slug}`,
+			link: `${SITE_URL}/blog/${article.slug}`,
 			author: [author],
 			date: new Date(article.metadata.date)
 		});
@@ -46,7 +49,7 @@ export async function GET() {
 
 	return new Response(feed.rss2(), {
 		headers: {
-			'Content-Type': 'application/xml; charset=utf-8'
+			'Content-Type': 'application/rss+xml; charset=utf-8'
 		}
 	});
 }

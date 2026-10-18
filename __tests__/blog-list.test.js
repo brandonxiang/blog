@@ -2,11 +2,13 @@ import { beforeEach, describe, expect, it, vi } from 'vite-plus/test';
 import { load, prerender } from '../src/routes/blog/+page.server.js';
 
 const mocks = vi.hoisted(() => ({
-	getPosts: vi.fn()
+	getPosts: vi.fn(),
+	getCategories: vi.fn()
 }));
 
 vi.mock('#lib/getPosts.js', () => ({
-	getPosts: mocks.getPosts
+	getPosts: mocks.getPosts,
+	getCategories: mocks.getCategories
 }));
 
 /**
@@ -26,6 +28,8 @@ function makePost(title, date) {
  * @property {{title: string; date: string}} metadata
  * @property {string} [slug]
  * @property {string} [redirect]
+ * @property {string} [iso]
+ * @property {string} [categorySlug]
  */
 
 /**
@@ -38,6 +42,7 @@ async function loadPage() {
 beforeEach(() => {
 	vi.clearAllMocks();
 	mocks.getPosts.mockReturnValue([]);
+	mocks.getCategories.mockReturnValue([]);
 });
 
 describe('load', () => {
@@ -69,8 +74,28 @@ describe('load', () => {
 	it('returns SEO metadata for the listing page', async () => {
 		const { seo } = await loadPage();
 
-		expect(seo.title).toBe('Recent Posts - BrandonXIANG Blog');
+		expect(seo.title).toBe('技术文章 - BrandonXIANG Blog');
 		expect(seo.url).toBe('https://brandonxiang.top/blog');
 		expect(seo.description.length).toBeGreaterThan(0);
+	});
+
+	it('adds an ISO date and a category link to each post', async () => {
+		mocks.getPosts.mockReturnValue([makePost('Local', 'May 13, 2026')]);
+		mocks.getCategories.mockReturnValue([{ name: 'Blog', slug: 'blog' }]);
+
+		const { posts } = await loadPage();
+		const local = posts.find((post) => post.slug === 'local');
+
+		expect(local?.iso).toBe('2026-05-13');
+		expect(local?.categorySlug).toBe('blog');
+	});
+
+	it('leaves posts in categories without a hub page unlinked', async () => {
+		mocks.getPosts.mockReturnValue([makePost('Local', 'May 13, 2026')]);
+
+		const { posts } = await loadPage();
+		const local = posts.find((post) => post.slug === 'local');
+
+		expect(local?.categorySlug).toBeUndefined();
 	});
 });

@@ -11,6 +11,6 @@
 		"strict": true,
 		"lib": ["DOM.Iterable", "DOM"]
 	},
-	"include": ["src", "__tests__", "vite.config.js", "*.js", "*.ts"],
+	"include": ["src", "__tests__", "scripts", "vite.config.js", "*.js", "*.ts"],
 	"exclude": ["src/service-worker"]
 }

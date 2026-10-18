@@ -514,6 +514,298 @@ function addHeadingIds(tree) {
 }
 
 /**
+ * Alt text that carries no information for a crawler or a screen reader.
+ * Thirty of the eighty-five post images were written as `![](url)`,
+ * `![cover]`, `![image.png]` or a bare number.
+ */
+const GENERIC_ALTS = new Set([
+	'',
+	'cover',
+	'covers',
+	'image',
+	'image.png',
+	'img',
+	'pic',
+	'photo',
+	'picture',
+	'screenshot',
+	'untitled',
+	'未命名',
+	'图片',
+	'封面'
+]);
+
+/**
+ * @param {unknown} alt
+ * @returns {boolean}
+ */
+function isGenericAlt(alt) {
+	if (typeof alt !== 'string') return true;
+
+	const value = alt.trim();
+
+	if (GENERIC_ALTS.has(value.toLowerCase())) return true;
+	// Bare counters such as `![1]`, and alt text that is just the filename.
+	if (/^\d+$/.test(value)) return true;
+	if (/\.(png|jpe?g|gif|webp|svg|avif)$/i.test(value)) return true;
+
+	return false;
+}
+
+/**
+ * Replaces uninformative alt text with the post title, which is what the image
+ * illustrates. Later images get an ordinal so the set stays distinguishable.
+ *
+ * @param {import('hast').Parent} parent
+ * @param {string} title
+ * @returns {number} How many images were seen
+ */
+function fillImageAlt(parent, title) {
+	if (!('children' in parent) || !Array.isArray(parent.children)) return 0;
+
+	/**
+	 * @param {import('hast').Parent} node
+	 * @param {number} seen How many images preceded this subtree
+	 * @returns {number} How many images were seen in total
+	 */
+	const walk = (node, seen) => {
+		if (!('children' in node) || !Array.isArray(node.children)) return seen;
+
+		/** @type {number} */
+		let count = seen;
+
+		for (const child of node.children) {
+			if (child.type === 'element' && child.tagName === 'img') {
+				const properties = child.properties ?? (child.properties = {});
+
+				count += 1;
+
+				if (isGenericAlt(properties.alt)) {
+					properties.alt = count === 1 ? title : `${title} (${count})`;
+				}
+			}
+
+			if (child.type === 'element') {
+				count = walk(child, count);
+			}
+		}
+
+		return count;
+	};
+
+	return walk(parent, 0);
+}
+
+/**
+ * The article template already renders the post title as its `<h1>`. Posts that
+ * repeat that title as their own markdown heading produced two identical `<h1>`
+ * elements, so the redundant one is dropped rather than demoted.
+ *
+ * The heading is rarely the first node — posts usually open with a cover image
+ * — so leading nodes are skipped for as long as they carry no prose.
+ *
+ * @param {{children: any[]}} tree
+ * @param {string} title
+ */
+function dropDuplicateTitleHeading(tree, title) {
+	/** @type {number} */
+	let dropIndex = -1;
+
+	for (const [index, node] of tree.children.entries()) {
+		if (node.type === 'heading' && Number(node.depth) === 1) {
+			const text = extractText(node).replace(/\s+/g, ' ').trim();
+
+			if (text === title) dropIndex = index;
+			break;
+		}
+
+		// Keep walking over anything that is only decoration.
+		if (node.type === 'thematicBreak' || node.type === 'html') continue;
+		if (node.type === 'image') continue;
+
+		if (node.type === 'paragraph' && !extractText(node).replace(/\s+/g, ' ').trim()) continue;
+
+		// Real prose started before any top-level heading was found.
+		break;
+	}
+
+	if (dropIndex < 0) return;
+
+	tree.children = tree.children.filter((_, index) => index !== dropIndex);
+}
+
+/**
+ * Counts the prose a reader actually sees, skipping code blocks and headings so
+ * the number matches what a crawler would treat as body copy.
+ *
+ * @param {import('mdast').Root} tree
+ * @returns {number}
+ */
+function countWords(tree) {
+	/**
+	 * @param {unknown} node
+	 * @returns {number}
+	 */
+	const walk = (node) => {
+		if (!node || typeof node !== 'object') return 0;
+		if (!('type' in node) || typeof node.type !== 'string') return 0;
+
+		// Code is not body copy, so it is left out of the count entirely.
+		if (node.type === 'code' || node.type === 'inlineCode') return 0;
+
+		if (node.type === 'text' && 'value' in node && typeof node.value === 'string') {
+			const value = node.value;
+			// Each CJK ideograph counts as one word; runs of latin characters
+			// count as one word per whitespace-separated token.
+			const cjk = value.match(/[\u3040-\u30ff\u3400-\u9fff\uf900-\ufaff]/g)?.length ?? 0;
+			const latin =
+				value
+					.replace(/[\u3040-\u30ff\u3400-\u9fff\uf900-\ufaff]/g, ' ')
+					.match(/[A-Za-z0-9][A-Za-z0-9'’._-]*/g)?.length ?? 0;
+
+			return cjk + latin;
+		}
+
+		if ('children' in node && Array.isArray(node.children)) {
+			let words = 0;
+
+			for (const child of node.children) words += walk(child);
+
+			return words;
+		}
+
+		return 0;
+	};
+
+	return walk(tree);
+}
+
+/**
+ * Picks the page language from the prose so English posts stop being advertised
+ * as `zh-CN`. Only the first slice of the body is inspected, which is plenty to
+ * tell the two apart and keeps the per-page cost negligible.
+ *
+ * @param {import('mdast').Root} tree
+ * @returns {'zh-CN' | 'en'}
+ */
+function detectLanguage(tree) {
+	/** @type {string} */
+	let sample = '';
+
+	for (const node of tree.children) {
+		if (node.type === 'heading' || node.type === 'code' || node.type === 'paragraph') {
+			sample += extractText(node);
+		}
+
+		if (sample.length >= 400) break;
+	}
+
+	const cjk = sample.match(/[\u3040-\u30ff\u3400-\u9fff\uf900-\ufaff]/g)?.length ?? 0;
+	const latin = sample.match(/[A-Za-z]/g)?.length ?? 0;
+
+	if (cjk === 0 && latin > 0) return 'en';
+
+	return 'zh-CN';
+}
+
+/**
+ * @typedef {Object} ImageMeta
+ * @property {string} url
+ * @property {number} [width]
+ * @property {number} [height]
+ */
+
+/**
+ * The first image in a post doubles as its social card, so it is surfaced
+ * separately from the rendered HTML.
+ *
+ * @param {import('hast').Root} tree
+ * @returns {ImageMeta | undefined}
+ */
+function findCover(tree) {
+	/**
+	 * The recursion returns the match instead of assigning to an outer
+	 * variable, because TypeScript cannot see through the closure and would
+	 * narrow the outer variable away to `never`.
+	 *
+	 * @param {import('hast').Parent} parent
+	 * @returns {import('hast').Element | undefined}
+	 */
+	const walk = (parent) => {
+		if (!('children' in parent) || !Array.isArray(parent.children)) return undefined;
+
+		for (const child of parent.children) {
+			if (child.type !== 'element') continue;
+
+			if (child.tagName === 'img') return child;
+
+			const nested = walk(child);
+			if (nested) return nested;
+		}
+
+		return undefined;
+	};
+
+	const found = walk(tree);
+
+	if (!found) return undefined;
+
+	const src = found.properties?.src;
+
+	if (typeof src !== 'string') return undefined;
+
+	/** @type {ImageMeta} */
+	const cover = { url: normalizeImageUrl(src) };
+
+	if (cover.url.startsWith('/')) {
+		const size = readImageSize(cover.url);
+
+		if (size) {
+			cover.width = size.width;
+			cover.height = size.height;
+		}
+	}
+
+	return cover;
+}
+
+/**
+ * Reads the language of a post without running the full render pipeline.
+ *
+ * `hooks.server.js` needs this to rewrite `<html lang>` before the page load
+ * runs, and re-parsing the whole document twice per prerendered page is not
+ * worth it.
+ *
+ * @param {string} filename
+ * @returns {'zh-CN' | 'en'}
+ */
+export function getPostLanguage(filename) {
+	try {
+		const tree = parser.parse(readSync(filename));
+
+		if (tree.children.length > 0 && tree.children[0].type === 'yaml') {
+			tree.children = tree.children.slice(1);
+		}
+
+		return detectLanguage(tree);
+	} catch {
+		return 'zh-CN';
+	}
+}
+
+/**
+ * Returns the post exactly as authored, frontmatter included. This backs the
+ * `/blog/<slug>.md` endpoint, which lets AI crawlers and feed readers consume
+ * the source instead of reverse-engineering the rendered HTML.
+ *
+ * @param {string} filename
+ * @returns {string}
+ */
+export function getPostSource(filename) {
+	return readFileSync(filename, 'utf8');
+}
+
+/**
  *
  * @param {string} filename
  * @returns {import('../interface/post.js').PostType}
@@ -532,7 +824,16 @@ export function process(filename) {
 		metadata.date = dayjs(metadata.date).format('MMM D, YYYY');
 		metadata.description = cleanDescription(metadata.description);
 	}
+
+	dropDuplicateTitleHeading(tree, metadata.title);
+
 	const toc = addHeadingIds(tree);
-	const content = runner.stringify(runner.runSync(tree));
-	return { metadata, content, slug, toc, category };
+	const wordCount = countWords(tree);
+	const lang = detectLanguage(tree);
+	const hast = runner.runSync(tree);
+
+	fillImageAlt(/** @type {import('hast').Root} */ (hast), metadata.title);
+
+	const content = runner.stringify(hast);
+	return { metadata, content, slug, toc, category, wordCount, lang, cover: findCover(hast) };
 }

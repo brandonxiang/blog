@@ -2,7 +2,13 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vite-plus/test';
-import { getPostContent, getPosts } from '../src/lib/getPosts.js';
+import {
+	getCategories,
+	getPostContent,
+	getPosts,
+	getRecentPosts,
+	getRelatedPosts
+} from '../src/lib/getPosts.js';
 import { apps, keynotes } from '../src/lib/showcaseData.js';
 
 const mocks = vi.hoisted(() => ({
@@ -134,6 +140,95 @@ describe('getPostContent', () => {
 
 		expect(getPostContent('framework-svelte3')).toBe(post);
 		expect(mocks.processPost).toHaveBeenCalledWith('posts/framework/svelte3.md');
+	});
+});
+
+describe('post feeds', () => {
+	/**
+	 * Dates keyed by the file path the mocked renderer receives, so the feed
+	 * helpers can be ordered deterministically.
+	 *
+	 * @type {Record<string, string>}
+	 */
+	const DATES = {
+		'posts/framework/a.md': 'May 1, 2026',
+		'posts/framework/b.md': 'May 5, 2026',
+		'posts/framework/c.md': 'May 3, 2026',
+		'posts/tool/t.md': 'May 10, 2026',
+		'posts/other/cv.md': 'May 2, 2026'
+	};
+
+	/**
+	 * @param {Record<string, string[]>} tree
+	 */
+	function useFeedTree(tree) {
+		const restore = withPostsTree(tree);
+
+		mocks.processPost.mockImplementation((pathname) => {
+			const [, category, file] = pathname.split('/');
+
+			return {
+				metadata: { title: file, date: DATES[pathname] ?? 'Jan 1, 2026' },
+				content: '',
+				category: category.charAt(0).toUpperCase() + category.slice(1)
+			};
+		});
+
+		return restore;
+	}
+
+	it('getRecentPosts returns the newest articles and drops the profile page', () => {
+		const restore = useFeedTree({
+			framework: ['a.md', 'b.md', 'c.md'],
+			tool: ['t.md'],
+			other: ['cv.md']
+		});
+
+		try {
+			expect(getRecentPosts(3).map((post) => post.slug)).toEqual([
+				'tool-t',
+				'framework-b',
+				'framework-c'
+			]);
+		} finally {
+			restore();
+		}
+	});
+
+	it('getRelatedPosts puts the same category first, then the newest others', () => {
+		const restore = useFeedTree({
+			framework: ['a.md', 'b.md', 'c.md'],
+			tool: ['t.md'],
+			other: ['cv.md']
+		});
+
+		try {
+			expect(getRelatedPosts('framework-a').map((post) => post.slug)).toEqual([
+				'framework-b',
+				'framework-c',
+				'tool-t'
+			]);
+		} finally {
+			restore();
+		}
+	});
+
+	it('getCategories keeps only categories with three or more articles', () => {
+		const restore = useFeedTree({
+			framework: ['a.md', 'b.md', 'c.md'],
+			tool: ['t.md'],
+			other: ['cv.md']
+		});
+
+		try {
+			const categories = getCategories();
+
+			expect(categories).toHaveLength(1);
+			expect(categories[0]).toMatchObject({ name: 'Framework', slug: 'framework', count: 3 });
+			expect(categories[0].posts).toHaveLength(3);
+		} finally {
+			restore();
+		}
 	});
 });
 

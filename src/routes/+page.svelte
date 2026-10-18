@@ -1,6 +1,14 @@
+<script>
+	/** @type {{data: import('./$types').PageData}} */
+	let { data } = $props();
+</script>
+
 <div class="home-container">
 	<div class="home-copy">
-		<h1>Welcome to BrandonXIANG Blog</h1>
+		<h1>
+			BrandonXIANG Blog
+			<span class="h1-tagline">前端工程化技术博客</span>
+		</h1>
 		<span class="accent-line"></span>
 		<p>记录技术思考，分享学习笔记与实战经验。</p>
 		<p>
@@ -43,6 +51,24 @@
 			<p>伴随时代、持续学习、不断迭代与进步。</p>
 		</div>
 	</div>
+
+	<section class="home-recent" aria-labelledby="recent-posts-heading">
+		<h2 id="recent-posts-heading">最新文章</h2>
+		<ul>
+			{#each data.recentPosts as post}
+				<li>
+					<a href={`/blog/${post.slug}`}>
+						<span class="recent-title">{post.title}</span>
+						{#if post.description}
+							<span class="recent-desc">{post.description}</span>
+						{/if}
+						<time class="recent-date" datetime={post.iso}>{post.date}</time>
+					</a>
+				</li>
+			{/each}
+		</ul>
+		<p class="recent-more"><a href="/blog">浏览全部文章 →</a></p>
+	</section>
 </div>
 
 <style>
@@ -192,6 +218,77 @@
 		font-size: var(--text-sm);
 		line-height: 1.6;
 		margin: 0;
+	}
+
+	.h1-tagline {
+		color: var(--color-muted);
+		display: block;
+		font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+		font-weight: 700;
+		letter-spacing: 0;
+		margin-top: 0.55rem;
+	}
+
+	.home-recent {
+		animation: home-rise 560ms cubic-bezier(0.2, 0.7, 0.2, 1) 520ms both;
+		border-top: 1px solid var(--color-border);
+		flex-basis: 100%;
+		margin-top: clamp(0.5rem, 2vw, 1.5rem);
+		padding-top: clamp(1.2rem, 3vw, 2rem);
+	}
+
+	.home-recent h2 {
+		font-size: var(--text-lg);
+		margin: 0 0 1rem;
+	}
+
+	.home-recent ul {
+		display: grid;
+		gap: 0.25rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.home-recent li {
+		margin: 0;
+	}
+
+	.home-recent a {
+		display: grid;
+		gap: 0.15rem;
+		padding: 0.7rem 0;
+		text-decoration: none;
+	}
+
+	.recent-title {
+		font-size: var(--text-md);
+		font-weight: 700;
+	}
+
+	.home-recent a:hover .recent-title {
+		color: var(--color-primary-dark);
+	}
+
+	.recent-desc {
+		color: var(--color-muted);
+		font-size: var(--text-sm);
+		line-height: 1.55;
+	}
+
+	.recent-date {
+		color: var(--color-muted);
+		font-size: var(--text-xs);
+	}
+
+	.recent-more {
+		margin: 1.1rem 0 0;
+	}
+
+	.recent-more a {
+		color: var(--color-primary-dark);
+		font-weight: 700;
+		text-decoration: none;
 	}
 
 	@keyframes home-rise {

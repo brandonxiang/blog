@@ -3,7 +3,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { afterEach, describe, expect, it } from 'vite-plus/test';
-import { parseImageSize, process } from '../src/lib/markdown.js';
+import { getPostLanguage, parseImageSize, process } from '../src/lib/markdown.js';
 
 const STATIC_DIR = fileURLToPath(new URL('../static/', import.meta.url));
 
@@ -188,6 +188,165 @@ No metadata here.
 			expect(content).toContain('/img/twitter-yyx.880.webp 880w');
 			expect(content).toContain('sizes="(min-width: 60rem) 55rem, calc(100vw - 2.4rem)"');
 		});
+
+		it('backfills generic alt text with the post title, numbering each repeat', () => {
+			const filename = writeMarkdown(`---
+title: 如何找到想要的 agent skill
+date: 2026-05-13
+---
+![1](https://brandonxiang.top/img/a.png)
+
+![2](https://brandonxiang.top/img/b.png)
+
+![3](https://brandonxiang.top/img/c.png)
+`);
+
+			const alts = [...process(filename).content.matchAll(/alt="([^"]*)"/g)].map(
+				(match) => match[1]
+			);
+
+			expect(alts).toEqual([
+				'如何找到想要的 agent skill',
+				'如何找到想要的 agent skill (2)',
+				'如何找到想要的 agent skill (3)'
+			]);
+		});
+
+		it('counts images across sibling paragraphs instead of restarting per block', () => {
+			const filename = writeMarkdown(`---
+title: Post
+date: 2026-05-13
+---
+![](https://brandonxiang.top/img/a.png)
+
+Text between the images.
+
+![](https://brandonxiang.top/img/b.png)
+`);
+
+			const alts = [...process(filename).content.matchAll(/alt="([^"]*)"/g)].map(
+				(match) => match[1]
+			);
+
+			expect(alts).toEqual(['Post', 'Post (2)']);
+		});
+
+		it('leaves authored alt text alone and only numbers the generic ones', () => {
+			const filename = writeMarkdown(`---
+title: Post
+date: 2026-05-13
+---
+![A real description](https://brandonxiang.top/img/a.png)
+
+![](https://brandonxiang.top/img/b.png)
+`);
+
+			const alts = [...process(filename).content.matchAll(/alt="([^"]*)"/g)].map(
+				(match) => match[1]
+			);
+
+			expect(alts).toEqual(['A real description', 'Post (2)']);
+		});
+
+		it('surfaces the first image as the cover with its intrinsic size', () => {
+			const filename = writeMarkdown(
+				'![first](https://brandonxiang.top/img/twitter-yyx.jpeg)\n' +
+					'![second](https://brandonxiang.top/img/a.png)\n'
+			);
+
+			const { cover } = process(filename);
+			const size = parseImageSize(readFileSync(STATIC_DIR + '/img/twitter-yyx.jpeg'));
+
+			expect(cover?.url).toBe('/img/twitter-yyx.jpeg');
+			expect(cover?.width).toBe(size?.width);
+			expect(cover?.height).toBe(size?.height);
+		});
+	});
+
+	describe('headings', () => {
+		it('drops a duplicated title heading even when a cover image precedes it', () => {
+			const filename = writeMarkdown(`---
+title: Duplicated Title
+date: 2026-05-13
+---
+![cover](https://brandonxiang.top/img/a.png)
+
+# Duplicated Title
+
+Body text.
+`);
+
+			const { content } = process(filename);
+
+			expect(content).not.toContain('<h1');
+			expect(content).toContain('<p>Body text.</p>');
+		});
+
+		it('keeps a top-level heading that differs from the post title', () => {
+			const filename = writeMarkdown(`---
+title: Duplicated Title
+date: 2026-05-13
+---
+# A Different Heading
+
+Body text.
+`);
+
+			const { content } = process(filename);
+
+			expect(content).toContain('<h1>A Different Heading</h1>');
+		});
+
+		it('leaves a title heading alone when real prose comes first', () => {
+			const filename = writeMarkdown(`---
+title: Duplicated Title
+date: 2026-05-13
+---
+Some opening prose.
+
+# Duplicated Title
+`);
+
+			const { content } = process(filename);
+
+			expect(content).toContain('<h1>Duplicated Title</h1>');
+		});
+	});
+
+	describe('language', () => {
+		it('reports English for a post written entirely in English', () => {
+			const filename = writeMarkdown(`---
+title: Hello
+date: 2026-05-13
+---
+This post is written entirely in English so that the html lang attribute is set to en.
+`);
+
+			expect(process(filename).lang).toBe('en');
+		});
+
+		it('reports Chinese when the body contains CJK characters', () => {
+			const filename = writeMarkdown(`---
+title: 你好
+date: 2026-05-13
+---
+这是一篇完全用中文写的文章，正文包含汉字。
+`);
+
+			expect(process(filename).lang).toBe('zh-CN');
+		});
+	});
+});
+
+describe('getPostLanguage', () => {
+	it('matches the language reported by the full pipeline', () => {
+		const english = writeMarkdown('A post written entirely in English.\n');
+
+		expect(getPostLanguage(english)).toBe('en');
+	});
+
+	it('falls back to Chinese when the file cannot be read', () => {
+		expect(getPostLanguage('posts/definitely/missing.md')).toBe('zh-CN');
 	});
 });
 

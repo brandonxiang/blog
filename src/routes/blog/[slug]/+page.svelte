@@ -136,17 +136,50 @@
 	</aside>
 
 	<div class="post-content">
+		<nav class="breadcrumb" aria-label="Breadcrumb">
+			<ol>
+				<li><a href="/">首页</a></li>
+				<li><a href="/blog">文章</a></li>
+				<li aria-current="page">{data.post.metadata.title}</li>
+			</ol>
+		</nav>
+
 		<header class="post-header">
-			<p class="eyebrow">#{category}</p>
+			{#if data.categorySlug}
+				<a class="eyebrow" href={`/blog/category/${data.categorySlug}`}>#{category}</a>
+			{:else}
+				<p class="eyebrow">#{category}</p>
+			{/if}
 			<h1 class="title" style:--name={`post-title-${page.params.slug}`}>
 				{data.post.metadata.title}
 			</h1>
-			<p class="info"><a href="https://github.com/brandonxiang">Brandonxiang</a> · {date}</p>
+			<p class="info">
+				<a href="/blog/other-cv">Brandonxiang</a> ·
+				<time datetime={data.iso}>{date}</time>
+			</p>
 		</header>
 
 		<article id="content">
 			{@html data.post.content}
 		</article>
+
+		{#if data.relatedPosts.length > 0}
+			<section class="related" aria-labelledby="related-heading">
+				<h2 id="related-heading">相关文章</h2>
+				<ul>
+					{#each data.relatedPosts as related}
+						<li>
+							<a href={`/blog/${related.slug}`}>
+								<span class="related-title">{related.title}</span>
+								{#if related.description}
+									<span class="related-desc">{related.description}</span>
+								{/if}
+							</a>
+						</li>
+					{/each}
+				</ul>
+			</section>
+		{/if}
 	</div>
 	<div id="gitalk-container"></div>
 </div>
@@ -277,16 +310,59 @@
 		min-width: 0;
 	}
 
+	.breadcrumb {
+		font-size: var(--text-xs);
+		margin-bottom: 1.25rem;
+	}
+
+	.breadcrumb ol {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.breadcrumb li {
+		margin: 0;
+	}
+
+	.breadcrumb li + li::before {
+		color: var(--color-muted);
+		content: '/ ';
+	}
+
+	.breadcrumb a {
+		color: var(--color-muted);
+		text-decoration: none;
+	}
+
+	.breadcrumb a:hover {
+		color: var(--color-primary-dark);
+	}
+
+	.breadcrumb [aria-current='page'] {
+		color: var(--color-text);
+	}
+
 	.post-header {
 		padding-bottom: 1.25rem;
 	}
 
 	.eyebrow {
 		color: var(--color-primary);
+		display: inline-block;
 		font-size: var(--text-xs);
 		font-weight: 700;
 		letter-spacing: 0;
 		margin: 0 0 0.75rem;
+		text-decoration: none;
+	}
+
+	a.eyebrow:hover {
+		color: var(--color-primary-dark);
+		text-decoration: underline;
 	}
 
 	h1.title {
@@ -304,6 +380,51 @@
 	.info a {
 		color: var(--color-primary-dark);
 		text-decoration: none;
+	}
+
+	.related {
+		border-top: 1px solid var(--color-border);
+		margin-top: 3rem;
+		padding-top: 1.5rem;
+	}
+
+	.related h2 {
+		font-size: var(--text-lg);
+		margin: 0 0 1rem;
+	}
+
+	.related ul {
+		display: grid;
+		gap: 0.25rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.related li {
+		margin: 0;
+	}
+
+	.related a {
+		display: grid;
+		gap: 0.15rem;
+		padding: 0.6rem 0;
+		text-decoration: none;
+	}
+
+	.related-title {
+		font-size: var(--text-md);
+		font-weight: 700;
+	}
+
+	.related a:hover .related-title {
+		color: var(--color-primary-dark);
+	}
+
+	.related-desc {
+		color: var(--color-muted);
+		font-size: var(--text-sm);
+		line-height: 1.55;
 	}
 
 	article {

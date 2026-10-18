@@ -19,15 +19,34 @@ pnpm build          # Build for production (prerendered)
 pnpm preview        # Preview production build locally
 ```
 
-### Type Checking & Linting
+### Type Checking
+
+There are **two separate type checks** and both must pass.
 
 ```bash
-pnpm check              # Run svelte-check (TypeScript + Svelte type checking)
-pnpm check:watch        # Watch mode for type checking
-pnpm test               # Run unit tests with Vitest
-pnpm test:watch         # Watch mode for unit tests
+pnpm check              # svelte-check: Svelte components + TypeScript diagnostics
+pnpm check:watch        # svelte-check in watch mode
+pnpm typecheck          # tsc --noEmit: whole-program type check
+```
+
+They are not interchangeable:
+
+|                                               | `pnpm check`   | `pnpm typecheck` |
+| --------------------------------------------- | -------------- | ---------------- |
+| Tool                                          | `svelte-check` | `tsc`            |
+| Covers `.svelte` files                        | yes            | no               |
+| Covers `src/**`, `__tests__/**`, `scripts/**` | yes            | yes              |
+| Reads Svelte-specific diagnostics             | yes            | no               |
+
+Run both before committing. `pnpm check` alone will miss whole-program errors that only `tsc` reports, and `pnpm typecheck` will not look inside a `.svelte` file at all.
+
+### Linting & Formatting
+
+```bash
 pnpm lint               # Run `vp fmt --check` AND `vp lint` (oxlint)
 pnpm format             # Format code with oxfmt (writes changes)
+pnpm test               # Run unit tests with Vitest
+pnpm test:watch         # Watch mode for unit tests
 ```
 
 ### Running a Single Test
@@ -37,6 +56,25 @@ Use Vitest's file filtering to run a single test file:
 ```bash
 pnpm test -- __tests__/markdown.test.js
 ```
+
+## Type System
+
+The project is plain JavaScript with JSDoc annotations; `tsconfig.json` enables `checkJs`, so every `.js` file is type checked. There is no `.ts` source file.
+
+- Extend `$app/tsconfig` (written to `node_modules/$app/tsconfig.json` by SvelteKit) rather than `.svelte-kit/tsconfig.json`.
+- `$app/tsconfig` supplies no `include`/`exclude`, so this project sets them explicitly. **`include` must cover `src`, `__tests__` and `scripts`** — a new top-level directory of `.mjs` scripts is invisible to both checks until it is added there.
+- Annotate with JSDoc: `/** @type {Foo} */` and `/** @param {Foo} bar */`.
+- `@property` cannot express a quoted key such as `@type`. Use a type literal instead:
+  `/** @typedef {{ '@type'?: string, url: string }} ImageMeta */`
+- Avoid `@ts-ignore`. Narrow instead. In particular, do not assign to a variable from inside a recursive closure and read it afterwards — TypeScript cannot see the assignment and narrows the variable to `never`. Return the value from the recursion instead.
+- Import types from their SvelteKit 3 homes: hooks types come from `@sveltejs/kit/hooks`, param matchers from `@sveltejs/kit/params`, env types from `@sveltejs/kit/env`. `Handle` is no longer exported from `@sveltejs/kit` itself.
+- Tree types come from `@types/hast` (rendered HTML) and `@types/mdast` (markdown source). Both are devDependencies.
+- Route handlers annotate themselves with the generated `./$types`:
+  `/** @type {import('./$types').RequestHandler} */`. After adding a route directory, run `pnpm exec svelte-kit sync` so `$types` exists, otherwise the import fails to resolve.
+
+### Adding a file outside `src/`
+
+Re-run both checks after adding it. A common failure is a new `scripts/*.mjs` that nobody type checked because it was missing from `include`; the result is a script that only breaks at runtime.
 
 ## Testing
 
@@ -48,6 +86,7 @@ pnpm test -- __tests__/markdown.test.js
 - Use the `vite-plus/test` entrypoint for `describe` / `it` / `expect` / `vi`, matching the existing files.
 - Temporary files go under `os.tmpdir()` and must be removed in an `afterEach` hook.
 - Type-check tests along with the app: `__tests__` is listed in the `include` array of `tsconfig.json`, so JSDoc annotations are required there too.
+- `__tests__` must satisfy both `pnpm check` and `pnpm typecheck`. Keep assertions in sync with the behaviour they cover — when a payload gains a field or a title is translated, update the assertion rather than loosening it.
 
 ## Images
 

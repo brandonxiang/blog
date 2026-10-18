@@ -1,5 +1,5 @@
-import { getPosts } from '#lib/getPosts.js';
-import { createSeo, SITE_NAME, SITE_URL } from '#lib/seo.js';
+import { getCategories, getPosts } from '#lib/getPosts.js';
+import { createPageSeo, SITE_URL, toIsoDate } from '#lib/seo.js';
 import dayjs from 'dayjs';
 
 export const prerender = true;
@@ -46,14 +46,36 @@ export const load = async () => {
 		(a, b) => +dayjs(b.metadata.date, 'MMM D, YYYY') - +dayjs(a.metadata.date, 'MMM D, YYYY')
 	);
 
+	const seo = createPageSeo({
+		title: '技术文章',
+		description:
+			'BrandonXIANG Blog 的技术文章合集，涵盖前端工程化、Svelte、React、Vue、PWA、AI 工具、Python 与开发效率实践，按分类浏览全部文章。',
+		path: '/blog',
+		type: 'Blog'
+	});
+
+	// Only categories that earned a hub page get a link; the rest render as
+	// plain text so the listing never points at a 404.
+	const categorySlugs = new Map(getCategories().map((category) => [category.name, category.slug]));
+
 	return {
-		posts,
-		seo: createSeo({
-			title: `Recent Posts - ${SITE_NAME}`,
-			description:
-				'浏览 BrandonXIANG Blog 的最新技术文章，涵盖前端工程化、Svelte、React、PWA、AI 工具、Python 与开发效率实践。',
-			url: `${SITE_URL}/blog`,
-			type: 'website'
-		})
+		posts: posts.map((post) => ({
+			...post,
+			iso: toIsoDate(post.metadata.date),
+			categorySlug: post.category ? categorySlugs.get(post.category) : undefined
+		})),
+		seo: {
+			...seo,
+			jsonLd: {
+				.../** @type {any} */ (seo.jsonLd),
+				blogPost: posts
+					.filter((post) => post.slug)
+					.map((post) => ({
+						'@type': 'BlogPosting',
+						headline: post.metadata.title,
+						url: `${SITE_URL}/blog/${post.slug}`
+					}))
+			}
+		}
 	};
 };

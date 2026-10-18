@@ -16,7 +16,17 @@ describe('GET /robots.txt', () => {
 	it('allows the AI crawlers explicitly', async () => {
 		const body = await (await GET()).text();
 
-		for (const agent of ['GPTBot', 'ChatGPT-User', 'ClaudeBot', 'PerplexityBot']) {
+		for (const agent of [
+			'GPTBot',
+			'ChatGPT-User',
+			'OAI-SearchBot',
+			'ClaudeBot',
+			'anthropic-ai',
+			'PerplexityBot',
+			'Google-Extended',
+			'Applebot-Extended',
+			'CCBot'
+		]) {
 			expect(body).toContain(`User-agent: ${agent}`);
 		}
 	});
@@ -25,5 +35,11 @@ describe('GET /robots.txt', () => {
 		const body = await (await GET()).text();
 
 		expect(body).toContain('Sitemap: https://brandonxiang.top/sitemap.xml');
+	});
+
+	it('points answer engines at the llms.txt index', async () => {
+		const body = await (await GET()).text();
+
+		expect(body).toContain('Llms-Txt: https://brandonxiang.top/llms.txt');
 	});
 });

@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vite-plus/test';
 import { GET } from '../src/routes/rss.xml/+server.js';
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '../src/lib/seo.js';
 
 const mocks = vi.hoisted(() => ({
 	getPosts: vi.fn(),
@@ -40,9 +41,11 @@ describe('GET /rss.xml', () => {
 		const response = await GET();
 		const body = await response.text();
 
-		expect(response.headers.get('Content-Type')).toBe('application/xml; charset=utf-8');
+		expect(response.headers.get('Content-Type')).toBe('application/rss+xml; charset=utf-8');
 		expect(body).toContain('<rss version="2.0"');
-		expect(body).toContain('<title>Brandonxiang Blog</title>');
+		expect(body).toContain(`<title>${SITE_NAME}</title>`);
+		expect(body).toContain(`<link>${SITE_URL}/</link>`);
+		expect(body).toContain(SITE_DESCRIPTION);
 	});
 
 	it('emits one item per post, newest first', async () => {

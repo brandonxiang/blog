@@ -1,11 +1,3 @@
-<svelte:head>
-	<title>Privacy Policy - little-learner</title>
-	<meta
-		name="description"
-		content="Privacy Policy for little-learner, an infant and toddler flashcard learning app by Brandon Xiang."
-	/>
-</svelte:head>
-
 <article class="privacy-page">
 	<header class="policy-header">
 		<p class="eyebrow">little-learner</p>

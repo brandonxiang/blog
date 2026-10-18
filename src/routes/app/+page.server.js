@@ -1,13 +1,12 @@
-import { createSeo, SITE_NAME, SITE_URL } from '#lib/seo.js';
+import { createPageSeo } from '#lib/seo.js';
 
 export const prerender = true;
 
 export const load = async () => ({
-	seo: createSeo({
-		title: `Project - ${SITE_NAME}`,
+	seo: createPageSeo({
+		title: '开源项目与应用推荐',
 		description:
-			'BrandonXIANG Blog 的 Project 页面，整理应用推荐、开源工具、演示项目和技术演讲幻灯片。',
-		url: `${SITE_URL}/app`,
-		type: 'website'
+			'BrandonXIANG 的开源项目与工具推荐清单，收录 pb、svelteup、geojson-python-utils 等自研工具，以及前端开发必备的开源库与脚手架模板。',
+		path: '/app'
 	})
 });
