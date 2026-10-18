@@ -95,3 +95,5 @@ w2 start --init
 ## 总结
 
 作为前端开发，我们的目标是开发工具越轻量越好，尽可能提高自身的调试效率。希望 VSCode Server 会成为你的未来开发工具选择之一。（愿不远的将来，你也可以使用 mac mini + ipad 进行开发）。
+
+编辑器本身的样子和键位也算调试效率的一部分。我从 VS Code 换到 Cursor 的时候，把它整个还原回了 VS Code 的样子，步骤都记在[把 Cursor 打扮成为 VSCode 的样子](https://brandonxiang.top/blog/tool-cursor)里。

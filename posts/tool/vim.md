@@ -138,7 +138,7 @@ Plug 'junegunn/fzf.vim'
 call plug#end(）
 ```
 
-## 三、高级操作—Neovim
+## 三、高级操作：Neovim
 
 Neovim 则是基于 Lua 脚本的更上层封装，UI 样式也会更加好看，lua 脚本更为灵活，整体使用体验也会接近 ide。github 上有很多种 Neovim configuration，它能够提供快速上手 Neovim 配置。这里以 [astrovim](https://astronvim.com/) 为例，简单介绍一下。它是一揽子插件的集合，且拥有 lsp，可做代码提示等操作。
 
@@ -176,3 +176,5 @@ Leader 键默认是 Space，不用死记硬背，按一下空格即可调用快�
 ## 四、总结
 
 回头看，vim 其实并不难，它确实是最简易的编辑器，启动效率也足够高，特别在 linux 系统当中它起到很重要的作用。由浅入深，我们能够很清楚看到它的玩法非常多，一系列的高效率快捷按键能够帮助你提高工作效率。
+
+编辑器本身的样子是另一个话题。把 Cursor 还原回 VS Code 的界面和键位，步骤都写在[把 Cursor 打扮成为 VSCode 的样子](https://brandonxiang.top/blog/tool-cursor)里。
