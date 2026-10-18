@@ -140,6 +140,38 @@ export function createBreadcrumbJsonLd(trail) {
 	};
 }
 
+/**
+ * @typedef {Object} ListEntry
+ * @property {string} name
+ * @property {string} url
+ */
+
+/**
+ * The entries a listing page shows, as an `ItemList`.
+ *
+ * Unlike the breadcrumb trail this is nested into the page entity as
+ * `mainEntity` rather than emitted as its own block: it describes what the page
+ * is *about*, so it belongs in that page's graph. A `CollectionPage` whose
+ * description claims "12 篇文章" but never names them tells a crawler nothing
+ * about which twelve, and leaves the hub with no machine-readable link to its
+ * posts.
+ *
+ * @param {ListEntry[]} entries
+ * @returns {unknown}
+ */
+export function createItemList(entries) {
+	return {
+		'@type': 'ItemList',
+		numberOfItems: entries.length,
+		itemListElement: entries.map((entry, index) => ({
+			'@type': 'ListItem',
+			position: index + 1,
+			name: entry.name,
+			url: entry.url
+		}))
+	};
+}
+
 /** Trail shared by every page that lives under the blog index. */
 const BLOG_TRAIL = [
 	{ name: '首页', url: `${SITE_URL}/` },
@@ -223,7 +255,7 @@ export function toIsoDate(date) {
  * SEO for a standalone section page (`/keynote`, `/app`, `/privacy`, `/blog`, a
  * category listing).
  *
- * @param {{title: string; description: string; path: string; type?: string; lang?: string; trail?: BreadcrumbItem[]}} options
+ * @param {{title: string; description: string; path: string; type?: string; lang?: string; trail?: BreadcrumbItem[]; items?: ListEntry[]}} options
  * @returns {Seo}
  */
 export function createPageSeo({
@@ -232,7 +264,8 @@ export function createPageSeo({
 	path,
 	type = 'WebPage',
 	lang = SITE_LANG,
-	trail
+	trail,
+	items
 }) {
 	const url = `${SITE_URL}${path}`;
 
@@ -254,7 +287,8 @@ export function createPageSeo({
 			inLanguage: lang,
 			isPartOf: { '@id': `${SITE_URL}/#website` },
 			image: toImageMeta(SITE_IMAGE, SITE_IMAGE_WIDTH, SITE_IMAGE_HEIGHT, SITE_IMAGE_ALT),
-			breadcrumb: { '@id': `${url}#breadcrumb` }
+			breadcrumb: { '@id': `${url}#breadcrumb` },
+			...(items?.length ? { mainEntity: createItemList(items) } : {})
 		}
 	});
 }

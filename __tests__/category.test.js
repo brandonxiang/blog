@@ -53,6 +53,22 @@ describe('load', () => {
 		expect(/** @type {any} */ (data.seo.breadcrumbJsonLd).itemListElement).toHaveLength(3);
 	});
 
+	it('names the posts the hub holds, so it is a list and not just a count', async () => {
+		mocks.getCategories.mockReturnValue([framework]);
+
+		const data = /** @type {any} */ (
+			await load(/** @type {any} */ ({ params: { category: 'framework' } }))
+		);
+		const list = /** @type {any} */ (data.seo.jsonLd).mainEntity;
+
+		expect(list['@type']).toBe('ItemList');
+		expect(list.numberOfItems).toBe(2);
+		expect(list.itemListElement.map((/** @type {any} */ item) => item.url)).toEqual([
+			'https://brandonxiang.top/blog/framework-b',
+			'https://brandonxiang.top/blog/framework-a'
+		]);
+	});
+
 	it('throws a 404 for a category that has no hub page', async () => {
 		mocks.getCategories.mockReturnValue([framework]);
 

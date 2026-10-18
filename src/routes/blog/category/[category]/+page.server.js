@@ -42,16 +42,22 @@ export const load = async ({ params }) => {
 	const intro = introFor(category.slug);
 	const path = `/blog/category/${category.slug}`;
 	const title = `${category.name} 分类文章`;
+	const posts = category.posts.map((post) => ({ ...post, iso: toIsoDate(post.date) }));
 
 	return {
 		category: { name: category.name, slug: category.slug, count: category.count },
 		intro,
-		posts: category.posts.map((post) => ({ ...post, iso: toIsoDate(post.date) })),
+		posts,
 		seo: createPageSeo({
 			title,
 			description: `${category.name} 分类共收录 ${category.count} 篇文章。${intro}`,
 			path,
 			type: 'CollectionPage',
+			// The hub only counts as a hub if the graph names the posts it holds,
+			// instead of just claiming a count in the description.
+			items: posts
+				.filter((post) => post.slug)
+				.map((post) => ({ name: post.title, url: `${SITE_URL}/blog/${post.slug}` })),
 			trail: [
 				{ name: '首页', url: `${SITE_URL}/` },
 				{ name: '文章', url: `${SITE_URL}/blog` },

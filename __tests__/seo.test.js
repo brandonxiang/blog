@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vite-plus/test';
 import {
 	createArticleSeo,
 	createBreadcrumbJsonLd,
+	createItemList,
 	createPageSeo,
 	createProfileSeo,
 	createSeo,
@@ -252,6 +253,32 @@ describe('createBreadcrumbJsonLd', () => {
 	});
 });
 
+describe('createItemList', () => {
+	it('numbers the entries from one and keeps names and urls', () => {
+		const jsonLd = /** @type {any} */ (
+			createItemList([
+				{ name: 'B', url: `${SITE_URL}/blog/framework-b` },
+				{ name: 'A', url: `${SITE_URL}/blog/framework-a` }
+			])
+		);
+
+		expect(jsonLd['@type']).toBe('ItemList');
+		expect(jsonLd.numberOfItems).toBe(2);
+		expect(jsonLd.itemListElement).toEqual([
+			{ '@type': 'ListItem', position: 1, name: 'B', url: `${SITE_URL}/blog/framework-b` },
+			{ '@type': 'ListItem', position: 2, name: 'A', url: `${SITE_URL}/blog/framework-a` }
+		]);
+	});
+
+	it('carries no @context of its own, because it is nested into a page graph', () => {
+		const jsonLd = /** @type {any} */ (createItemList([]));
+
+		expect(jsonLd).not.toHaveProperty('@context');
+		expect(jsonLd.numberOfItems).toBe(0);
+		expect(jsonLd.itemListElement).toEqual([]);
+	});
+});
+
 describe('createPageSeo', () => {
 	it('builds a typed page entity with the site suffix, image and breadcrumb', () => {
 		const seo = createPageSeo({
@@ -363,5 +390,40 @@ describe('createPageSeo trail', () => {
 		expect(/** @type {any} */ (seo.jsonLd)['@id']).toBe(
 			`${SITE_URL}/blog/category/framework#collectionpage`
 		);
+	});
+});
+
+describe('createPageSeo items', () => {
+	it('attaches the entries as mainEntity so a hub names the posts it holds', () => {
+		const seo = createPageSeo({
+			title: 'Framework 分类文章',
+			description: 'd',
+			path: '/blog/category/framework',
+			type: 'CollectionPage',
+			items: [
+				{ name: 'B', url: `${SITE_URL}/blog/framework-b` },
+				{ name: 'A', url: `${SITE_URL}/blog/framework-a` }
+			]
+		});
+		const jsonLd = /** @type {any} */ (seo.jsonLd);
+
+		expect(jsonLd.mainEntity['@type']).toBe('ItemList');
+		expect(jsonLd.mainEntity.numberOfItems).toBe(2);
+		expect(jsonLd.mainEntity.itemListElement.map((/** @type {any} */ item) => item.name)).toEqual([
+			'B',
+			'A'
+		]);
+	});
+
+	it('omits mainEntity when a page lists nothing', () => {
+		const empty = /** @type {any} */ (
+			createPageSeo({ title: 'X', description: 'Y', path: '/x', items: [] }).jsonLd
+		);
+		const absent = /** @type {any} */ (
+			createPageSeo({ title: 'X', description: 'Y', path: '/x' }).jsonLd
+		);
+
+		expect(empty).not.toHaveProperty('mainEntity');
+		expect(absent).not.toHaveProperty('mainEntity');
 	});
 });
