@@ -1,4 +1,4 @@
-import { process } from '$lib/markdown';
+import { process } from '#lib/markdown.js';
 import fg from 'fast-glob';
 
 export const getPosts = () => {

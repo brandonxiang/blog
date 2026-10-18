@@ -1,8 +1,8 @@
-import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vite-plus/test';
-import { process } from './markdown.js';
+import { process } from '../src/lib/markdown.js';
 
 /** @type {string[]} */
 let tempDirs = [];
@@ -80,5 +80,42 @@ No metadata here.
 		expect(post.toc).toEqual([{ depth: 2, text: 'Plain post', id: 'plain-post' }]);
 		expect(post.content).toContain('<h2 id="plain-post">Plain post</h2>');
 		expect(post.content).toContain('<p>No metadata here.</p>');
+	});
+
+	it('derives the category from the directory holding the post', () => {
+		const root = join(mkdtempSync(join(tmpdir(), 'blog-markdown-test-')), 'posts');
+		tempDirs.push(join(root, '..'));
+
+		for (const [category, expected] of [
+			['framework', 'Framework'],
+			['ai', 'AI'],
+			['pwa', 'PWA'],
+			['unknown-dir', 'Blog']
+		]) {
+			const nested = join(root, category);
+			mkdirSync(nested, { recursive: true });
+			const filename = join(nested, 'post.md');
+			writeFileSync(filename, '---\ntitle: Post\ndate: 2026-05-13\n---\n');
+
+			expect(process(filename).category).toBe(expected);
+		}
+	});
+
+	it('keeps h1 headings out of the table of contents and slugs non-latin headings', () => {
+		const filename = writeMarkdown(`# 前言
+
+## 你好 World!
+
+### 100% Done
+
+#### Too deep
+`);
+
+		const post = process(filename);
+
+		expect(post.toc).toEqual([
+			{ depth: 2, text: '你好 World!', id: '你好-world' },
+			{ depth: 3, text: '100% Done', id: '100-done' }
+		]);
 	});
 });

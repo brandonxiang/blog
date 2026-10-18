@@ -1,5 +1,5 @@
-import { process } from '$lib/markdown';
-import { createArticleSeo } from '$lib/seo';
+import { process } from '#lib/markdown.js';
+import { createArticleSeo } from '#lib/seo.js';
 
 export const prerender = true;
 

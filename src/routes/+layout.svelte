@@ -1,12 +1,11 @@
 <script>
-	import { onNavigate } from '$app/navigation';
-	import Nav from '$lib/Nav.svelte';
-	import { page } from '$app/stores';
-	import { pwaInfo } from 'virtual:pwa-info';
+	import { afterNavigate, onNavigate } from '$app/navigation';
+	import Nav from '#lib/Nav.svelte';
+	import { page } from '$app/state';
 	import { onMount } from 'svelte';
-	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
-	import { injectAnalytics } from '@vercel/analytics/sveltekit';
-	import { defaultSeo } from '$lib/seo';
+	import { injectSpeedInsights } from '@vercel/speed-insights';
+	import { inject, pageview } from '@vercel/analytics';
+	import { defaultSeo } from '#lib/seo.js';
 	/**
 	 * @typedef {Object} Props
 	 * @property {import('svelte').Snippet} [children]
@@ -15,8 +14,8 @@
 	/** @type {Props} */
 	let { children } = $props();
 
-	let segment = $derived($page.url.pathname);
-	let seo = $derived($page.data.seo ?? defaultSeo);
+	let segment = $derived(page.url.pathname);
+	let seo = $derived(page.data.seo ?? defaultSeo);
 	let jsonLd = $derived(JSON.stringify(seo.jsonLd ?? defaultSeo.jsonLd));
 	let jsonLdScript = $derived(
 		'<script type="application/ld+json">' + jsonLd + '</scr' + 'ipt>'
@@ -33,16 +32,43 @@
 		});
 	});
 
-	onMount(async () => {
+	// The framework-agnostic entrypoints are used on purpose: the `/sveltekit`
+	// entrypoints of both packages still subscribe to `$app/stores`, which was
+	// removed in SvelteKit 3.
+	afterNavigate(() => {
+		if (!page.route.id) return;
+
+		pageview({ route: page.route.id, path: page.url.pathname });
+		speedInsights?.setRoute(page.route.id);
+	});
+
+	/** @type {{setRoute: (route: string | null) => void} | null} */
+	let speedInsights = null;
+
+	onMount(() => {
 		const isLocalPreview = ['localhost', '127.0.0.1'].includes(window.location.hostname);
 
 		if (!isLocalPreview) {
 			/** @type {Window & { dataLayer?: unknown[]; gtag?: (...args: unknown[]) => void; requestIdleCallback?: (callback: () => void, options?: { timeout?: number }) => number }} */
 			const analyticsWindow = window;
+			/** @type {string | undefined} */
+			const basePath = import.meta.env.VITE_VERCEL_OBSERVABILITY_BASEPATH;
+			/** @type {string | undefined} */
+			const clientConfig = import.meta.env.VITE_VERCEL_OBSERVABILITY_CLIENT_CONFIG;
 
 			const loadAnalytics = () => {
-				injectSpeedInsights();
-				injectAnalytics();
+				speedInsights = injectSpeedInsights({ basePath });
+				inject(
+					{
+						basePath,
+						debug: false,
+						disableAutoTrack: true,
+						framework: 'sveltekit'
+					},
+					clientConfig
+				);
+				speedInsights?.setRoute(page.route.id ?? null);
+				pageview({ route: page.route.id, path: page.url.pathname });
 
 				analyticsWindow.dataLayer = analyticsWindow.dataLayer || [];
 				analyticsWindow.gtag = (...args) => {
@@ -63,28 +89,7 @@
 				globalThis.setTimeout(loadAnalytics, 3000);
 			}
 		}
-
-		if (pwaInfo) {
-			const { registerSW } = await import('virtual:pwa-register');
-			registerSW({
-				immediate: true,
-				onRegistered(registration) {
-					registration?.update();
-					window.setInterval(
-						() => {
-							registration?.update();
-						},
-						60 * 60 * 1000
-					);
-				},
-				onRegisterError(error) {
-					console.log('SW registration error', error);
-				}
-			});
-		}
 	});
-
-	let webManifest = $derived(pwaInfo ? pwaInfo.webManifest.linkTag : '');
 </script>
 
 <Nav {segment} />
@@ -107,8 +112,6 @@
 	<meta name="twitter:description" content={seo.description} />
 	<meta name="twitter:image" content={seo.image} />
 	{@html jsonLdScript}
-	<!-- pwa -->
-	{@html webManifest}
 </svelte:head>
 
 <main class:home-main={segment === '/'} data-sveltekit-prefetch>

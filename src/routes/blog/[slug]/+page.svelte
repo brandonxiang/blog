@@ -1,8 +1,8 @@
 <script>
 	import { onMount, tick } from 'svelte';
-	import { page } from '$app/stores';
-	import { variables } from '$lib/variables';
-	import { browser } from '$app/environment';
+	import { page } from '$app/state';
+	import { variables } from '#lib/variables.js';
+	import { browser } from '$app/env';
 
 	/**
 	 * @typedef {Object} Props
@@ -15,7 +15,7 @@
 	let date = $derived(data.post.metadata.date.toUpperCase());
 	let category = $derived(data.post.category ?? 'Blog');
 	let toc = $derived(data.post.toc ?? []);
-	let shareUrl = $derived(data.seo?.url ?? $page.url.href);
+	let shareUrl = $derived(data.seo?.url ?? page.url.href);
 	let encodedShareUrl = $derived(encodeURIComponent(shareUrl));
 	let encodedShareTitle = $derived(encodeURIComponent(data.post.metadata.title));
 	let twitterShareUrl = $derived(
@@ -138,7 +138,7 @@
 	<div class="post-content">
 		<header class="post-header">
 			<p class="eyebrow">#{category}</p>
-			<h1 class="title" style:--name={`post-title-${$page.params.slug}`}>
+			<h1 class="title" style:--name={`post-title-${page.params.slug}`}>
 				{data.post.metadata.title}
 			</h1>
 			<p class="info"><a href="https://github.com/brandonxiang">Brandonxiang</a> · {date}</p>

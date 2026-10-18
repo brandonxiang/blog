@@ -9,25 +9,25 @@ This is a SvelteKit-based blog application. The project uses Svelte 5 with runes
 ### Development
 
 ```bash
-npm run dev          # Start Vite dev server with hot reload
+pnpm dev            # Start the dev server with hot reload (via `vp`)
 ```
 
 ### Building
 
 ```bash
-npm run build        # Build for production (prerendered)
-npm run preview      # Preview production build locally
+pnpm build          # Build for production (prerendered)
+pnpm preview        # Preview production build locally
 ```
 
 ### Type Checking & Linting
 
 ```bash
-npm run check              # Run svelte-check (TypeScript + Svelte type checking)
-npm run check:watch        # Watch mode for type checking
-npm run test               # Run unit tests with Vitest
-npm run test:watch         # Watch mode for unit tests
-npm run lint               # Run prettier --check AND eslint
-npm run format             # Format code with prettier (writes changes)
+pnpm check              # Run svelte-check (TypeScript + Svelte type checking)
+pnpm check:watch        # Watch mode for type checking
+pnpm test               # Run unit tests with Vitest
+pnpm test:watch         # Watch mode for unit tests
+pnpm lint               # Run `vp fmt --check` AND `vp lint` (oxlint)
+pnpm format             # Format code with oxfmt (writes changes)
 ```
 
 ### Running a Single Test
@@ -35,16 +35,29 @@ npm run format             # Format code with prettier (writes changes)
 Use Vitest's file filtering to run a single test file:
 
 ```bash
-npm run test -- src/lib/markdown.test.js
+pnpm test -- __tests__/markdown.test.js
 ```
+
+## Testing
+
+- **All unit tests live in the root `__tests__/` directory.** Do not co-locate `*.test.js` files next to the modules they cover — `src/` contains application code only.
+- Name files after the unit under test, not after the file type: `__tests__/seo.test.js` for `src/lib/seo.js`, `__tests__/blog-list.test.js` for `src/routes/blog/+page.server.js`.
+- Import the module under test with a relative path from `__tests__/`, e.g. `import { createSeo } from '../src/lib/seo.js'`.
+- Use `#lib/...` specifiers for `vi.mock(...)` so the mock matches how the module under test imports it.
+- Keep route/endpoint modules server-only: import `load` / `GET` directly from the route file and pass a stub event when the signature requires one.
+- Use the `vite-plus/test` entrypoint for `describe` / `it` / `expect` / `vi`, matching the existing files.
+- Temporary files go under `os.tmpdir()` and must be removed in an `afterEach` hook.
+- Type-check tests along with the app: `__tests__` is listed in the `include` array of `tsconfig.json`, so JSDoc annotations are required there too.
 
 ## Code Style Guidelines
 
 ### General Conventions
 
-- **Indentation**: Use tabs (Prettier config: `useTabs: true`)
+Formatting is handled by `oxfmt` and linting by `oxlint`, both configured in `vite.config.js` (the `fmt` key) and `.oxlintrc.json`. Do not add a Prettier or ESLint config.
+
+- **Indentation**: Use tabs (`useTabs: true`)
 - **Quotes**: Single quotes (`singleQuote: true`)
-- **Trailing Commas**: None (`trailingComma: "none"`)
+- **Trailing Commas**: None (`trailingComma: 'none'`)
 - **Print Width**: 100 characters (`printWidth: 100`)
 
 ### TypeScript
@@ -86,8 +99,8 @@ let metadata = { date: '', title: '' };
 
 ### Import Patterns
 
-- Use SvelteKit `$lib` alias for internal imports: `import { getPosts } from '$lib/getPosts'`
-- Use `$env` for environment variables
+- Use the `#lib` subpath import for internal imports: `import { getPosts } from '#lib/getPosts.js'`. Module extensions are required since SvelteKit 3. The alias is declared in the `imports` field of `package.json`.
+- Use `$app/env/private` and `$app/env/public` for environment variables (the `$env/*` modules are deprecated as of SvelteKit 3)
 - Group imports: external first, then internal
 
 ### Error Handling
@@ -122,6 +135,7 @@ src/
 │   └── post.js           # Post type definitions
 └── app.html              # HTML shell
 posts/                    # Markdown blog posts (in repo root)
+__tests__/                # All unit tests (Vitest)
 ```
 
 ## Editor Setup
@@ -129,20 +143,20 @@ posts/                    # Markdown blog posts (in repo root)
 ### Recommended Extensions
 
 - Svelte for VS Code
-- ESLint
-- Prettier
+- oxlint (via the Vite+ extension, if available)
 
 ### Pre-commit Hooks
 
-The project uses ESLint and Prettier for linting. Run `npm run lint` before committing.
+The project uses oxfmt and oxlint. Run `pnpm lint` before committing.
 
 ## Environment Variables
 
-Not currently required. The blog uses static markdown files for content.
+Not currently required for the content pipeline. `VITE_CLIENT_ID` / `VITE_CLIENT_SECRET` (see `src/lib/variables.js`) and the `VITE_VERCEL_OBSERVABILITY_*` variables read by `src/routes/+layout.svelte` are injected by Vercel at build time.
 
 ## Additional Notes
 
 - The blog supports both markdown files (in `posts/` directory) and external Notion links
 - RSS feed available at `/rss.xml`
 - Sitemap available at `/sitemap.xml`
-- PWA support is configured via `@vite-pwa/sveltekit`
+- SvelteKit configuration (adapter, `paths`) lives in the `sveltekit()` plugin options in `vite.config.js`. There is no `svelte.config.js` — SvelteKit 3 removed it.
+- The web app manifest is a plain static file at `static/manifest.json`, linked from `src/app.html`. There is no service worker.

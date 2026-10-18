@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vite-plus/test';
-import { getPostContent, getPosts } from './getPosts.js';
-import { apps, keynotes } from './showcaseData.js';
+import { getPostContent, getPosts } from '../src/lib/getPosts.js';
+import { apps, keynotes } from '../src/lib/showcaseData.js';
 
 const mocks = vi.hoisted(() => ({
 	globSync: vi.fn(),
@@ -13,7 +13,7 @@ vi.mock('fast-glob', () => ({
 	}
 }));
 
-vi.mock('$lib/markdown', () => ({
+vi.mock('#lib/markdown.js', () => ({
 	process: mocks.processPost
 }));
 

@@ -1,5 +1,5 @@
-import { getPosts } from '$lib/getPosts';
-import { SITE_URL, toSitemapDate } from '$lib/seo';
+import { getPosts } from '#lib/getPosts.js';
+import { SITE_URL, toSitemapDate } from '#lib/seo.js';
 import dayjs from 'dayjs';
 
 export const prerender = true;

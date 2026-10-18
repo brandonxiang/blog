@@ -6,7 +6,7 @@ import remark2rehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
 import frontmatter from 'remark-frontmatter';
 import highlight from 'rehype-highlight';
-import yaml from 'js-yaml';
+import { load } from 'js-yaml';
 import dayjs from 'dayjs';
 
 const parser = unified().use(parse).use(gfm).use(frontmatter, ['yaml']);
@@ -133,7 +133,7 @@ export function process(filename) {
 
 	if (tree.children.length > 0 && tree.children[0].type == 'yaml') {
 		//@ts-ignore
-		metadata = yaml.load(tree.children[0].value);
+		metadata = load(tree.children[0].value);
 		tree.children = tree.children.slice(1, tree.children.length);
 		metadata.date = dayjs(metadata.date).format('MMM D, YYYY');
 		metadata.description = cleanDescription(metadata.description);

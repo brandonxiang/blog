@@ -1,5 +1,5 @@
 <script>
-	import { apps, keynotes } from '$lib/showcaseData';
+	import { apps, keynotes } from '#lib/showcaseData.js';
 
 	/**
 	 * @typedef {Object} Props

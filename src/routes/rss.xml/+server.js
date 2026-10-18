@@ -1,4 +1,4 @@
-import { getPostContent, getPosts } from '$lib/getPosts';
+import { getPostContent, getPosts } from '#lib/getPosts.js';
 import dayjs from 'dayjs';
 import { Feed } from 'feed';
 

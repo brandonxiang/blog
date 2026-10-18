@@ -1,5 +1,5 @@
-import { getPosts } from '$lib/getPosts';
-import { createSeo, SITE_NAME, SITE_URL } from '$lib/seo';
+import { getPosts } from '#lib/getPosts.js';
+import { createSeo, SITE_NAME, SITE_URL } from '#lib/seo.js';
 import dayjs from 'dayjs';
 
 export const prerender = true;
