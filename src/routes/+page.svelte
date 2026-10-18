@@ -151,12 +151,15 @@
 	}
 	img {
 		display: block;
+		/* Both axes stay `auto` so the max-width/max-height pair below scales the
+		   illustration proportionally. A fixed `width: 100%` next to
+		   `max-height` clamps only the height and stretches the image. */
 		height: auto;
 		margin-inline: auto;
 		max-height: 20rem;
-		transition: transform 220ms ease;
-		width: 100%;
 		max-width: 430px;
+		transition: transform 220ms ease;
+		width: auto;
 	}
 
 	img:hover {
