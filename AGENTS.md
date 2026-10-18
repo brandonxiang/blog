@@ -49,6 +49,36 @@ pnpm test -- __tests__/markdown.test.js
 - Temporary files go under `os.tmpdir()` and must be removed in an `afterEach` hook.
 - Type-check tests along with the app: `__tests__` is listed in the `include` array of `tsconfig.json`, so JSDoc annotations are required there too.
 
+## Images
+
+Blog posts embed screenshots and GIFs straight out of `static/img/`. `src/lib/markdown.js` post-processes every rendered image at build time:
+
+- absolute `https://brandonxiang.top/...` URLs are rewritten to root-relative paths, so posts also work on localhost and preview deployments (this also makes the prerenderer fail the build on a broken reference)
+- intrinsic `width`/`height` are read from the file header and emitted so the browser reserves space and CLS stays at 0
+- images are lazy loaded, which matters because several posts embed multi-megabyte GIFs far below the fold
+- if WebP variants exist next to the original, the image is wrapped in a `<picture>` with a responsive `srcset`
+
+### Adding an image
+
+1. Drop the original into `static/img/`.
+2. Reference it from the post with a root-relative path, or with the canonical absolute URL if you prefer — both are normalised.
+3. Run `pnpm images:optimize` to generate the `640`/`880`/`1280`/`1760` WebP variants.
+4. Commit the generated `.webp` files. They are build artefacts that are served statically, so a normal `pnpm build` never needs `sharp`; it is a devDependency used only by `scripts/optimize-images.mjs`.
+
+Animated GIFs are intentionally skipped by the optimiser — re-encoding them would lose animation.
+
+## Performance Baseline
+
+Measured with `agent-browser` against `pnpm preview` under 4x CPU throttling and Slow 4G (1.6 Mbit/s, 150 ms RTT):
+
+| Route          | LCP        | CLS | Transferred |
+| -------------- | ---------- | --- | ----------- |
+| `/`            | ~470 ms    | 0   | ~47 KB      |
+| `/blog`        | ~650 ms    | 0   | ~71 KB      |
+| `/blog/<slug>` | ~0.7–1.5 s | 0   | 70–210 KB   |
+
+If a change pushes LCP past ~2.5 s or CLS above 0.1 on a post page, it needs investigating before it lands.
+
 ## Code Style Guidelines
 
 ### General Conventions

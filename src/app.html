@@ -288,6 +288,9 @@
 
 			img {
 				max-width: 100%;
+				/* width/height attributes are emitted for post images to reserve
+				   space; keep the aspect ratio when the image is scaled down */
+				height: auto;
 			}
 
 			hr {

@@ -82,7 +82,7 @@ ESM Import 的到来意味着 JS 资源可以直接被浏览器应用，它也�
 
 而 vite 则是 Bundle Free 的实现，它的出现主要是有效减少开发编译时间，因为 Bundle Free 的原理就在于每一个文件都是独立的 import。Node 端和浏览器端的文件基本是对等的，每当一个文件有变动的时候，只需要替换其中一个文件即可。所以它在大型业务项目的开发中，有着很不错的体验。
 
-![尤大大的Twitter](https://brandonxiang.top/img/twitter-yyx.png)
+![尤大大的Twitter](https://brandonxiang.top/img/twitter-yyx.jpeg)
 
 由于 vue 不同于渲染函数，很多语法是模版约定的。熟悉 vue 原理的同学就知道，它有对应的 compiler，将模版转换为 createElement 的函数，这些函数才可以在浏览器直接运行。每一个独立的 vue 文件，都会转换成相应的 js 文件，它们在浏览器上直接运作。vite 的基本原理就是在本地调试的时候将修改过的文件转换成为 js 文件，然后再通过 ESM Import 引入本地项目当中。vite2.0 已经支持了部分预打包机制并且支持 react，它可以将部分 common.js 的 npm 依赖封装成为 esm 模块，保证了第三方仓库的可用性，大家可以放心大胆使用。
 
