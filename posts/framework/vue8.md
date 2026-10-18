@@ -4,7 +4,7 @@ date: 2018-01-06T16:01:09.000Z
 description: Vue 笔记第八篇，记录基于 webpack 的 Vue 多页面打包框架实践，包含多页面脚手架、构建方式、性能优化和 webpack 升级经验。
 ---
 
-> 该文章已经过时，请移步[Vue 笔记十：Vue-cli3.0](https://brandonxiang.top/blog/vue10)
+> 该文章已经过时，请移步[Vue 笔记十：Vue-cli3.0](https://brandonxiang.top/blog/framework-vue10)
 
 我记得去年很多人看了我《用 Webpack 构建 Vue》一篇文章，但是因为 webpack 和 vue 升级速度很快，那文章很快就过时了。学习 vue 最好的教材莫过于[vue-cli](https://github.com/vuejs/vue-cli)直接生成的单页面项目。可惜的是它不过是一个单页面的项目，在我们的实际生产环境中，往往都是较为分散的页面，为的是保证项目的解耦。
 

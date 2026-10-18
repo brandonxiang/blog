@@ -77,7 +77,7 @@ Last-Modify 记录的是指上次代码更新的时间。上次更新的时间�
 
 HTTP 以前的缓存机制是 Network 和 application 之间的交互，Service Worker 缓存机制则是在它们之间加入一个代理层，优先取本地的资源，之后检查数据内容是否更新。如果有更新，将会在下一次更新才更新数据内容。
 
-因此，SW 缓存也是 pwa 的基础要素之一，详情可见[PWA 笔记二：离线缓存原理](https://brandonxiang.top/blog/pwa2)。
+因此，SW 缓存也是 pwa 的基础要素之一，详情可见[PWA 笔记二：离线缓存原理](https://brandonxiang.top/blog/pwa-pwa2)。
 
 ![代理层](https://brandonxiang.top/img/service-worker.png)
 
